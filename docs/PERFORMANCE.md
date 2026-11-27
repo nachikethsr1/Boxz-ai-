@@ -13,10 +13,17 @@ For the 3.1 M-parameter model (`d_model=192, 6 layers, ctx=128, batch=24`):
 
 | Stage | Time | Notes |
 |---|---|---|
-| forward (graph building) | ≈540 ms | ~230 GFLOP of useful work |
+| forward (graph building) | ≈600 ms | measured after the full pipeline |
+| forward, `no_grad` (inference) | ≈529 ms | 20 % faster without graph nodes |
 | backward | ≈1070 ms | ~2× forward cost, as expected |
 | AdamW step | <1 ms | 76 tensors, ~12 MB |
-| **total** | **≈1.7 s** | ≈1 800 tokens/s |
+| **training step** | **≈1.95 s** | **1,575 tokens/s** (batch 24 × ctx 128) |
+
+The end-to-end pretraining run measured **1,494–1,626 tok/s** over 5.86 M tokens
+(60 minutes on 4 cores), which matches the per-step figure. Chat generation runs
+at **90–250 tok/s** depending on reply length, because the KV cache removes the
+quadratic recompute cost after the prompt. Streaming hides the latency for the
+first token: the UI starts rendering after one decode.
 
 Matmuls dominate and are already running in OpenBLAS at 175–235 GFLOP/s on the
 model's shapes, which is ~85 % of the AVX2 FMA peak for this CPU. That is why
