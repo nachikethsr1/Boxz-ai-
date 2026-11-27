@@ -88,10 +88,10 @@ class BoxzApp:
             raise ValueError("message must not be empty")
         cfg = GenerationConfig(
             max_new_tokens=int(payload.get("max_new_tokens", 160)),
-            temperature=float(payload.get("temperature", 0.8)),
-            top_k=int(payload.get("top_k", 40)) or None,
+            temperature=float(payload.get("temperature", 0.3)),
+            top_k=int(payload.get("top_k", 20)) or None,
             top_p=float(payload.get("top_p", 0.95)),
-            repetition_penalty=float(payload.get("repetition_penalty", 1.0)),
+            repetition_penalty=float(payload.get("repetition_penalty", 1.15)),
         )
         with self.lock:
             reply = self.engine.reply(message, cfg)
@@ -104,10 +104,10 @@ class BoxzApp:
             raise ValueError("message must not be empty")
         cfg = GenerationConfig(
             max_new_tokens=int(payload.get("max_new_tokens", 160)),
-            temperature=float(payload.get("temperature", 0.8)),
-            top_k=int(payload.get("top_k", 40)) or None,
+            temperature=float(payload.get("temperature", 0.3)),
+            top_k=int(payload.get("top_k", 20)) or None,
             top_p=float(payload.get("top_p", 0.95)),
-            repetition_penalty=float(payload.get("repetition_penalty", 1.0)),
+            repetition_penalty=float(payload.get("repetition_penalty", 1.15)),
             seed=payload.get("seed"),
         )
         # The lock serialises generation: one CPU-bound model, no interleaving.
@@ -163,8 +163,8 @@ def _make_handler(app: BoxzApp):
             payload = {k: v[-1] for k, v in q.items()}
             try:
                 payload["max_new_tokens"] = int(payload.get("max_new_tokens", 160))
-                payload["temperature"] = float(payload.get("temperature", 0.8))
-                payload["top_k"] = int(payload.get("top_k", 40))
+                payload["temperature"] = float(payload.get("temperature", 0.3))
+                payload["top_k"] = int(payload.get("top_k", 20))
                 payload["top_p"] = float(payload.get("top_p", 0.95))
             except (TypeError, ValueError):
                 self._json({"error": "bad query parameter"}, 400)
