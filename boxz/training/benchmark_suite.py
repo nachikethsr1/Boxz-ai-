@@ -79,7 +79,7 @@ def instruction_format_rate(model: BoxzLM, tok: BPETokenizer, prompts: List[str]
 
 
 def instruction_loss(model: BoxzLM, tok: BPETokenizer, path: str,
-                     max_length: int = 256, holdout: int = 8,
+                     max_length: int = 256, holdout: int = 16,
                      seed: int = 3) -> Optional[float]:
     """Assistant-token loss on the *same* deterministic holdout SFT never trains on.
 
@@ -111,7 +111,7 @@ def run_suite(
     tokenizer: BPETokenizer,
     corpus: Optional[TokenizedCorpus] = None,
     checkpoint: str = "",
-    instruction_path: str = "data/sources/boxz_instruct.jsonl",
+    instruction_path: str = "data/sources/boxz_instruct_expanded.jsonl",
     prompts: Optional[List[str]] = None,
     batch_size: int = 8,
     batches: int = 16,

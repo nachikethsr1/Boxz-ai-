@@ -92,10 +92,21 @@ def _render(ex: InstructionExample, tokenizer: BPETokenizer) -> Tuple[List[int],
 
 def encode_example(ex: InstructionExample, tokenizer: BPETokenizer,
                    max_length: int) -> Optional[Tuple[np.ndarray, np.ndarray]]:
+    """Render one example into ``(x, y)`` of at most ``max_length`` tokens.
+
+    Over-long examples are truncated from the *end* of the last assistant turn,
+    never from the front: cutting the opening of the prompt would delete the
+    question and silently teach the model to answer nothing in particular.
+    """
     ids, labels = _render(ex, tokenizer)
     if len(ids) > max_length + 1:
-        ids = ids[-max_length - 1:]
-        labels = labels[-max_length - 1:]
+        ids = ids[:max_length + 1]
+        labels = labels[:max_length + 1]
+        # make sure the truncated answer still ends with the end-of-turn marker
+        end_id = tokenizer.special_id("<|end|>")
+        if end_id is not None:
+            ids[-1] = end_id
+            labels[-1] = end_id
     if len(ids) < 2 or all(l == tokenizer.pad_id for l in labels[:-1]):
         return None
     x = np.asarray(ids[:-1], dtype=np.int64)

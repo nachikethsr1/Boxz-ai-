@@ -27,7 +27,7 @@ from .checkpoint import load_checkpoint, save_checkpoint
 __all__ = ["InstructionTuner", "SFTConfig", "holdout_indices"]
 
 
-def holdout_indices(n_examples: int, holdout: int = 8, seed: int = 3) -> np.ndarray:
+def holdout_indices(n_examples: int, holdout: int = 16, seed: int = 3) -> np.ndarray:
     """Deterministic index set reserved for held-out evaluation.
 
     Used by both the SFT trainer and the benchmark suite so the number they
@@ -46,7 +46,7 @@ class SFTConfig:
 
     def __init__(
         self,
-        dataset: str = "data/sources/boxz_instruct.jsonl",
+        dataset: str = "data/sources/boxz_instruct_expanded.jsonl",
         steps: int = 400,
         batch_size: int = 8,
         lr: float = 2e-4,
@@ -56,7 +56,7 @@ class SFTConfig:
         weight_decay: float = 0.01,
         grad_clip: float = 1.0,
         eval_interval: int = 50,
-        holdout: int = 8,
+        holdout: int = 16,
         patience: int = 8,
         seed: int = 3,
         out_dir: str = "checkpoints/sft",

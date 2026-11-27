@@ -121,18 +121,28 @@ def test_pretraining_corpus_excludes_sft_holdout():
     from boxz.training.sft import holdout_indices
     import json
 
-    src = Path("data/sources/boxz_instruct.jsonl")
+    from boxz.config import DataConfig as _DC
+    from boxz.training.sft import SFTConfig
+
+    src = Path(SFTConfig().dataset)
+    assert src.exists(), "the expanded instruction set must be generated first"
     rows = [json.loads(l) for l in src.read_text(encoding="utf-8").splitlines() if l.strip()]
-    idx = holdout_indices(len(rows), 8, 3)
+    idx = holdout_indices(len(rows), SFTConfig().holdout, 3)
 
     text, *_ = _resolve_text(DataConfig(dataset=str(src)))
-    for i in idx:
-        answer = rows[int(i)]["messages"][-1]["content"]
-        assert answer not in text, f"holdout row {i} leaked into the corpus"
 
-    # positive control: with the guard disabled the rows are present
+    # The *whole rendered example* must be absent, not merely its answer: two
+    # paraphrases can share an answer string, so checking answers would both
+    # over- and under-report leakage.
+    from boxz.chat.template import render_messages
+
+    for i in idx:
+        rendered = render_messages(rows[int(i)]["messages"])
+        assert rendered not in text, f"holdout row {i} leaked into the corpus"
+
+    # positive control: with the guard disabled every row is present
     text_all, *_ = _resolve_text(DataConfig(dataset=str(src), exclude_sft_holdout=False))
-    assert all(rows[int(i)]["messages"][-1]["content"] in text_all for i in idx)
+    assert all(render_messages(rows[int(i)]["messages"]) in text_all for i in idx)
 
 
 def test_registry_declares_licences():

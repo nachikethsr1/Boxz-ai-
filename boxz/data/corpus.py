@@ -123,6 +123,14 @@ class TokenizedCorpus:
 
 def _read_source(path: Path, fmt: str, text_field: str,
                  exclude_rows: Optional[set] = None) -> str:
+    if fmt == "codejson":
+        # The code corpus stores one JSON object per file under a single "code"
+        # key rather than one object per line; keep the file boundary as a
+        # separator so the model sees complete pages.
+        docs = json.loads(path.read_text(encoding="utf-8"))
+        selected = [d["code"] for i, d in enumerate(docs)
+                    if not (exclude_rows and i in exclude_rows)]
+        return "\n\n".join(selected)
     if fmt == "jsonl":
         parts: List[str] = []
         with path.open("r", encoding="utf-8") as f:
@@ -229,6 +237,14 @@ def _sft_holdout_rows(n_rows: int, cfg: DataConfig) -> set:
                holdout_indices(n_rows, cfg.sft_holdout, seed=3))
 
 
+def _is_instruction_source(path: Path, cfg: DataConfig) -> bool:
+    """True when this file is the SFT dataset whose rows must be withheld."""
+    try:
+        return path.resolve() == Path(cfg.sft_path).resolve()
+    except OSError:
+        return False
+
+
 def _resolve_text(cfg: DataConfig) -> Tuple[str, str, List[str], str]:
     if isinstance(cfg.dataset, (list, tuple)):
         chunks: List[str] = []
@@ -245,9 +261,16 @@ def _resolve_text(cfg: DataConfig) -> Tuple[str, str, List[str], str]:
         return load_text(p), p.stem, [str(p)], "text"
     if p.suffix == ".jsonl" and p.exists():
         n_rows = sum(1 for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip())
-        return _read_source(p, "jsonl", cfg.text_field, _sft_holdout_rows(n_rows, cfg)), p.stem, [str(p)], "jsonl"
+        exclude = _sft_holdout_rows(n_rows, cfg) if _is_instruction_source(p, cfg) else None
+        return _read_source(p, "jsonl", cfg.text_field, exclude), p.stem, [str(p)], "jsonl"
     # registered dataset
     src: DatasetSource = get_source(name)
     if not src.is_present():
         fetch_source(name)
-    return _read_source(src.path(), src.fmt, src.text_field or cfg.text_field), name, [str(src.path())], src.fmt
+    fmt = src.fmt
+    exclude = None
+    if _is_instruction_source(src.path(), cfg):
+        n_rows = sum(1 for ln in src.path().read_text(encoding="utf-8").splitlines() if ln.strip())
+        exclude = _sft_holdout_rows(n_rows, cfg)
+    return (_read_source(src.path(), fmt, src.text_field or cfg.text_field, exclude),
+            name, [str(src.path())], fmt)

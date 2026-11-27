@@ -116,7 +116,9 @@ class DataConfig:
     #: held-out instruction score is a real generalisation measurement.  Set to
     #: False only for ablation runs; it makes those numbers meaningless.
     exclude_sft_holdout: bool = True
-    sft_holdout: int = 8
+    sft_holdout: int = 16
+    #: Instruction file whose evaluation rows must be withheld from pretraining.
+    sft_path: str = "data/sources/boxz_instruct_expanded.jsonl"
     seed: int = 1234
 
     def to_dict(self) -> dict:

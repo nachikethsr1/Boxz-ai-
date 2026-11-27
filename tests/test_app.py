@@ -131,8 +131,9 @@ def test_sft_holdout_is_disjoint_and_deterministic(checkpoint):
 
     a = InstructionTuner(str(checkpoint), SFTConfig(steps=1, holdout=8), verbose=False)
     b = InstructionTuner(str(checkpoint), SFTConfig(steps=1, holdout=8), verbose=False)
-    assert len(a.holdout) == 8
-    assert len(a.examples) == 28
+    total = len(a.examples) + len(a.holdout)
+    assert total >= 100
+    assert len(a.holdout) == min(8, total // 4)
     key = lambda t: [ex.to_dict() for ex in t.holdout]
     assert key(a) == key(b)
     train_set = {json.dumps(ex.to_dict(), sort_keys=True) for ex in a.examples}
@@ -155,6 +156,6 @@ def test_sft_short_run_writes_best_checkpoint(checkpoint, tmp_path):
     report = tuner.fit()
     assert (out / "best").is_dir()
     assert report["holdout_examples"] == 8
-    assert report["train_examples"] == 28
+    assert report["train_examples"] >= 90
     assert report["final_holdout_loss"] is not None
     assert report["best_holdout_loss"] is not None
