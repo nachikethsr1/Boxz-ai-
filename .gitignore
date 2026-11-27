@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/
+
+# Rust
+rust/boxz_rust/target/
+Cargo.lock.orig
+
+# Model artefacts (large binaries stay out of git -- see docs/TRAINING.md)
+checkpoints/*/
+checkpoints/**/
+!checkpoints/README.md
+*.npz
+*.npy
+*.pt
+*.safetensors
+
+# Datasets (downloaded on demand; see data/sources/*.json for provenance)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Logs and transient reports
+logs/
+benchmarks/*.json
+reports/*.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+tmp_*.py
+out.txt

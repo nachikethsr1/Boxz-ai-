@@ -1,0 +1,13 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "boxz_rust"
+version = "0.1.0"
+description = "Optional Rust kernels for Boxz"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+
+[tool.maturin]
+module-name = "boxz_rust"

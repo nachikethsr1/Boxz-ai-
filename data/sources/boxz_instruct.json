@@ -1,0 +1,11 @@
+{
+  "title": "Boxz Instruct (seed set)",
+  "licence": "CC0-1.0 (project original)",
+  "url": "",
+  "filename": "../sources/boxz_instruct.jsonl",
+  "fmt": "jsonl",
+  "text_field": "text",
+  "sha256": null,
+  "notes": "36 hand-written instruction/response pairs covering identity, HTML/CSS, JavaScript, debugging, Three.js, game design and ML basics. Written for this project (no third-party text), CC0. Used (a) as extra tokenizer coverage for code and chat markup and (b) as the seed set for instruction fine-tuning. It is small by design: SFT quality here is limited by scale and is documented as such.",
+  "allowed_use": "Project original work, dedicated to the public domain."
+}
