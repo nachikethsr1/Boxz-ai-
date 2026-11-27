@@ -59,6 +59,16 @@ def _normalise(obj: dict) -> Optional[InstructionExample]:
 
 
 def load_instruction_file(path: Path) -> List[InstructionExample]:
+    # A ``Data.txt`` in the documented ``### role`` format is accepted directly,
+    # so a hand-written dataset does not have to be converted first.
+    p = Path(path)
+    if p.suffix.lower() == ".txt":
+        from .prepare_user_data import clean_examples, parse_blocks
+
+        records = parse_blocks(p.read_text(encoding="utf-8"))
+        examples, _ = clean_examples(records, merge_v2=False)
+        return [InstructionExample(e["messages"]) for e in examples]
+
     out: List[InstructionExample] = []
     with Path(path).open("r", encoding="utf-8") as f:
         for ln, line in enumerate(f, 1):
