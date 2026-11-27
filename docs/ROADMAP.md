@@ -57,22 +57,28 @@ Legend: **✅ done** · **🟡 partial** · **⬜ not started**
 | Conversation formatting (`<|user|>`/`<|assistant|>`/`<|end|>`) | ✅ | special-token based |
 | Message structure & history management | ✅ | `boxz/chat/format.py` |
 | Multi-turn context with token budgeting | ✅ | `Conversation.truncated` |
-| Instruction dataset + loader | ✅ | `data/sources/boxz_instruct.jsonl` (36 curated examples) |
+| Instruction dataset + loader | ✅ | 116 examples (`data/sources/boxz_instruct_expanded.jsonl`), built by `boxz/data/expand_instruct.py` |
 | Instruction fine-tuning with assistant-only loss masking | ✅ | `boxz/training/sft.py` |
-| Real conversational quality | 🟡 | **Limited by scale.** The SFT set is intentionally tiny; replies follow the chat format and the assistant voice, but factual breadth is inherited from a ~3 M-parameter base model trained on ~1 MB of text. |
+| Held-out split + best-checkpoint selection + early stopping | ✅ | 100 train / 16 held-out; `sft/best` |
+| Replay of pretraining data to prevent forgetting | ✅ | val loss after SFT 4.14 vs 4.73 without |
+| Weighted end-of-turn loss | ✅ | format rate 0.00 → 0.33 |
+| Real conversational quality | 🟡 | **Measured, limited.** Held-out instruction loss improves 7.52 → 4.91 (−35 %), replies follow the assistant voice and terminate correctly, but the base model's knowledge is thin at 3 M parameters. |
 
 Honest limitation: Boxz is a *real* language model, not a template bot, but at
-this size its conversational competence is narrow. The infrastructure to scale
-is what this phase delivers.
+this size its conversational competence is narrow — it composes phrases from the
+domains it was trained on rather than knowing answers. The measured held-out
+numbers in [EVALUATION.md](EVALUATION.md) are the claim; nothing more is made.
 
 ## Phase 5 — Coding Intelligence 🟡
 
 | Deliverable | Status | Notes |
 |---|---|---|
 | Code-aware tokenizer (snake_case intact, lossless) | ✅ | |
-| Instruction/code seed corpus (HTML, CSS, JS, Three.js, debugging) | ✅ | 36 examples |
-| SFT pipeline ready for large code corpora | ✅ | `make_sft_batch`, masked loss |
-| Trained coding capability at scale | ⬜ | Requires a large, licensed code corpus and much more compute than the dev machine provides. Not claimed. |
+| Licensed web-code pretraining corpus | ✅ | 473 files / 2.7 M chars of MIT three.js + jQuery, licence verified via GitHub API (`boxz/data/code_corpus.py`) |
+| Instruction/code seed corpus (HTML, CSS, JS, Three.js, debugging) | ✅ | 116 examples |
+| SFT pipeline ready for large code corpora | ✅ | `make_sft_batch`, masked + weighted loss |
+| Model emits syntactically shaped code | 🟡 | After pretraining on the code corpus it produces real `new THREE.Mesh(…)`, CSS rules and HTML structure; correctness is not achieved |
+| Trained coding capability at scale | ⬜ | Requires far more parameters and tokens than the dev machine can train. Not claimed. |
 
 ## Phase 6 — Advanced Game-Development Assistant ⬜
 
@@ -96,6 +102,7 @@ Seeded examples exist to establish the target format only.
 | Deliverable | Status | Where |
 |---|---|---|
 | Chat UI wired to the real engine | ✅ | `boxz/app/` |
+| Token-by-token streaming (SSE) | ✅ | `GET /api/stream`, `ChatEngine.reply_stream` |
 | Model loading & metadata display | ✅ | `/api/status` |
 | Generation settings | ✅ | temperature, top-k/top-p, max tokens, repetition |
 | Conversation history & reset | ✅ | `/api/history`, `/api/reset` |
@@ -108,9 +115,14 @@ Seeded examples exist to establish the target format only.
 
 1. **Scale the base model** once more compute is available: 10–30 M parameters,
    `context_length` 512, a 10–100 MB licensed corpus. Config files already
-   support this (`configs/`).
-2. **Grow the instruction corpus** to thousands of examples and run a full SFT
-   schedule; add held-out instruction evaluation thresholds.
+   support this (`configs/`), and `--max-files` on the code fetcher is the one
+   knob that grows the code corpus. The measured evidence that this is the
+   binding constraint: the SFT holdout bottoms out at step 200 and then *rises*
+   while training loss falls to 0.05 — the model runs out of capacity, not data
+   pipeline.
+2. **Grow the instruction corpus** to thousands of examples. 116 is enough to
+   learn the format and the voice (that is measured), not to generalise to
+   unseen questions.
 3. **Compile the Rust backend** and re-run `tests/test_backend_parity.py` and
    `python -m boxz benchmark` on the target machine.
 4. **Game-dev specialisation** (Phase 6): multi-file project datasets and

@@ -49,7 +49,7 @@ class SFTConfig:
         dataset: str = "data/sources/boxz_instruct_expanded.jsonl",
         steps: int = 400,
         batch_size: int = 8,
-        lr: float = 2e-4,
+        lr: float = 1e-4,
         min_lr: float = 2e-5,
         warmup_steps: int = 20,
         max_length: Optional[int] = None,
