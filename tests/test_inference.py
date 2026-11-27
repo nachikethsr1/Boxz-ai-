@@ -89,7 +89,16 @@ def test_sampling_is_seeded():
 def test_forbidden_mask_covers_controls():
     tok = BPETokenizer().train("abc def ghi " * 100, vocab_size=300)
     mask = build_forbidden_mask(tok, forbid_control=True)
-    assert not mask[: tok.n_specials].any()
+
+    # Structural turn terminators must stay sampleable, or the model can never
+    # finish a reply and every generation runs to max_new_tokens (bug found in
+    # the eval suite: instruction_format_rate was structurally pinned at 0).
+    for name in ("<|end|>", "<eos>"):
+        assert mask[int(tok.special_id(name))], f"{name} must be sampleable"
+    # Nothing else may start a new turn or produce a bare structural token.
+    for name in ("<|user|>", "<|assistant|>", "<|system|>", "<bos>", "<pad>", "<unk>"):
+        assert not mask[int(tok.special_id(name))], f"{name} must be masked"
+
     for i in range(tok.n_specials, tok.vocab_size):
         if not mask[i]:
             raw = tok.token_bytes(i)

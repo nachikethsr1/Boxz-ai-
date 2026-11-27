@@ -8,19 +8,49 @@ is fetched only by an explicit command (`python -m boxz data <name>`).
 
 | Name | Corpus | Licence | Size | Role |
 |---|---|---|---|---|
-| `tinyshakespeare` | ~1.1 MB of Shakespeare's plays, extracted from `char-rnn` (`data/tinyshakespeare/input.txt`) | **Public domain** text; the hosting repository is MIT | 1 115 394 bytes | Pretraining corpus — small, clean, fast on CPU |
-| `boxz_instruct` | 36 curated instruction/response pairs (identity, HTML/CSS, JavaScript, debugging, Three.js, game design, ML fundamentals) | **CC0-1.0**, written for this project | ~28 KB | Tokenizer coverage for code/chat markers + seed set for SFT |
+| `tinyshakespeare` | ~1.1 MB of Shakespeare's plays, extracted from `char-rnn` (`data/tinyshakespeare/input.txt`) | **Public domain** text; the hosting repository is MIT | 1 115 394 bytes | English prose for pretraining |
+| `boxz_web_code` | 473 web-game source files: `three.js` `examples/*.html` (400) and `jquery` `src/*.js` (73), cleaned of vendored CDN includes | **MIT** (verified through the GitHub API at fetch time) | 2 717 338 chars | HTML/CSS/JS/Three.js for pretraining — the model cannot write these languages without seeing them |
+| `boxz_instruct` | 36 curated instruction/response pairs, hand-written seed set | **CC0-1.0**, project original | 14.7 KB | Seed set for SFT / format reference |
+| `boxz_instruct_expanded` | 116 examples: the seed set plus paraphrase groups with genuinely different answers (identity, tokens/attention, HTML, CSS, JavaScript, canvas, animation, Three.js, collisions, audio, debugging, game design, ML basics) | **CC0-1.0**, project original | 51 KB | SFT training set |
 
-Both are declared with SHA-256 checksums where a download is involved.
+### Code corpus provenance
+
+`python -m boxz.data.code_corpus fetch` verifies each project's licence through
+`api.github.com` **before downloading a single byte**, and refuses the project on
+a mismatch. It then records, in `data/raw/code_corpus/manifest.json`:
+
+* the SPDX licence GitHub reports for the repository,
+* the exact commit SHA that was harvested,
+* every file path, its byte count and its licence.
+
+The exact commit SHA is pinned for every file, so a run can be reproduced or
+withdrawn later. The fetched corpus itself is **not** committed — only the
+fetcher and the declared source are.
+
+### Held-out separation (important)
+
+The SFT evaluation rows are withheld from *every* stage:
+
+* `boxz/data/corpus.py` drops the rows selected by
+  `boxz.training.sft.holdout_indices` when the instruction file is read as a
+  pretraining source (`DataConfig.exclude_sft_holdout`, on by default).
+* The SFT trainer never fits those rows and selects its checkpoint on their
+  loss (`best/`), with early stopping.
+* The benchmark suite reports instruction loss on the same rows.
+
+`tests/test_data.py::test_pretraining_corpus_excludes_sft_holdout` asserts both
+directions, including a positive control that the guard actually removes rows.
 
 ## Why so little data?
 
 The reference machine has 4 CPU cores and 8 GB RAM. A 3 M-parameter model needs
-~20× its parameter count in tokens (~60 M) for a compute-optimal run; the
-corpus above provides ~0.35 M training tokens, which is enough to demonstrate
-(wavenue) learning but not enough for broad competence. Scaling the corpus is a
-data-provisioning decision, not an architectural one — the pipeline, tokenizer
-and trainer are already size-agnostic.
+roughly 20× its parameter count in tokens (~60 M) for a compute-optimal run.
+The current mix provides **~0.89 M training tokens** (934 K including
+validation): enough for coherent Shakespeare-style English and basic
+HTML/CSS/JavaScript patterns, nowhere near enough for broad competence. Scaling
+is a data-provisioning decision, not an architectural one — the tokenizer,
+trainer and pipeline are size-agnostic, and the `--max-files` flag on the code
+fetcher is the single knob for a bigger corpus.
 
 ## Adding a dataset
 

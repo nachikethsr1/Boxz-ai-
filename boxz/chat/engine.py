@@ -14,10 +14,14 @@ from typing import Callable, List, Optional
 import numpy as np
 
 from ..config import GenerationConfig
-from ..inference.generator import GenerationResult, generate_ids, generate_with_kv_cache
+from ..engine import no_grad
+from ..inference.generator import (GenerationResult, _params_from_config,
+                                   generate_ids, generate_with_kv_cache)
+from ..inference.sampler import sample_token
 from ..model.transformer import BoxzLM
 from ..tokenizer.bpe import BPETokenizer
 from .format import SYSTEM_PROMPT, Conversation, Message
+from .template import decode_ids_stopping_at_role
 
 __all__ = ["ChatEngine", "ChatReply"]
 
@@ -99,6 +103,53 @@ class ChatEngine:
             prompt_tokens=len(prompt_ids),
             prompt=prompt,
         )
+
+    def reply_stream(self, user_message: str, cfg: Optional[GenerationConfig] = None):
+        """Yield the cumulative reply text as tokens are generated.
+
+        Streaming matters on CPU: the first words appear in milliseconds even
+        when a full 200-token reply takes several seconds.  Each yielded value
+        is the *whole* reply so far, so a client just replaces its text node.
+        The generator's return value is the final cleaned reply string.
+        """
+        cfg = cfg or GenerationConfig()
+        self.conversation.add_user(user_message)
+        prompt_ids = self.tokenizer.encode(self.build_prompt())
+        stop_ids = {
+            self.tokenizer.special_id("<|end|>"),
+            self.tokenizer.special_id("<|user|>"),
+            self.tokenizer.special_id("<|system|>"),
+            self.tokenizer.special_id("<eos>"),
+        }
+        params = _params_from_config(cfg, self.tokenizer)
+        rng = np.random.default_rng(cfg.seed)
+        ctx = int(self.model.cfg.context_length)
+        generated: List[int] = []
+        shown = ""
+
+        self.model.eval()
+        with no_grad():
+            for _ in range(int(cfg.max_new_tokens)):
+                window = (prompt_ids + generated)[-ctx:]
+                logits, _ = self.model(np.asarray([window], dtype=np.int64))
+                recent = (generated[-cfg.repetition_window:]
+                          if cfg.repetition_penalty != 1.0 else None)
+                nxt = int(sample_token(logits.data[0, -1], params, recent, rng))
+                generated.append(nxt)
+                text = self._visible(generated)
+                if text != shown:
+                    shown = text
+                    yield text
+                if nxt in stop_ids:
+                    break
+
+        final = self._clean(self._visible(generated))
+        self.conversation.add_assistant(final)
+        yield final
+
+    def _visible(self, ids: List[int]) -> str:
+        """Decode generated ids, cut at the first structural marker, tidy edges."""
+        return decode_ids_stopping_at_role(ids, self.tokenizer).strip()
 
     # ------------------------------------------------------------------
     @staticmethod

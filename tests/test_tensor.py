@@ -183,3 +183,45 @@ def test_free_graph_releases_activations():
         assert loss._node is None
     finally:
         reset_store(tok)
+
+
+def test_weighted_cross_entropy_gradient_matches_fd():
+    """Up-weighting the end-of-turn token must have correct gradients."""
+    from boxz.engine.ops import cross_entropy_with_logits
+    from boxz.engine.tensor import Tensor
+
+    rng = np.random.default_rng(0)
+    V, T = 9, 4
+    base = rng.normal(size=(2, T, V)).astype(np.float32)
+    tgt = rng.integers(0, V, size=(2, T))
+    tgt[0, 1] = -1                       # ignored position
+    w = rng.uniform(0.5, 4.0, size=(2, T)).astype(np.float32)
+
+    logits = Tensor(base.copy(), requires_grad=True)
+    cross_entropy_with_logits(logits, tgt, -1, w).backward()
+    grad = logits.grad.copy()
+
+    eps = 1e-3
+    for idx in [(0, 0, 2), (1, 3, 5), (1, 0, 0)]:
+        orig = float(base[idx])
+        base[idx] = orig + eps
+        lp = float(cross_entropy_with_logits(Tensor(base.copy()), tgt, -1, w).data)
+        base[idx] = orig - eps
+        lm = float(cross_entropy_with_logits(Tensor(base.copy()), tgt, -1, w).data)
+        base[idx] = orig
+        numeric = (lp - lm) / (2 * eps)
+        assert abs(numeric - grad[idx]) < 1e-3, (idx, numeric, grad[idx])
+
+
+def test_weighted_cross_entropy_weights_change_the_loss():
+    from boxz.engine.ops import cross_entropy_with_logits
+    from boxz.engine.tensor import Tensor
+
+    rng = np.random.default_rng(1)
+    logits = Tensor(rng.normal(size=(1, 3, 7)).astype(np.float32))
+    tgt = np.array([[0, 1, 2]])
+    w = np.ones((1, 3), dtype=np.float32)
+    w[0, 2] = 10.0                        # weight the last position heavily
+    a = float(cross_entropy_with_logits(logits, tgt).data)
+    b = float(cross_entropy_with_logits(logits, tgt, -1, w).data)
+    assert a != b

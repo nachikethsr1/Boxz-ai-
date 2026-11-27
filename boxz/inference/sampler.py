@@ -14,6 +14,7 @@ from typing import Optional, Sequence
 import numpy as np
 
 __all__ = [
+    "STRUCTURAL_SPECIALS",
     "SamplingParams", "sample_token", "apply_repetition_penalty", "top_k_filter",
     "top_p_filter", "build_forbidden_mask", "apply_token_mask",
 ]
@@ -87,16 +88,27 @@ def _softmax(x: np.ndarray) -> np.ndarray:
 _NEG = np.float32(-1e30)
 
 
-def build_forbidden_mask(tokenizer, forbid_control: bool = True) -> np.ndarray:
-    """Boolean (vocab,) mask of tokens that decode to control characters.
+#: Structural tokens the model is *allowed* to emit: they are how it ends a turn.
+#: Everything else in the special range (<bos>, <pad>, <unk>, <|user|>, ...) is
+#: masked so sampling can never start a user or system turn.
+STRUCTURAL_SPECIALS = ("<|end|>", "<eos>")
 
-    Special tokens are also excluded: the model should never *start* emitting
-    them, and the chat engine stops on them when it does.
+
+def build_forbidden_mask(tokenizer, forbid_control: bool = True) -> np.ndarray:
+    """Boolean (vocab,) mask of tokens that may be sampled.
+
+    Control-byte tokens are rejected to keep output printable.  Special tokens
+    are rejected too *except* the structural ones that terminate a turn: masking
+    ``<|end|>`` made every reply run to ``max_new_tokens`` and pinned the
+    instruction-format metric at zero, because the model could never stop.
     """
     vocab = tokenizer.vocab_size
     allowed = np.ones(vocab, dtype=bool)
-    # specials are never sampled directly
     allowed[: tokenizer.n_specials] = False
+    for name in STRUCTURAL_SPECIALS:
+        tid = tokenizer.special_id(name)
+        if tid is not None and 0 <= tid < vocab:
+            allowed[int(tid)] = True
     if forbid_control:
         for i in range(tokenizer.n_specials, vocab):
             raw = tokenizer.token_bytes(i)

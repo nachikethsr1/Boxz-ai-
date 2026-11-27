@@ -58,6 +58,9 @@ class SFTConfig:
         eval_interval: int = 50,
         holdout: int = 16,
         patience: int = 8,
+        replay_ratio: float = 0.5,
+        replay_batches: int = 8,
+        end_weight: float = 8.0,
         seed: int = 3,
         out_dir: str = "checkpoints/sft",
     ) -> None:
@@ -73,6 +76,9 @@ class SFTConfig:
         self.eval_interval = eval_interval
         self.holdout = holdout
         self.patience = patience
+        self.replay_ratio = replay_ratio
+        self.replay_batches = replay_batches
+        self.end_weight = end_weight
         self.seed = seed
         self.out_dir = out_dir
 
@@ -118,6 +124,31 @@ class InstructionTuner:
         self.holdout = [examples[i] for i in range(len(examples)) if i in hold_idx]
         self.examples = [ex for i, ex in enumerate(examples) if i not in hold_idx]
         self._say(f"[sft] split: {len(self.examples)} train / {len(self.holdout)} held-out")
+
+        # Replay: mix batches of the original pretraining corpus into SFT so the
+        # model does not forget the language it was pretrained on.  Without this
+        # SFT raises held-out instruction loss from 7.5 to 4.8 but degrades
+        # general language modelling from 4.06 to 4.73 (measured), which is
+        # textbook catastrophic forgetting.
+        self.replay: List[Tuple[np.ndarray, np.ndarray]] = []
+        if self.cfg.replay_ratio > 0 and ck.train_config is not None:
+            try:
+                from ..data.corpus import prepare_dataset
+
+                corpus, _ = prepare_dataset(ck.train_config.data, tokenizer=self.tokenizer,
+                                            verbose=False)
+                ctx = int(self.cfg.max_length)
+                bs = int(self.cfg.batch_size)
+                rng = np.random.default_rng(self.cfg.seed + 1)
+                n = max(1, int(self.cfg.replay_batches))
+                for _ in range(n):
+                    self.replay.append(corpus.batch(bs, ctx, "train", rng))
+                self._say(f"[sft] replay: {len(self.replay)} pretraining batches "
+                          f"(ratio {self.cfg.replay_ratio})")
+            except Exception as exc:  # noqa: BLE001 - replay is best-effort
+                self._say(f"[sft] replay disabled ({type(exc).__name__}: {exc})")
+        else:
+            self._say("[sft] replay disabled (no pretraining config in checkpoint)")
 
         self.opt = AdamW(self.model.parameters(), lr=self.cfg.lr,
                          weight_decay=self.cfg.weight_decay, grad_clip=None)
@@ -168,16 +199,31 @@ class InstructionTuner:
         best_val = float("inf")
         stale = 0
         while self.step < cfg.steps:
-            xs, ys = make_sft_batch(self.examples, self.tokenizer, cfg.batch_size, cfg.max_length, self.rng)
+            xs, ys, ws = make_sft_batch(self.examples, self.tokenizer, cfg.batch_size,
+                                        cfg.max_length, self.rng, end_weight=cfg.end_weight)
             self.model.zero_grad()
             self.opt.lr = self.schedule.get(self.step)
-            _, loss = self.model(xs, ys)
+            _, sft_loss = self.model(xs, ys, loss_weights=ws)
+            # The replay term keeps the pretrained distribution alive: weight it
+            # by replay_ratio so a short SFT run cannot erase the base model.
+            extra_loss = None
+            loss = sft_loss
+            if self.replay and cfg.replay_ratio > 0:
+                rx, ry = self.replay[self.step % len(self.replay)]
+                _, extra_loss = self.model(rx, ry)
+                loss = sft_loss * (1.0 - cfg.replay_ratio) + extra_loss * cfg.replay_ratio
             loss.backward()
+            loss_value = float(loss.data)
             self.opt.step()
             self.model.zero_grad()
+            # Free parents before children: `loss` owns the composite node, so
+            # its inputs must stay alive until after it is released.
             loss.free_graph()
+            sft_loss.free_graph()
+            if extra_loss is not None:
+                extra_loss.free_graph()
             self.step += 1
-            losses.append(float(loss.data))
+            losses.append(loss_value)
             if self.step % 10 == 0:
                 entry = {"step": self.step,
                          "loss": round(float(np.mean(losses[-50:])), 4),

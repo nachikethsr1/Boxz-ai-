@@ -24,10 +24,13 @@ __all__ = [
     "ROLE_MARKERS",
     "END_MARKER",
     "ASSISTANT_OPEN",
+    "STOP_MARKERS",
     "render_turn",
     "render_pieces",
     "render_messages",
     "render_prompt",
+    "stop_marker",
+    "decode_ids_stopping_at_role",
 ]
 
 ROLE_MARKERS = {
@@ -37,6 +40,8 @@ ROLE_MARKERS = {
 }
 END_MARKER = "<|end|>"
 ASSISTANT_OPEN = ROLE_MARKERS["assistant"]
+#: Any of these means "the assistant turn is over"; generation must stop.
+STOP_MARKERS = (END_MARKER, *ROLE_MARKERS.values())
 
 
 def render_turn(role: str, content: str) -> str:
@@ -77,3 +82,25 @@ def render_prompt(
     if system is not None and str(system).strip():
         head = render_turn("system", str(system))
     return head + render_messages(messages) + ASSISTANT_OPEN
+
+
+def stop_marker(text: str) -> Optional[str]:
+    """Return the earliest structural marker present in ``text``, if any."""
+    best: Optional[str] = None
+    best_at = len(text)
+    for marker in STOP_MARKERS:
+        at = text.find(marker)
+        if 0 <= at < best_at:
+            best, best_at = marker, at
+    return best
+
+
+def decode_ids_stopping_at_role(ids, tokenizer) -> str:
+    """Decode token ids and truncate at the first role/end marker.
+
+    Streaming can emit part of a marker before sampling stops, so a UI must
+    never be shown raw control tokens.
+    """
+    text = tokenizer.decode([int(i) for i in ids])
+    marker = stop_marker(text)
+    return text[:text.find(marker)] if marker else text

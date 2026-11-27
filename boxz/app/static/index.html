@@ -238,17 +238,41 @@ async function send(message) {
       top_p: Number($('top_p').value),
       repetition_penalty: Number($('repetition_penalty').value),
     };
-    const t0 = performance.now();
-    const res = await fetch('/api/chat', {
-      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+    const body = pending.querySelector('.body');
+    const q = new URLSearchParams({
+      message: payload.message,
+      max_new_tokens: String(payload.max_new_tokens),
+      temperature: String(payload.temperature),
+      top_k: String(payload.top_k),
+      top_p: String(payload.top_p),
+      repetition_penalty: String(payload.repetition_penalty),
     });
-    const data = await res.json();
+    // Stream server-sent events so the first words appear immediately.  Every
+    // chunk is the cumulative reply, so we simply replace the text each time.
+    const t0 = performance.now();
+    let tokens = 0;
+    let text = '';
+    await new Promise((resolve, reject) => {
+      const src = new EventSource('/api/stream?' + q.toString());
+      src.onmessage = (ev) => {
+        if (ev.data === '[DONE]') { src.close(); resolve(); return; }
+        let msg;
+        try { msg = JSON.parse(ev.data); } catch { return; }
+        if (msg.error) { src.close(); reject(new Error(msg.error)); return; }
+        tokens++;
+        text = msg.text;
+        body.textContent = text;
+        $('log').scrollTop = $('log').scrollHeight;
+      };
+      src.onerror = () => { src.close(); resolve(); };
+    });
     const wall = ((performance.now() - t0) / 1000).toFixed(2);
     pending.remove();
-    if (data.error) {
-      $('err').textContent = data.error;
+    if (!text.trim()) {
+      $('err').textContent = 'the model produced an empty reply';
     } else {
-      addMessage('boxz', data.text || '(empty reply)', `${data.tokens_generated} tokens · ${data.tokens_per_second} tok/s · ${wall}s wall`);
+      const tps = (tokens / Math.max(0.001, Number(wall))).toFixed(1);
+      addMessage('boxz', text, `${tokens} chunks · ${tps} chunk/s · ${wall}s wall`);
     }
   } catch (e) {
     pending.remove();

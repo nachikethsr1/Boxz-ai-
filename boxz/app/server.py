@@ -12,6 +12,7 @@ GET  /api/status           model info, backend, training telemetry
 GET  /api/history          current conversation
 POST /api/chat             {"message": "...", "max_new_tokens": 200, ...}
 POST /api/reset            clear the conversation
+GET  /api/stream           server-sent events: one token chunk at a time
 GET  /api/metrics          training log tail (train_log.jsonl)
 
 There is no simulated model anywhere in this file: every reply comes from
@@ -96,6 +97,24 @@ class BoxzApp:
             reply = self.engine.reply(message, cfg)
         return reply.to_dict()
 
+    def chat_stream(self, payload: Dict[str, Any]):
+        """Yield cumulative reply text as the model produces it."""
+        message = str(payload.get("message", "")).strip()
+        if not message:
+            raise ValueError("message must not be empty")
+        cfg = GenerationConfig(
+            max_new_tokens=int(payload.get("max_new_tokens", 160)),
+            temperature=float(payload.get("temperature", 0.8)),
+            top_k=int(payload.get("top_k", 40)) or None,
+            top_p=float(payload.get("top_p", 0.95)),
+            repetition_penalty=float(payload.get("repetition_penalty", 1.0)),
+            seed=payload.get("seed"),
+        )
+        # The lock serialises generation: one CPU-bound model, no interleaving.
+        with self.lock:
+            for chunk in self.engine.reply_stream(message, cfg):
+                yield chunk
+
     def history(self) -> List[dict]:
         return self.engine.history()
 
@@ -136,6 +155,43 @@ def _make_handler(app: BoxzApp):
             self.end_headers()
             self.wfile.write(body)
 
+        def _stream(self, parsed) -> None:
+            """Server-sent events: ``data: {json}`` per token, then ``data: [DONE]``."""
+            from urllib.parse import parse_qs
+
+            q = parse_qs(parsed.query)
+            payload = {k: v[-1] for k, v in q.items()}
+            try:
+                payload["max_new_tokens"] = int(payload.get("max_new_tokens", 160))
+                payload["temperature"] = float(payload.get("temperature", 0.8))
+                payload["top_k"] = int(payload.get("top_k", 40))
+                payload["top_p"] = float(payload.get("top_p", 0.95))
+            except (TypeError, ValueError):
+                self._json({"error": "bad query parameter"}, 400)
+                return
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("Cache-Control", "no-cache")
+            self.send_header("X-Accel-Buffering", "no")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            try:
+                for chunk in app.chat_stream(payload):
+                    body = json.dumps({"text": chunk})
+                    self.wfile.write(f"data: {body}\n\n".encode("utf-8"))
+                    self.wfile.flush()
+                self.wfile.write(b"data: [DONE]\n\n")
+                self.wfile.flush()
+            except (BrokenPipeError, ConnectionResetError):
+                return
+            except ValueError as exc:
+                self.wfile.write(f"data: {json.dumps({'error': str(exc)})}\n\n".encode())
+            except Exception as exc:  # pragma: no cover - defensive
+                try:
+                    self.wfile.write(f"data: {json.dumps({'error': str(exc)})}\n\n".encode())
+                except Exception:
+                    pass
+
         def _file(self, path: Path) -> None:
             if not path.exists() or not path.is_file():
                 self._json({"error": "not found"}, 404)
@@ -166,6 +222,8 @@ def _make_handler(app: BoxzApp):
                     self._json({"messages": app.history()})
                 elif route == "/api/metrics":
                     self._json(app.metrics())
+                elif route == "/api/stream":
+                    self._stream(urlparse(self.path))
                 elif route.startswith("/static/"):
                     self._file(STATIC / route[len("/static/"):])
                 elif route == "/favicon.ico":

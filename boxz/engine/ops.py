@@ -172,7 +172,15 @@ class CrossEntropyWithLogits(Function):
 
     name = "cross_entropy"
 
-    def forward(self, ctx: Context, logits: np.ndarray, targets: np.ndarray, ignore_index: int):  # type: ignore[override]
+    def forward(self, ctx: Context, logits: np.ndarray, targets: np.ndarray,
+                ignore_index: int, weights: Optional[np.ndarray] = None):  # type: ignore[override]
+        """Mean cross entropy over valid targets.
+
+        ``weights`` is an optional per-target multiplier (broadcast over the
+        batch).  It is used to up-weight the end-of-turn token, whose single
+        occurrence per example is otherwise lost among ~170 ordinary tokens --
+        which leaves the model unable to learn when to stop talking.
+        """
         v = logits.shape[-1]
         tgt = targets.reshape(-1).astype(np.int64)
         valid = tgt != ignore_index
@@ -190,17 +198,31 @@ class CrossEntropyWithLogits(Function):
         ar = np.arange(n)
         p_target = sel[ar, tgt_valid] / denom[:, 0]
         loss = -np.log(np.maximum(p_target, np.float32(1e-30)))
-        ctx.save(shape=logits.shape, rows=rows, targets=tgt_valid, denom=denom, n=n, mean=loss.mean())
-        return np.float32(loss.mean())
+        w = None
+        if weights is not None:
+            w = np.asarray(weights, dtype=np.float64).reshape(-1)[valid]
+            wsum = float(w.sum())
+            if wsum <= 0:
+                w = None
+        if w is None:
+            loss_mean = float(loss.mean())
+        else:
+            loss_mean = float((loss * w).sum() / wsum)
+        ctx.save(shape=logits.shape, rows=rows, targets=tgt_valid, denom=denom,
+                 n=n, mean=loss_mean, weights=w, wsum=float(w.sum()) if w is not None else float(n))
+        return np.float32(loss_mean)
 
-    def backward(self, ctx: Context, g: np.ndarray, logits: np.ndarray, targets: np.ndarray, ignore_index: int):  # type: ignore[override]
+    def backward(self, ctx: Context, g: np.ndarray, logits: np.ndarray, targets: np.ndarray,
+                 ignore_index: int, weights: Optional[np.ndarray] = None):  # type: ignore[override]
         if ctx.data.get("empty"):
-            return np.zeros_like(logits), None, None
+            return np.zeros_like(logits), None, None, None
         shape = ctx.data["shape"]
         rows = ctx.data["rows"]
         tgt = ctx.data["targets"]
         denom = ctx.data["denom"]
         n = ctx.data["n"]
+        w = ctx.data.get("weights")
+        wsum = ctx.data.get("wsum", float(n))
         v = shape[-1]
         grad = np.zeros(shape, dtype=np.float32)
         flat = grad.reshape(-1, v)
@@ -209,10 +231,12 @@ class CrossEntropyWithLogits(Function):
         np.exp(sel, out=sel)
         sel /= denom
         sel[np.arange(n), tgt] -= np.float32(1.0)
+        if w is not None:
+            sel *= w[:, None]
         flat[rows] = sel
-        coef = np.float32(float(np.asarray(g, dtype=np.float64).reshape(())) / max(n, 1))
+        coef = np.float32(float(np.asarray(g, dtype=np.float64).reshape(())) / max(wsum, 1.0))
         np.multiply(grad, coef, out=grad)
-        return grad, None, None
+        return grad, None, None, None
 
 
 class LayerNormFn(Function):
@@ -297,9 +321,10 @@ def silu(x: Tensor) -> Tensor:
     return silu_fn(x)
 
 
-def cross_entropy_with_logits(logits: Tensor, targets, ignore_index: int = -1) -> Tensor:
+def cross_entropy_with_logits(logits: Tensor, targets, ignore_index: int = -1,
+                              weights=None) -> Tensor:
     tgt = targets.data if isinstance(targets, Tensor) else np.asarray(targets, dtype=np.int64)
-    return ce_fn(logits, tgt, ignore_index)
+    return ce_fn(logits, tgt, ignore_index, weights)
 
 
 def layer_norm(x: Tensor, gamma: Tensor, beta: Tensor, eps: float = _EPS) -> Tensor:

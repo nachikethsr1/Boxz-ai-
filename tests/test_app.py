@@ -45,7 +45,7 @@ def test_sft_batch_masks_prompt_tokens(checkpoint):
     examples = load_instruction_file(Path("data/sources/boxz_instruct.jsonl"))
     # max_length must be shorter than a full example so truncation and masking
     # are both exercised.
-    xs, ys = make_sft_batch(examples, ck.tokenizer, batch_size=4, max_length=40,
+    xs, ys, _ws = make_sft_batch(examples, ck.tokenizer, batch_size=4, max_length=40,
                             rng=np.random.default_rng(0))
     assert xs.shape == (4, 40) and ys.shape == (4, 40)
     # every trained label is a real token id; prompt tokens are ignored (-1)
@@ -93,7 +93,8 @@ def test_http_server_end_to_end(checkpoint):
     try:
         base = f"http://127.0.0.1:{port}"
         raw = urllib.request.urlopen(base + "/", timeout=10).read().decode()
-        assert "Boxz" in raw and "/api/chat" in raw
+        assert "Boxz" in raw
+        assert "/api/stream" in raw, "the UI must use the streaming endpoint"
 
         status = json.loads(urllib.request.urlopen(base + "/api/status", timeout=10).read())
         assert status["model"]["vocab_size"] > 0
@@ -120,7 +121,7 @@ def test_sft_max_length_clamped_to_context(checkpoint):
                               verbose=False)
     assert tuner2.cfg.max_length == 64
 
-    xs, ys = make_sft_batch(tuner.examples, tuner.tokenizer, 2, tuner.cfg.max_length)
+    xs, ys, _ws = make_sft_batch(tuner.examples, tuner.tokenizer, 2, tuner.cfg.max_length)
     assert xs.shape == (2, 64)
 
 
@@ -159,3 +160,62 @@ def test_sft_short_run_writes_best_checkpoint(checkpoint, tmp_path):
     assert report["train_examples"] >= 90
     assert report["final_holdout_loss"] is not None
     assert report["best_holdout_loss"] is not None
+
+
+def test_streaming_reply_grows_monotonically(checkpoint):
+    """Streaming must emit a growing prefix each time and end with the reply."""
+    from boxz.chat.engine import ChatEngine
+    from boxz.config import GenerationConfig
+    from boxz.training.checkpoint import load_checkpoint
+
+    ck = load_checkpoint(str(checkpoint))
+    engine = ChatEngine(ck.model, ck.tokenizer)
+    chunks = list(engine.reply_stream(
+        "hi", GenerationConfig(max_new_tokens=8, temperature=0.0)))
+    assert chunks, "streaming produced nothing"
+    for a, b in zip(chunks, chunks[1:]):
+        assert b.startswith(a), "each chunk must extend the previous one"
+    assert engine.history()[-1]["role"] == "assistant"
+    assert engine.history()[-1]["content"] == chunks[-1]
+
+
+def test_streaming_never_shows_role_markers(checkpoint):
+    from boxz.chat.engine import ChatEngine
+    from boxz.config import GenerationConfig
+    from boxz.training.checkpoint import load_checkpoint
+
+    ck = load_checkpoint(str(checkpoint))
+    engine = ChatEngine(ck.model, ck.tokenizer)
+    for chunk in engine.reply_stream("write something", GenerationConfig(max_new_tokens=12)):
+        for marker in ("<|end|>", "<|user|>", "<|assistant|>", "<|system|>"):
+            assert marker not in chunk
+
+
+def test_sse_endpoint_streams_and_terminates(checkpoint):
+    """The /api/stream route must send data frames then a [DONE] sentinel."""
+    import http.client
+    import json as _json
+
+    from boxz.app.server import BoxzApp, make_server
+
+    app = BoxzApp(str(checkpoint))
+    server = make_server(app, host="127.0.0.1", port=0)
+    port = server.server_address[1]
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=30)
+        conn.request("GET", "/api/stream?message=hi&max_new_tokens=5&temperature=0")
+        resp = conn.getresponse()
+        assert resp.status == 200
+        assert "text/event-stream" in resp.getheader("Content-Type")
+        raw = resp.read().decode("utf-8")
+        conn.close()
+        frames = [ln[len("data: "):] for ln in raw.splitlines() if ln.startswith("data: ")]
+        assert frames[-1] == "[DONE]"
+        assert len(frames) >= 2
+        for f in frames[:-1]:
+            assert "text" in _json.loads(f)
+    finally:
+        server.shutdown()
+        server.server_close()

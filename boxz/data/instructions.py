@@ -116,12 +116,22 @@ def encode_example(ex: InstructionExample, tokenizer: BPETokenizer,
 
 def make_sft_batch(examples: List[InstructionExample], tokenizer: BPETokenizer,
                    batch_size: int, max_length: int,
-                   rng: Optional[np.random.Generator] = None) -> Tuple[np.ndarray, np.ndarray]:
-    """Sample a padded batch of (inputs, labels) with prompt labels masked."""
+                   rng: Optional[np.random.Generator] = None,
+                   end_weight: float = 1.0) -> Tuple[np.ndarray, np.ndarray, Optional[np.ndarray]]:
+    """Sample a padded (inputs, labels, loss_weights) batch.
+
+    Prompt labels are masked to ``ignore_index``.  ``end_weight`` > 1 up-weights
+    the end-of-turn target, because it occurs once per example while ordinary
+    tokens occur ~170 times: without it the model learns the answer style but
+    never learns *to stop*, and every reply runs to the token cap (measured).
+    Returns ``(xs, ys, ws)`` with ``ws=None`` when no weighting is requested.
+    """
     rng = rng or np.random.default_rng()
     pad = tokenizer.pad_id
+    end_id = tokenizer.special_id("<|end|>")
     xs = np.full((batch_size, max_length), pad, dtype=np.int64)
     ys = np.full((batch_size, max_length), -1, dtype=np.int64)  # -1 = ignored
+    ws = np.zeros((batch_size, max_length), dtype=np.float32) if end_weight != 1.0 else None
     for i in range(batch_size):
         ex = examples[int(rng.integers(len(examples)))]
         for _ in range(4):
@@ -133,5 +143,12 @@ def make_sft_batch(examples: List[InstructionExample], tokenizer: BPETokenizer,
                 yy = y[:n].copy()
                 yy[yy == pad] = -1
                 ys[i, :n] = yy
+                if ws is not None:
+                    # weights are per (row, position); ignored targets carry 0
+                    # so they never contribute to the weighted mean
+                    seg = np.where(yy == end_id, np.float32(end_weight),
+                                   np.float32(1.0)).astype(np.float32)
+                    seg[yy == -1] = 0.0
+                    ws[i, :n] = seg
                 break
-    return xs, ys
+    return xs, ys, ws

@@ -113,11 +113,14 @@ class BoxzLM(Module):
     # ------------------------------------------------------------------
     # forward
     # ------------------------------------------------------------------
-    def forward(self, tokens: np.ndarray, targets: Optional[np.ndarray] = None) -> Tuple[Tensor, Optional[Tensor]]:
+    def forward(self, tokens: np.ndarray, targets: Optional[np.ndarray] = None,
+                loss_weights: Optional[np.ndarray] = None) -> Tuple[Tensor, Optional[Tensor]]:
         """Run the model on integer token ids ``(B, T)``.
 
         Returns ``(logits, loss)``; ``logits`` has shape ``(B, T, vocab)`` and
-        ``loss`` is the mean next-token cross entropy when targets are given.
+        ``loss`` is the weighted mean next-token cross entropy when targets are
+        given.  ``loss_weights`` (same shape as ``targets``) up-weights specific
+        target tokens, e.g. the end-of-turn marker during instruction tuning.
         """
         tokens = np.asarray(tokens, dtype=np.int64)
         if tokens.ndim != 2:
@@ -143,7 +146,8 @@ class BoxzLM(Module):
             logits = logits.reshape(B, T, self.cfg.vocab_size)
         loss = None
         if targets is not None:
-            loss = ops.cross_entropy_with_logits(logits, np.asarray(targets, dtype=np.int64))
+            loss = ops.cross_entropy_with_logits(logits, np.asarray(targets, dtype=np.int64),
+                                                 weights=loss_weights)
         return logits, loss
 
     # ------------------------------------------------------------------

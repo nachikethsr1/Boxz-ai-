@@ -95,6 +95,8 @@ def instruction_loss(model: BoxzLM, tok: BPETokenizer, path: str,
     idx = sorted(holdout_indices(len(examples), holdout, seed))
     held = [examples[i] for i in idx]
     losses = []
+    # Never exceed the model's learned positional range.
+    max_length = min(int(max_length), int(model.cfg.context_length))
     with no_grad():
         for ex in held:
             enc = encode_example(ex, tok, max_length)
