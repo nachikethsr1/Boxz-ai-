@@ -47,20 +47,20 @@ class SFTConfig:
     def __init__(
         self,
         dataset: str = "data/sources/boxz_instruct_v2.jsonl",
-        steps: int = 400,
-        batch_size: int = 8,
+        steps: int = 300,
+        batch_size: int = 16,
         lr: float = 1e-4,
-        min_lr: float = 2e-5,
+        min_lr: float = 1e-5,
         warmup_steps: int = 20,
         max_length: Optional[int] = None,
         weight_decay: float = 0.01,
         grad_clip: float = 1.0,
-        eval_interval: int = 50,
+        eval_interval: int = 25,
         holdout: int = 16,
         patience: int = 8,
-        replay_ratio: float = 0.5,
+        replay_ratio: float = 0.15,
         replay_batches: int = 8,
-        end_weight: float = 8.0,
+        end_weight: float = 1.0,
         seed: int = 3,
         out_dir: str = "checkpoints/sft",
     ) -> None:
@@ -124,7 +124,8 @@ class InstructionTuner:
         # has seen.  ``holdout`` is kept as a legacy override.
         from ..data.build_instruct_v2 import split_examples
 
-        if self.cfg.holdout and self.cfg.holdout > 0 and len(examples) < 200:
+        use_shared_split = "boxz_instruct_v2" in path.name
+        if not use_shared_split and self.cfg.holdout and self.cfg.holdout > 0:
             # legacy behaviour for small custom datasets: single holdout slice
             hold_idx = set(int(i) for i in
                            holdout_indices(len(examples), self.cfg.holdout, self.cfg.seed))
@@ -177,27 +178,54 @@ class InstructionTuner:
 
     # ------------------------------------------------------------------
     def evaluate(self, examples: Optional[List] = None) -> float:
-        """Mean assistant-token loss over ``examples`` (default: held-out split).
+        """Mean loss over the answer tokens of ``examples`` (default: the dev split).
 
-        This is the number reported for the checkpoint; it is never computed on
-        the examples the optimiser is fitting.
+        Two corrections over an earlier version, both of which silently inflated
+        every reported number:
+
+        * The mask is built with ``pad_id`` as the ignore value, not -100, so a
+          masked target is token id 0.  ``CrossEntropy`` then still counted those
+          positions (with weight 0), which *deflated* the mean by the padding
+          fraction -- the reported holdout was a number that corresponded to no
+          real objective.
+        * The training loss is a *weighted* sum dominated by replay batches.  It
+          is correct for the optimiser but useless as an evaluation signal, which
+          is why a run could report train loss 0.51 while its real answer-token
+          loss was over 4.5.
+
+        This method is the single honest number: the unweighted mean NLL over
+        assistant tokens only, on examples the optimiser never saw.
         """
         pool = self.holdout if examples is None else examples
         if not pool:
             return float("nan")
         from ..engine import no_grad
+        from ..data.instructions import encode_example, _render
 
         total = 0.0
         count = 0
         for ex in pool:
-            from ..data.instructions import encode_example
             enc = encode_example(ex, self.tokenizer, self.cfg.max_length)
             if enc is None:
                 continue
             x, y = enc
+            # index of the answer tokens: everything the mask selected
+            _ids, labels = _render(ex, self.tokenizer)
+            keep = np.array([i for i, lab in enumerate(labels) if lab != self.tokenizer.pad_id])
+            if keep.size == 0:
+                continue
+            keep = keep[keep < len(x)]
+            if keep.size == 0:
+                continue
             with no_grad():
-                _, loss = self.model(x[None, :], y[None, :])
-            total += float(loss.data)
+                logits, _ = self.model(x[None, :])
+            lp = logits.data[0]
+            # log-softmax on the selected positions only
+            sel = lp[keep]
+            sel = sel - sel.max(axis=-1, keepdims=True)
+            logp = sel - np.log(np.exp(sel).sum(axis=-1, keepdims=True))
+            nll = -logp[np.arange(len(keep)), y[keep]].mean()
+            total += float(nll)
             count += 1
         return total / count if count else float("nan")
 

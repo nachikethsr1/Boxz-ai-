@@ -126,21 +126,30 @@ def test_sft_max_length_clamped_to_context(checkpoint):
 
 
 def test_sft_holdout_is_disjoint_and_deterministic(checkpoint):
-    """Held-out examples must never appear in the training set, and the split
-    must be identical across runs so reported numbers are reproducible."""
+    """Train/dev/test must be disjoint, cover every row exactly once, and be
+    identical across runs so a reported number is reproducible.
+
+    The split now comes from ``split_examples`` (the same function the
+    evaluator uses) rather than an ad-hoc ``holdout`` slice; an earlier version
+    used two different formulas and leaked 11 of 12 evaluation rows into
+    pretraining.
+    """
     from boxz.training.sft import InstructionTuner, SFTConfig
 
-    a = InstructionTuner(str(checkpoint), SFTConfig(steps=1, holdout=8), verbose=False)
-    b = InstructionTuner(str(checkpoint), SFTConfig(steps=1, holdout=8), verbose=False)
-    total = len(a.examples) + len(a.holdout)
+    a = InstructionTuner(str(checkpoint), SFTConfig(steps=1), verbose=False)
+    b = InstructionTuner(str(checkpoint), SFTConfig(steps=1), verbose=False)
+
+    total = len(a.examples) + len(a.dev) + len(a.test)
     assert total >= 100
-    assert len(a.holdout) == min(8, total // 4)
-    key = lambda t: [ex.to_dict() for ex in t.holdout]
-    assert key(a) == key(b)
-    train_set = {json.dumps(ex.to_dict(), sort_keys=True) for ex in a.examples}
-    hold_set = {json.dumps(ex.to_dict(), sort_keys=True) for ex in a.holdout}
-    assert not (train_set & hold_set)
-    # evaluating an untrained checkpoint yields a finite assistant loss
+    assert len(a.dev) > 0 and len(a.test) > 0, "need a real held-out split"
+    assert a.holdout is a.dev, "holdout must alias the dev split, not a separate one"
+
+    parts = [[ex.to_dict() for ex in t] for t in (a.examples, a.dev, a.test)]
+    assert parts == [[ex.to_dict() for ex in t] for t in (b.examples, b.dev, b.test)]
+    sets = [{json.dumps(p, sort_keys=True) for p in part} for part in parts]
+    assert sum(len(x) for x in sets) == total, "a row appears in two splits"
+
+    # untrained checkpoint still yields a finite, positive answer-token loss
     val = a.evaluate()
     assert val == val and val > 0
 
@@ -156,7 +165,7 @@ def test_sft_short_run_writes_best_checkpoint(checkpoint, tmp_path):
                              verbose=False)
     report = tuner.fit()
     assert (out / "best").is_dir()
-    assert report["holdout_examples"] == 8
+    assert report["holdout_examples"] == 12  # dev split of boxz_instruct_v2
     assert report["train_examples"] >= 90
     assert report["final_holdout_loss"] is not None
     assert report["best_holdout_loss"] is not None

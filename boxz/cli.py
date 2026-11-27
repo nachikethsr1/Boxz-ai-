@@ -242,10 +242,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     st = sub.add_parser("sft", help="instruction-tune a checkpoint")
     st.add_argument("--checkpoint", required=True)
-    st.add_argument("--dataset", default="data/sources/boxz_instruct_expanded.jsonl")
+    st.add_argument("--dataset", default="data/sources/boxz_instruct_v2.jsonl")
     st.add_argument("--steps", type=int, default=400)
     st.add_argument("--batch-size", type=int, default=8)
-    st.add_argument("--lr", type=float, default=1e-4)
+    st.add_argument("--lr", type=float, default=3e-4)
     st.add_argument("--max-length", type=int, default=None,
                     help="example length in tokens (default: model context length)")
     st.add_argument("--out", default="checkpoints/sft")
