@@ -1,0 +1,11 @@
+{
+  "title": "Boxz Web Code Corpus (line-deduplicated)",
+  "licence": "MIT (three.js, jQuery) - licence verified via the GitHub API at fetch time",
+  "url": "",
+  "filename": "code_corpus/dedup.json",
+  "fmt": "codejson",
+  "text_field": "code",
+  "sha256": null,
+  "notes": "Line-level deduplication of the MIT-licensed web-code slice (three.js examples/*.html, jquery/src/*.js). Built by python -m boxz.data.dedupe_corpus: exact duplicate lines are kept once per document and near-identical documents collapsed, so the model sees varied code instead of 659 copies of renderer.setSize(...).",
+  "allowed_use": "MIT licensed source code; excerpts redistributed for model training with attribution retained in the manifest."
+}
