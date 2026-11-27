@@ -40,3 +40,6 @@ reports/*.json
 .vscode/
 tmp_*.py
 out.txt
+
+# Generated bundles (not source)
+boxz-ready*.zip
