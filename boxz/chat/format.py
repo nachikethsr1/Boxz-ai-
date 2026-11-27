@@ -1,27 +1,23 @@
-"""Conversation formatting.
+"""Conversation state for the Boxz chat layer.
 
-Boxz has exactly one on-disk/in-context chat format, and the tokenizer knows
-its markers as *special tokens* so that user text can never spoof a role
-boundary::
-
-    <|user|>write a loop<|end|>... <|assistant|>for i in range(3):<|end|>
-
-(The user turn's closing marker is optional in prompts; generated user text is
-never emitted by the model because it only ever writes assistant turns.)
+The actual *text* format lives in :mod:`boxz.chat.template`, which is shared with
+instruction tuning: whatever we train the model on is exactly what we feed it at
+inference time.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Iterable, List, Optional, Sequence
+from typing import Iterable, List, Optional
+
+from .template import ASSISTANT_OPEN, render_messages, render_prompt
 
 __all__ = ["Message", "Conversation", "SYSTEM_PROMPT"]
 
-
-SYSTEM_PROMPT = (
-    "You are Boxz, a small language model being trained from scratch. "
-    "You are honest about your limits and help with programming and games."
-)
+#: The instruction data contains no system turns, so the default chat prompt
+#: has none either.  A system prompt may be supplied explicitly, but the model
+#: was not trained on one and will be out of distribution if you do.
+SYSTEM_PROMPT: Optional[str] = None
 
 
 @dataclass
@@ -57,23 +53,19 @@ class Conversation:
         self.messages.clear()
 
     # -- rendering -------------------------------------------------------
+    def _all_messages(self, include_system: bool = True) -> List[dict]:
+        msgs: List[dict] = []
+        if include_system and self.system and self.system.strip():
+            msgs.append({"role": "system", "content": self.system.strip()})
+        msgs.extend(m.to_dict() for m in self.messages)
+        return msgs
+
     def render(self, include_system: bool = True) -> str:
-        parts: List[str] = []
-        if include_system and self.system:
-            parts.append(f"<|system|>{self.system.strip()}")
-        for m in self.messages:
-            if m.role == "assistant":
-                parts.append(f"<|assistant|>{m.content.strip()}<|end|>")
-            elif m.role == "user":
-                parts.append(f"<|user|>{m.content.strip()}")
-            else:
-                parts.append(f"<|system|>{m.content.strip()}")
-        return "\n".join(parts)
+        return render_messages(self._all_messages(include_system))
 
     def render_prompt(self) -> str:
         """Render the conversation *and open a fresh assistant turn."""
-        base = self.render()
-        return base + "\n<|assistant|>"
+        return render_prompt([m.to_dict() for m in self.messages], system=self.system)
 
     # -- budgeting -------------------------------------------------------
     def truncated(self, tokenizer, max_tokens: int, keep_system: bool = True) -> "Conversation":

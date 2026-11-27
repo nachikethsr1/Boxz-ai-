@@ -112,6 +112,11 @@ class DataConfig:
     dedupe: bool = True
     lowercase: bool = False
     cache_dir: str = "data/processed"
+    #: SFT evaluation rows are excluded from the pretraining corpus so that a
+    #: held-out instruction score is a real generalisation measurement.  Set to
+    #: False only for ablation runs; it makes those numbers meaningless.
+    exclude_sft_holdout: bool = True
+    sft_holdout: int = 8
     seed: int = 1234
 
     def to_dict(self) -> dict:

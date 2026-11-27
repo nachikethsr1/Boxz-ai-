@@ -20,6 +20,7 @@ from typing import Dict, Iterator, List, Optional, Tuple
 
 import numpy as np
 
+from ..chat.template import render_pieces
 from ..tokenizer.bpe import BPETokenizer
 
 __all__ = ["InstructionExample", "load_instruction_file", "encode_example", "make_sft_batch"]
@@ -73,19 +74,19 @@ def load_instruction_file(path: Path) -> List[InstructionExample]:
 
 
 def _render(ex: InstructionExample, tokenizer: BPETokenizer) -> Tuple[List[int], List[int]]:
-    """Render an example into (token ids, assistant-only label mask)."""
+    """Render an example into (token ids, assistant-only label mask).
+
+    Uses :func:`boxz.chat.template.render_pieces` -- the same function the
+    inference-time prompt builder uses -- so training and generation cannot
+    drift apart.
+    """
     ids: List[int] = []
     labels: List[int] = []
-    for m in ex.messages:
-        piece = {
-            "system": f"<|system|>{m['content']}",
-            "user": f"<|user|>{m['content']}",
-            "assistant": f"<|assistant|>{m['content']}<|end|>",
-        }[m["role"]]
+    for piece, trainable in render_pieces(ex.messages):
         tok_ids = tokenizer.encode(piece)
         ids.extend(tok_ids)
         # only assistant content (plus its opening marker and <|end|>) is trained on
-        labels.extend(tok_ids if m["role"] == "assistant" else [tokenizer.pad_id] * len(tok_ids))
+        labels.extend(tok_ids if trainable else [tokenizer.pad_id] * len(tok_ids))
     return ids, labels
 
 

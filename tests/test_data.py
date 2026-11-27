@@ -97,7 +97,42 @@ def test_render_messages_format():
         {"role": "user", "content": "hi"},
         {"role": "assistant", "content": "hello"},
     ])
-    assert text == "<|system|>be nice\n<|user|>hi\n<|assistant|>hello<|end|>"
+    assert text == "<|system|>be nice<|user|>hi<|assistant|>hello<|end|>"
+
+
+def test_corpus_renderer_matches_chat_template():
+    """There must be only one conversation format in the codebase."""
+    from boxz.chat.template import render_messages as chat_render
+    from boxz.data.corpus import render_messages as corpus_render
+
+    msgs = [{"role": "user", "content": "hi"},
+            {"role": "assistant", "content": "hello"}]
+    assert corpus_render(msgs) == chat_render(msgs)
+
+
+def test_pretraining_corpus_excludes_sft_holdout():
+    """Held-out instruction rows must never be trained on (leakage guard).
+
+    Retraining and then scoring the model on examples it already saw would make
+    the reported SFT holdout loss a memorisation score rather than a
+    generalisation measurement.
+    """
+    from boxz.data.corpus import _resolve_text
+    from boxz.training.sft import holdout_indices
+    import json
+
+    src = Path("data/sources/boxz_instruct.jsonl")
+    rows = [json.loads(l) for l in src.read_text(encoding="utf-8").splitlines() if l.strip()]
+    idx = holdout_indices(len(rows), 8, 3)
+
+    text, *_ = _resolve_text(DataConfig(dataset=str(src)))
+    for i in idx:
+        answer = rows[int(i)]["messages"][-1]["content"]
+        assert answer not in text, f"holdout row {i} leaked into the corpus"
+
+    # positive control: with the guard disabled the rows are present
+    text_all, *_ = _resolve_text(DataConfig(dataset=str(src), exclude_sft_holdout=False))
+    assert all(rows[int(i)]["messages"][-1]["content"] in text_all for i in idx)
 
 
 def test_registry_declares_licences():

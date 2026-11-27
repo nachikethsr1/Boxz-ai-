@@ -121,11 +121,14 @@ class TokenizedCorpus:
         return d
 
 
-def _read_source(path: Path, fmt: str, text_field: str) -> str:
+def _read_source(path: Path, fmt: str, text_field: str,
+                 exclude_rows: Optional[set] = None) -> str:
     if fmt == "jsonl":
         parts: List[str] = []
         with path.open("r", encoding="utf-8") as f:
-            for line in f:
+            for i, line in enumerate(f):
+                if exclude_rows and i in exclude_rows:
+                    continue
                 line = line.strip()
                 if not line:
                     continue
@@ -140,22 +143,17 @@ def _read_source(path: Path, fmt: str, text_field: str) -> str:
 
 
 def render_messages(messages: List[dict]) -> str:
-    """Render a chat example into the plain-text Boxz conversation format.
+    """Render chat messages in the canonical format.
 
-    Kept in the data layer (instead of the chat layer) so that corpora can embed
-    dialogue without importing the chat engine.
+    Thin alias over :func:`boxz.chat.template.render_messages`.  There must be
+    exactly *one* definition of the conversation format in the codebase: when
+    this function had its own copy (joined with newlines, no shared template)
+    the pretraining corpus and the SFT/inference prompts disagreed, and the
+    model could not reproduce its own answers.
     """
-    out: List[str] = []
-    for m in messages:
-        role = m.get("role")
-        content = (m.get("content") or "").strip()
-        if role == "system":
-            out.append(f"<|system|>{content}")
-        elif role == "user":
-            out.append(f"<|user|>{content}")
-        elif role == "assistant":
-            out.append(f"<|assistant|>{content}<|end|>")
-    return "\n".join(out)
+    from ..chat.template import render_messages as _render
+
+    return _render(messages)
 
 
 def build_corpus(
@@ -221,6 +219,16 @@ def prepare_dataset(cfg: DataConfig, tokenizer: Optional[BPETokenizer] = None,
     return corpus, tokenizer
 
 
+def _sft_holdout_rows(n_rows: int, cfg: DataConfig) -> set:
+    """Row indices reserved for SFT evaluation (empty unless enabled)."""
+    if not cfg.exclude_sft_holdout:
+        return set()
+    from ..training.sft import holdout_indices
+
+    return set(int(i) for i in
+               holdout_indices(n_rows, cfg.sft_holdout, seed=3))
+
+
 def _resolve_text(cfg: DataConfig) -> Tuple[str, str, List[str], str]:
     if isinstance(cfg.dataset, (list, tuple)):
         chunks: List[str] = []
@@ -236,7 +244,8 @@ def _resolve_text(cfg: DataConfig) -> Tuple[str, str, List[str], str]:
     if p.suffix == ".txt" and p.exists():
         return load_text(p), p.stem, [str(p)], "text"
     if p.suffix == ".jsonl" and p.exists():
-        return _read_source(p, "jsonl", cfg.text_field), p.stem, [str(p)], "jsonl"
+        n_rows = sum(1 for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip())
+        return _read_source(p, "jsonl", cfg.text_field, _sft_holdout_rows(n_rows, cfg)), p.stem, [str(p)], "jsonl"
     # registered dataset
     src: DatasetSource = get_source(name)
     if not src.is_present():

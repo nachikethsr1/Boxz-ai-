@@ -67,7 +67,8 @@ def instruction_format_rate(model: BoxzLM, tok: BPETokenizer, prompts: List[str]
     ok = 0
     end_id = tok.special_id("<|end|>")
     for p in prompts:
-        prompt_ids = tok.encode(f"<|user|>{p}\n<|assistant|>")
+        from ..chat.template import render_prompt
+        prompt_ids = tok.encode(render_prompt([{"role": "user", "content": p}]))
         from ..inference.generator import generate_ids
         res = generate_ids(model, prompt_ids,
                            GenerationConfig(max_new_tokens=max_new_tokens, temperature=0.7, seed=0),
@@ -78,14 +79,24 @@ def instruction_format_rate(model: BoxzLM, tok: BPETokenizer, prompts: List[str]
 
 
 def instruction_loss(model: BoxzLM, tok: BPETokenizer, path: str,
-                     max_length: int = 256) -> Optional[float]:
+                     max_length: int = 256, holdout: int = 8,
+                     seed: int = 3) -> Optional[float]:
+    """Assistant-token loss on the *same* deterministic holdout SFT never trains on.
+
+    Sharing the split definition with :class:`boxz.training.sft.InstructionTuner`
+    is what makes the reported number an honest held-out measurement rather than
+    a memorisation score.
+    """
     p = Path(path)
     if not p.exists():
         return None
-    examples = load_instruction_file(p)[-8:]     # tail = held-out split
+    from ..training.sft import holdout_indices
+    examples = load_instruction_file(p)
+    idx = sorted(holdout_indices(len(examples), holdout, seed))
+    held = [examples[i] for i in idx]
     losses = []
     with no_grad():
-        for ex in examples:
+        for ex in held:
             enc = encode_example(ex, tok, max_length)
             if enc is None:
                 continue

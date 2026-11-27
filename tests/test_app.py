@@ -106,3 +106,55 @@ def test_http_server_end_to_end(checkpoint):
     finally:
         server.shutdown()
         server.server_close()
+
+
+def test_sft_max_length_clamped_to_context(checkpoint):
+    """Regression: SFT must never request sequences beyond the model's context."""
+    from boxz.training.sft import InstructionTuner, SFTConfig
+
+    tuner = InstructionTuner(str(checkpoint), SFTConfig(steps=1, max_length=4096),
+                             verbose=False)
+    assert tuner.cfg.max_length == 64  # checkpoint context_length
+
+    tuner2 = InstructionTuner(str(checkpoint), SFTConfig(steps=1, max_length=None),
+                              verbose=False)
+    assert tuner2.cfg.max_length == 64
+
+    xs, ys = make_sft_batch(tuner.examples, tuner.tokenizer, 2, tuner.cfg.max_length)
+    assert xs.shape == (2, 64)
+
+
+def test_sft_holdout_is_disjoint_and_deterministic(checkpoint):
+    """Held-out examples must never appear in the training set, and the split
+    must be identical across runs so reported numbers are reproducible."""
+    from boxz.training.sft import InstructionTuner, SFTConfig
+
+    a = InstructionTuner(str(checkpoint), SFTConfig(steps=1, holdout=8), verbose=False)
+    b = InstructionTuner(str(checkpoint), SFTConfig(steps=1, holdout=8), verbose=False)
+    assert len(a.holdout) == 8
+    assert len(a.examples) == 28
+    key = lambda t: [ex.to_dict() for ex in t.holdout]
+    assert key(a) == key(b)
+    train_set = {json.dumps(ex.to_dict(), sort_keys=True) for ex in a.examples}
+    hold_set = {json.dumps(ex.to_dict(), sort_keys=True) for ex in a.holdout}
+    assert not (train_set & hold_set)
+    # evaluating an untrained checkpoint yields a finite assistant loss
+    val = a.evaluate()
+    assert val == val and val > 0
+
+
+def test_sft_short_run_writes_best_checkpoint(checkpoint, tmp_path):
+    """A tiny real run must produce best/ and a report with holdout numbers."""
+    from boxz.training.sft import InstructionTuner, SFTConfig
+
+    out = tmp_path / "sft"
+    tuner = InstructionTuner(str(checkpoint),
+                             SFTConfig(steps=2, batch_size=2, eval_interval=1,
+                                       holdout=8, patience=0, out_dir=str(out)),
+                             verbose=False)
+    report = tuner.fit()
+    assert (out / "best").is_dir()
+    assert report["holdout_examples"] == 8
+    assert report["train_examples"] == 28
+    assert report["final_holdout_loss"] is not None
+    assert report["best_holdout_loss"] is not None

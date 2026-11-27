@@ -21,8 +21,42 @@ def test_conversation_render_format():
     conv = Conversation(system="be helpful")
     conv.add_user("hi").add_assistant("hello")
     text = conv.render()
-    assert text == "<|system|>be helpful\n<|user|>hi\n<|assistant|>hello<|end|>"
+    assert text == "<|system|>be helpful<|user|>hi<|assistant|>hello<|end|>"
     assert conv.render_prompt().endswith("<|assistant|>")
+
+
+def test_default_conversation_has_no_system_turn():
+    """The instruction data has no system turns, so inference must not add one."""
+    conv = Conversation()
+    conv.add_user("hi")
+    assert conv.render_prompt() == "<|user|>hi<|assistant|>"
+
+
+def test_training_and_inference_render_identically():
+    """Regression: the SFT target and the chat prompt must be token-identical.
+
+    A mismatch here makes the model answer from a distribution it never saw,
+    which shows up as fluent-looking gibberish rather than an exception.
+    """
+    from boxz.chat.template import render_prompt, render_pieces
+    from boxz.data.instructions import _render
+    from pathlib import Path
+
+    tok = BPETokenizer().train(
+        "user talks about tokens and models. " * 40, vocab_size=300)
+    from boxz.data.instructions import InstructionExample
+
+    msgs = [{"role": "user", "content": "what is a token"},
+            {"role": "assistant", "content": "a token is a piece of text"}]
+    ex = InstructionExample([dict(m) for m in msgs])
+    ids, labels = _render(ex, tok)
+
+    prompt_ids = tok.encode(render_prompt(msgs[:1]))
+    assert ids[:len(prompt_ids)] == prompt_ids
+
+    # assistant labels are exactly the trained-on tokens
+    trainable = sum(len(tok.encode(t)) for t, keep in render_pieces(msgs) if keep)
+    assert sum(1 for l in labels if l != tok.pad_id) == trainable
 
 
 def test_truncation_keeps_recent_turns():
