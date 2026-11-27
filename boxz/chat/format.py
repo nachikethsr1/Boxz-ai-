@@ -82,6 +82,21 @@ class Conversation:
                 if i < len(conv.messages) - 1:
                     del conv.messages[i]
                     break
+
+        # A single over-long message cannot be dropped (it is the question), so
+        # trim it from the *front*, keeping the end -- the tail holds the actual
+        # instruction ("...and how do I centre it?").  Without this the prompt
+        # silently exceeded the model context (measured: 407 tokens for a
+        # 128-token window) and generation crashed or saw truncated positions.
+        if conv.messages:
+            # leave room for the "<|assistant|>" opener appended by render_prompt
+            harness = Conversation(system=conv.system)
+            overhead = len(tokenizer.encode(harness.render_prompt())) + 2
+            budget = max(8, max_tokens - overhead)
+            last = conv.messages[-1]
+            ids = tokenizer.encode(last.content)
+            if len(ids) > budget:
+                last.content = tokenizer.decode(ids[-budget:])
         return conv
 
     def to_list(self) -> List[dict]:

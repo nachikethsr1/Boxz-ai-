@@ -118,7 +118,7 @@ class DataConfig:
     exclude_sft_holdout: bool = True
     sft_holdout: int = 16
     #: Instruction file whose evaluation rows must be withheld from pretraining.
-    sft_path: str = "data/sources/boxz_instruct_expanded.jsonl"
+    sft_path: str = "data/sources/boxz_instruct_v2.jsonl"
     seed: int = 1234
 
     def to_dict(self) -> dict:

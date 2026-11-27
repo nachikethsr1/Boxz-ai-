@@ -227,14 +227,35 @@ def prepare_dataset(cfg: DataConfig, tokenizer: Optional[BPETokenizer] = None,
     return corpus, tokenizer
 
 
-def _sft_holdout_rows(n_rows: int, cfg: DataConfig) -> set:
-    """Row indices reserved for SFT evaluation (empty unless enabled)."""
+def _sft_holdout_rows(n_rows: int, cfg: DataConfig, path: Path) -> set:
+    """Row indices withheld from pretraining because SFT evaluates on them.
+
+    The row set comes from ``split_examples`` -- the same function the SFT
+    trainer and the evaluator call -- so all three stages agree by construction.
+    Using a *different* formula here (as an earlier version did) silently leaked
+    11 of 12 evaluation rows into pretraining.
+    """
     if not cfg.exclude_sft_holdout:
         return set()
-    from ..training.sft import holdout_indices
+    from ..data.build_instruct_v2 import build_examples, split_examples
 
-    return set(int(i) for i in
-               holdout_indices(n_rows, cfg.sft_holdout, seed=3))
+    if path.name != "boxz_instruct_v2.jsonl":
+        # legacy datasets: keep the older single-holdout behaviour
+        from ..training.sft import holdout_indices
+
+        return set(int(i) for i in
+                   holdout_indices(n_rows, cfg.sft_holdout, seed=3))
+
+    examples = build_examples()
+    if len(examples) != n_rows:
+        return set()
+    _train, dev, test = split_examples(examples)
+    held = {render_messages(ex["messages"]) for ex in (*dev, *test)}
+    keep_idx: set = set()
+    for i, ex in enumerate(examples):
+        if render_messages(ex["messages"]) in held:
+            keep_idx.add(i)
+    return keep_idx
 
 
 def _is_instruction_source(path: Path, cfg: DataConfig) -> bool:
@@ -261,7 +282,7 @@ def _resolve_text(cfg: DataConfig) -> Tuple[str, str, List[str], str]:
         return load_text(p), p.stem, [str(p)], "text"
     if p.suffix == ".jsonl" and p.exists():
         n_rows = sum(1 for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip())
-        exclude = _sft_holdout_rows(n_rows, cfg) if _is_instruction_source(p, cfg) else None
+        exclude = _sft_holdout_rows(n_rows, cfg, p) if _is_instruction_source(p, cfg) else None
         return _read_source(p, "jsonl", cfg.text_field, exclude), p.stem, [str(p)], "jsonl"
     # registered dataset
     src: DatasetSource = get_source(name)
@@ -271,6 +292,6 @@ def _resolve_text(cfg: DataConfig) -> Tuple[str, str, List[str], str]:
     exclude = None
     if _is_instruction_source(src.path(), cfg):
         n_rows = sum(1 for ln in src.path().read_text(encoding="utf-8").splitlines() if ln.strip())
-        exclude = _sft_holdout_rows(n_rows, cfg)
+        exclude = _sft_holdout_rows(n_rows, cfg, src.path())
     return (_read_source(src.path(), fmt, src.text_field or cfg.text_field, exclude),
             name, [str(src.path())], fmt)

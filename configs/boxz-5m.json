@@ -1,0 +1,41 @@
+{
+  "run_name": "base-5m",
+  "model": {
+    "vocab_size": 2048,
+    "n_layer": 6,
+    "n_head": 8,
+    "d_model": 256,
+    "d_ff": 1024,
+    "context_length": 192,
+    "dropout": 0.0,
+    "norm": "layernorm",
+    "activation": "gelu",
+    "pos_embeddings": "learned",
+    "tied_embeddings": true
+  },
+  "data": {
+    "dataset": ["tinyshakespeare", "boxz_web_code"],
+    "vocab_size": 2048,
+    "val_fraction": 0.05,
+    "cache_dir": "data/processed",
+    "sft_holdout": 16,
+    "exclude_sft_holdout": true,
+    "sft_path": "data/sources/boxz_instruct_v2.jsonl"
+  },
+  "batch_size": 24,
+  "grad_accum_steps": 1,
+  "max_steps": 5000,
+  "lr": 0.0012,
+  "min_lr": 0.00012,
+  "warmup_steps": 200,
+  "schedule": "cosine",
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "eval_interval": 250,
+  "eval_batches": 16,
+  "log_interval": 50,
+  "checkpoint_interval": 500,
+  "checkpoint_dir": "checkpoints",
+  "seed": 1337,
+  "max_minutes": 150
+}

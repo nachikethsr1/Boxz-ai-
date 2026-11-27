@@ -113,36 +113,27 @@ def test_corpus_renderer_matches_chat_template():
 def test_pretraining_corpus_excludes_sft_holdout():
     """Held-out instruction rows must never be trained on (leakage guard).
 
-    Retraining and then scoring the model on examples it already saw would make
-    the reported SFT holdout loss a memorisation score rather than a
-    generalisation measurement.
+    Uses the same deterministic three-way split the SFT trainer and the
+    evaluator use, so this test fails if any of the three ever disagree.
     """
+    from boxz.chat.template import render_messages
+    from boxz.config import DataConfig
+    from boxz.data.build_instruct_v2 import build_examples, split_examples
     from boxz.data.corpus import _resolve_text
-    from boxz.training.sft import holdout_indices
-    import json
 
-    from boxz.config import DataConfig as _DC
-    from boxz.training.sft import SFTConfig
-
-    src = Path(SFTConfig().dataset)
-    assert src.exists(), "the expanded instruction set must be generated first"
-    rows = [json.loads(l) for l in src.read_text(encoding="utf-8").splitlines() if l.strip()]
-    idx = holdout_indices(len(rows), SFTConfig().holdout, 3)
+    examples = build_examples()
+    _train, _dev, test = split_examples(examples)
+    src = Path("data/sources/boxz_instruct_v2.jsonl")
+    assert src.exists(), "run: python -m boxz.data.build_instruct_v2"
 
     text, *_ = _resolve_text(DataConfig(dataset=str(src)))
-
-    # The *whole rendered example* must be absent, not merely its answer: two
-    # paraphrases can share an answer string, so checking answers would both
-    # over- and under-report leakage.
-    from boxz.chat.template import render_messages
-
-    for i in idx:
-        rendered = render_messages(rows[int(i)]["messages"])
-        assert rendered not in text, f"holdout row {i} leaked into the corpus"
+    for ex in test:
+        rendered = render_messages(ex["messages"])
+        assert rendered not in text, f"test row leaked into the corpus: {ex['messages'][0]['content'][:40]!r}"
 
     # positive control: with the guard disabled every row is present
     text_all, *_ = _resolve_text(DataConfig(dataset=str(src), exclude_sft_holdout=False))
-    assert all(render_messages(rows[int(i)]["messages"]) in text_all for i in idx)
+    assert all(render_messages(ex["messages"]) in text_all for ex in test)
 
 
 def test_registry_declares_licences():

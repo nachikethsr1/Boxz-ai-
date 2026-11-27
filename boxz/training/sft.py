@@ -46,7 +46,7 @@ class SFTConfig:
 
     def __init__(
         self,
-        dataset: str = "data/sources/boxz_instruct_expanded.jsonl",
+        dataset: str = "data/sources/boxz_instruct_v2.jsonl",
         steps: int = 400,
         batch_size: int = 8,
         lr: float = 1e-4,
@@ -119,11 +119,23 @@ class InstructionTuner:
         # the model simply memorises 36 answers (loss -> 0) and every reported
         # metric is contaminated.  The split is deterministic (seeded shuffle)
         # so results are reproducible.
-        hold_idx = set(int(i) for i in
-                       holdout_indices(len(examples), self.cfg.holdout, self.cfg.seed))
-        self.holdout = [examples[i] for i in range(len(examples)) if i in hold_idx]
-        self.examples = [ex for i, ex in enumerate(examples) if i not in hold_idx]
-        self._say(f"[sft] split: {len(self.examples)} train / {len(self.holdout)} held-out")
+        # Use the SAME deterministic train/dev/test split the evaluator uses, so
+        # a reported held-out number cannot be computed on a row the optimiser
+        # has seen.  ``holdout`` is kept as a legacy override.
+        from ..data.build_instruct_v2 import split_examples
+
+        if self.cfg.holdout and self.cfg.holdout > 0 and len(examples) < 200:
+            # legacy behaviour for small custom datasets: single holdout slice
+            hold_idx = set(int(i) for i in
+                           holdout_indices(len(examples), self.cfg.holdout, self.cfg.seed))
+            self.examples = [ex for i, ex in enumerate(examples) if i not in hold_idx]
+            self.dev = [examples[i] for i in range(len(examples)) if i in hold_idx]
+            self.test: List = []
+        else:
+            self.examples, self.dev, self.test = split_examples(examples)
+        self.holdout = self.dev
+        self._say(f"[sft] split: {len(self.examples)} train / {len(self.dev)} dev / "
+                  f"{len(self.test)} test")
 
         # Replay: mix batches of the original pretraining corpus into SFT so the
         # model does not forget the language it was pretrained on.  Without this
