@@ -83,12 +83,19 @@ def _encode_example(ex: dict, tok: BPETokenizer, max_len: int,
     for text, trainable in render_pieces(ex["messages"]):
         enc = tok.encode(text)
         ids.extend(enc)
-        weights.extend([1.0 if trainable else 0.0] * len(enc))
-        if trainable:
-            # render_pieces appends no <|end|>; the template does it in
-            # render_messages, so add it explicitly for a clean stop token.
-            ids.append(end_id)
+        if trainable and enc and enc[-1] == end_id:
+            # render_pieces *already* terminates assistant turns with <|end|>
+            # (see chat/template.py).  Weight that token up in place; never
+            # append a second one.  The earlier version appended unconditionally
+            # and trained every row on "<|end|><|end|>", which made the stop
+            # token ambiguous and taught the model to double-terminate.
+            weights.extend([1.0] * (len(enc) - 1))
             weights.append(end_weight)
+        else:
+            weights.extend([1.0 if trainable else 0.0] * len(enc))
+            if trainable:
+                ids.append(end_id)
+                weights.append(end_weight)
     if len(ids) < 2:
         return None
     if len(ids) > max_len + 1:

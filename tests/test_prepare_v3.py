@@ -111,3 +111,37 @@ def test_real_files_have_no_structural_leak(path):
     assert ex, f"{path} parsed to nothing"
     leaked = [e for e in ex if "###" in e.question or "###" in e.answer]
     assert not leaked, f"{path}: {len(leaked)} rows still contain '###'"
+
+
+def test_sft_encoding_never_double_terminates():
+    """Regression: every row used to end '<|end|><|end|>'.
+
+    render_pieces() already appends <|end|> to assistant turns, so appending a
+    second one taught the model to double-terminate.  The template's <|end|>
+    must also keep its up-weight.
+    """
+    from boxz.training.sft_v3 import _encode_example
+
+    class _Tok:
+        """Minimal stand-in: one id per character, plus special ids."""
+
+        pad_id = 0
+        _specials = {"<|end|>": 7, "<|user|>": 8, "<|assistant|>": 9}
+
+        def special_id(self, name):
+            return self._specials[name]
+
+        def encode(self, text):
+            return [ord(c) % 1000 + 10 for c in text]
+
+    ex = {"messages": [
+        {"role": "user", "content": "hi"},
+        {"role": "assistant", "content": "there"},
+    ]}
+    x, y, w = _encode_example(ex, _Tok(), max_len=512, end_weight=4.0)
+    seq = [int(i) for i in x] + [int(y[-1])]
+    ends = _Tok._specials["<|end|>"]
+    pairs = sum(1 for i in range(len(seq) - 1) if seq[i] == ends and seq[i + 1] == ends)
+    assert pairs == 0, "consecutive <|end|> tokens in target sequence"
+    assert seq[-1] == ends, "sequence should still terminate"
+    assert float(w[-1]) == 4.0, "end token should keep its up-weight"
