@@ -236,10 +236,18 @@ def cmd_router(args: argparse.Namespace) -> int:
     def rate(rs):
         return (sum(r[0] for r in rs) / len(rs)) if rs else 0.0
 
+    clar = [r for r in edge if r[1].kind == "CLARIFY"]
+    uns = [r for r in edge if r[1].kind == "NO_TEMPLATE"]
+    built_wrong = sum(1 for r in clar if r[4].outcome == "match")
+
     print(f"implemented templates : {sum(r[0] for r in shipped)}/{len(shipped)}"
           f" = {rate(shipped):.1%}")
-    print(f"clarify/unsupported   : {sum(r[0] for r in edge)}/{len(edge)}"
-          f" = {rate(edge):.1%}")
+    print(f"  wrong template built: {len(shipped) - sum(r[0] for r in shipped)}")
+    print(f"unsupported requests  : {sum(r[0] for r in uns)}/{len(uns)}"
+          f" = {rate(uns):.1%}")
+    print(f"clarify requests      : {sum(r[0] for r in clar)}/{len(clar)}"
+          f" = {rate(clar):.1%}")
+    print(f"  wrongly built anyway: {built_wrong}")
     print(f"not-yet-built (info)  : {sum(r[0] for r in other)}/{len(other)}"
           f" = {rate(other):.1%}")
 
@@ -249,7 +257,8 @@ def cmd_router(args: argparse.Namespace) -> int:
         for _ok, block, want, req, got in misses[:10]:
             print(f"  want {block.id:24s} got {got.outcome}/{got.template_id}")
             print(f"       {req}")
-    return 0 if rate(shipped) >= 0.90 and rate(edge) >= 0.90 else 1
+    ok = (rate(shipped) >= 0.90 and rate(uns) >= 0.90 and built_wrong == 0)
+    return 0 if ok else 1
 
 
 def cmd_code(args: argparse.Namespace) -> int:

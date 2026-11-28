@@ -205,3 +205,33 @@ def test_greeting_is_not_a_clarification(setup):
     _corpus, _lib, selector = setup
     assert selector.classify("hi").outcome == "none"
     assert selector.classify("good morning").outcome == "none"
+
+
+# --------------------------------------------------- keyword vs vector fight
+def test_incidental_keyword_does_not_win(setup):
+    """"counts clicks on each colored button" is a counter, not a button."""
+    _corpus, _lib, selector = setup
+    r = selector.classify("Build a page that counts how many times each "
+                          "colored button has been clicked.")
+    assert r.template_id == "js_click_counter"
+
+
+def test_hedged_request_asks_instead_of_building(setup):
+    """'a button or something' is a wish, not a specification."""
+    _corpus, _lib, selector = setup
+    for phrase in ("Add a popup or something when I press a button.",
+                   "Make an arcade game with a character and some challenges."):
+        r = selector.classify(phrase)
+        assert r.outcome == "clarify", (phrase, r.to_dict())
+
+
+def test_no_clarify_case_is_silently_built(setup):
+    """The worst possible failure: building an unrelated project."""
+    corpus, lib, selector = setup
+    wrong = []
+    for block in corpus.clarifications:
+        for phrase in block.requests:
+            r = selector.classify(phrase)
+            if r.outcome == "match":
+                wrong.append((phrase, r.template_id))
+    assert not wrong, wrong

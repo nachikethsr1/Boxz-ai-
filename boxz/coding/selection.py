@@ -350,8 +350,25 @@ class TemplateSelector:
             # snake?), so let the normal margin rules handle it.
             runner = kw[1][1] if len(kw) > 1 else 0
             if kw[0][1] > runner:
-                return Selection("match", template_id=best, score=top_score,
-                                 candidates=scored)
+                # A keyword only decides when the vectors are not far behind.
+                # Two keywords are strong evidence outright ("press a button"
+                # -> button animation).  A single keyword must also be the
+                # TF-IDF leader, otherwise it is incidental: "a page that
+                # counts clicks on each colored button" is a counter, and
+                # "an arcade game with a character" is not specifically snake.
+                keyword_is_top = (best == top_id or top_score <= 0)
+                if kw[0][1] >= 2 or (kw[0][1] == 1 and keyword_is_top):
+                    # Hedging language ("a button *or something*", "some
+                    # challenges") means the user is describing a wish, not
+                    # naming a project.  Building anyway produces something
+                    # they did not ask for, so confirm instead.
+                    if _HEDGE.search(low):
+                        return Selection(
+                            "clarify", reason="vague_request",
+                            score=top_score, runner_up=best,
+                            runner_up_score=float(kw[0][1]), candidates=scored)
+                    return Selection("match", template_id=best,
+                                     score=top_score, candidates=scored)
 
         # require it to clear the normal threshold on its own.
         informative = [w for w in toks if w in self._known]
@@ -400,6 +417,12 @@ class TemplateSelector:
     def template_ids(self) -> List[str]:
         return sorted(self._tokens)
 
+
+#: Wording that signals an unfinished idea rather than a specification.
+_HEDGE = re.compile(
+    r"\b(or something|or anything|not sure|whatever|some kind|kind of|"
+    r"sort of|some challenges|some fun|some mechanics|some sections|"
+    r"something cool|something fun)\b", re.I)
 
 #: "make me something", "build something nice" -- a wish with no object.
 _VAGUE_WISH = re.compile(
