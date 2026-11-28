@@ -33,6 +33,18 @@ _MAGNITUDE = {
     "a little": 1.15, "little": 1.15, "bit": 1.15, "very": 1.5, "really": 1.5,
 }
 
+#: Parameter names (and aliases) that mean "how many cells the board is
+#: across".  A template only has to declare one of these to accept
+#: "make the grid 25×25" as a follow-up.
+_GRID_PARAM_NAMES = ("grid_size", "grid", "board_size", "board", "cells")
+
+#: "25×25", "25x25", "25 by 25" -- the square-board notation.
+_GRID_NXN = re.compile(r"\b(\d{1,3})\s*(?:by|[x×])\s*(\d{1,3})\b")
+
+#: A sentence that is talking about the board, used for the bare-number form
+#: ("set the board size to 25").
+_GRID_WORD = re.compile(r"\b(grid|board|cells)\b", re.I)
+
 #: Words that map onto a relative change of a numeric parameter.
 _RELATIVE_WORDS = {
     "bigger": ("size", "scale", 1.4),
@@ -170,6 +182,48 @@ def _resolve_param(template: Template, word: str) -> Optional[str]:
     return direct.name if direct else None
 
 
+def _resolve_grid_param(template: Template) -> Optional[str]:
+    """The template's board-size parameter, if it has a numeric one.
+
+    Selection is by type as well as name on purpose: ``js_snake`` declares both
+    ``grid_size`` (int) and ``grid_color`` (color), and "make the grid 25x25"
+    must never be read as a colour change.
+    """
+    for name in _GRID_PARAM_NAMES:
+        param = template.param(name)
+        if param is not None and param.type in ("int", "float"):
+            return param.name
+    return None
+
+
+def _parse_grid_size(low: str, template: Template) -> Optional[str]:
+    """Read a board size out of a follow-up sentence.
+
+    Returns the value as text (``apply_patch`` coerces and clamps it, so range
+    limits still apply), or ``None`` when the sentence says nothing about the
+    board size.
+
+    Handles the square notation reused from ``parse_initial_values``
+    (``25×25`` / ``25x25`` / ``25 by 25``) and a bare number that a grid word
+    introduces (``set the board size to 25``).
+    """
+    if _resolve_grid_param(template) is None:
+        return None
+
+    match = _GRID_NXN.search(low)
+    if match:
+        left, right = match.group(1), match.group(2)
+        # A non-square board cannot be expressed by "grid_size", so this is not
+        # a value we can honour; say nothing rather than pick one side.
+        return left if left == right else None
+
+    if _GRID_WORD.search(low):
+        match = re.search(r"(\d{1,3})", low)
+        if match:
+            return match.group(1)
+    return None
+
+
 def parse_followup(text: str, template: Template) -> FollowUp:
     """Turn "make it bigger" / "change the background to blue" into a Patch."""
     raw = (text or "").strip()
@@ -200,6 +254,17 @@ def parse_followup(text: str, template: Template) -> FollowUp:
             if target:
                 return FollowUp(patch=Patch(param=target, op="set",
                                             value=_COLOR_WORDS[colour]), text=raw)
+
+    # --- board size: "make the grid 25×25" / "set the board size to 25" ----
+    # Placed after the colour rules so an explicit colour always wins, and
+    # before the literal-name loop, which cannot see "the grid 25×25" because
+    # it looks for the exact parameter name.
+    grid_value = _parse_grid_size(low, template)
+    if grid_value is not None:
+        target = _resolve_grid_param(template)
+        if target:
+            return FollowUp(patch=Patch(param=target, op="set", value=grid_value),
+                            text=raw)
 
     # --- explicit parameter mention: "make step_ms 60" / "set grid to 20" ---
     for name in list(template.param_names()):

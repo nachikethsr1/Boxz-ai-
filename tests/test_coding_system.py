@@ -248,3 +248,106 @@ def test_defaults_are_kept_when_nothing_is_stated(system, session):
     system.handle("Make a snake game", session)
     assert session.values["grid_size"] == 15
     assert session.values["step_ms"] == 120
+
+
+# ------------------------------------------------- grid size follow-ups
+# Regression: the evidence audit found "Make the grid 25×25." returned
+# coding_clarify with no project while "Set grid_size to 25." worked. The
+# follow-up parser only looked for literal parameter names.
+@pytest.mark.parametrize("phrase", [
+    "Make the grid 25×25.",
+    "Change the grid to 25 by 25.",
+    "Set the board size to 25.",
+    "Make the grid 25x25.",
+    "Set grid_size to 25.",
+])
+def test_grid_followup_phrasings(system, session, phrase):
+    system.handle("Make a snake game with a 20×20 grid.", session)
+    r = system.handle(phrase, session)
+    assert r.outcome == "match", (phrase, r.outcome)
+    assert r.template_id == "js_snake"
+    assert session.values["grid_size"] == 25
+    assert "var CELLS = 25;" in r.project.files["game.js"]
+
+
+def test_grid_followup_keeps_speed_and_colour(system, session):
+    """The whole point: a grid change must not disturb anything else."""
+    system.handle("Make a snake game with a 20×20 grid.", session)
+    system.handle("Make the snake slower.", session)
+    system.handle("Change the snake color to blue.", session)
+    before = dict(session.values)
+
+    r = system.handle("Make the grid 25×25.", session)
+
+    assert r.outcome == "match"
+    assert session.values["grid_size"] == 25
+    changed = {k for k in before if before[k] != session.values[k]}
+    assert changed == {"grid_size"}, changed
+    assert session.values["step_ms"] == before["step_ms"]
+    assert session.values["snake_color"] == "#0074d9"
+
+
+def test_grid_followup_does_not_start_a_new_project(system, session):
+    system.handle("Make a snake game.", session)
+    r = system.handle("Make the grid 25×25.", session)
+    assert r.source == "template+followup"      # not "template"
+    assert r.template_id == "js_snake"
+
+
+def test_grid_followup_is_clamped_not_crashed(system, session):
+    system.handle("Make a snake game.", session)
+    r = system.handle("Make the grid 500×500.", session)      # max is 30
+    assert r.outcome == "match"
+    assert session.values["grid_size"] == 30
+    assert "clamped" in r.text.lower()
+
+    r = system.handle("Make the grid 2×2.", session)          # min is 8
+    assert session.values["grid_size"] == 8
+    assert "clamped" in r.text.lower()
+
+
+def test_absolute_oversized_value_is_clamped_not_raised(system, session):
+    """Pre-existing crash: an out-of-range `set` escaped as a ValueError."""
+    system.handle("Make a snake game.", session)
+    r = system.handle("Set grid_size to 500.", session)
+    assert r.outcome == "match"
+    assert session.values["grid_size"] == 30
+
+
+def test_non_square_grid_is_refused_without_a_build(system, session):
+    system.handle("Make a snake game.", session)
+    r = system.handle("Make the grid 25 by 30.", session)
+    assert r.outcome == "clarify"
+    assert r.project is None
+    assert session.values["grid_size"] == 15      # untouched
+
+
+def test_grid_words_do_not_touch_grid_colour(system, session):
+    """`grid_color` is a colour, so "the grid 25x25" must never hit it."""
+    system.handle("Make a snake game.", session)
+    before = session.values["grid_color"]
+    system.handle("Make the grid 25×25.", session)
+    assert session.values["grid_color"] == before == "#30363d"
+
+
+@pytest.mark.parametrize("opener,phrase", [
+    ("Make a pong game.", "Make the ball faster."),
+    ("Make a pong game.", "Make the paddle bigger."),
+    ("Make a click counter.", "Change the count color to blue."),
+    ("Make a timer app.", "Make the countdown bigger."),
+    ("Make a particle effect.", "Make the particles bigger."),
+    ("Make a button that animates.", "Change the accent color to green."),
+])
+def test_other_templates_followups_unaffected(system, session, opener, phrase):
+    system.handle(opener, session)
+    tid = session.template_id
+    r = system.handle(phrase, session)
+    assert r.outcome == "match", (phrase, r.text)
+    assert r.template_id == tid
+
+
+def test_normal_chat_unaffected_by_grid_rule(system, session):
+    system.handle("Make a snake game.", session)
+    for question in ("What is CSS?", "help me", "thanks for helping me"):
+        assert not system.handle(question, session).handled
+    assert session.values["grid_size"] == 15      # project survived

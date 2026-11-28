@@ -193,7 +193,26 @@ def apply_patch(
         )
     note = ""
     if patch.op == "set":
-        raw = param.coerce(patch.value)
+        # An absolute value is clamped like a relative one.  ``coerce`` raises
+        # outside the range, which used to escape as a ValueError: "set the
+        # grid to 500" would crash the request instead of quietly giving a
+        # 30x30 board and saying so.
+        if param.type in ("int", "float"):
+            try:
+                raw = param.coerce(patch.value)
+            except ValueError:
+                value = float(str(patch.value).strip())
+                if param.min is not None and value < param.min:
+                    note = f" (clamped to the minimum {param.min})"
+                    value = float(param.min)
+                elif param.max is not None and value > param.max:
+                    note = f" (clamped to the maximum {param.max})"
+                    value = float(param.max)
+                else:
+                    raise
+                raw = param.coerce(int(value) if param.type == "int" else value)
+        else:
+            raw = param.coerce(patch.value)
     elif patch.op in ("scale", "offset"):
         if param.type not in ("int", "float"):
             raise CustomizationError(
