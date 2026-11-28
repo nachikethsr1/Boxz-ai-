@@ -1,0 +1,8997 @@
+user
+
+What is 18 + 24?
+
+assistant
+
+This is an addition question. 18 + 24 = 42.
+
+---
+
+user
+
+Add 125 and 375.
+
+assistant
+
+This is an addition question. 125 + 375 = 500.
+
+---
+
+user
+
+Find the sum of 908 and 127.
+
+assistant
+
+This is an addition question. 908 + 127 = 1035.
+
+---
+
+user
+
+Can you calculate 2400 plus 1650?
+
+assistant
+
+This is an addition question. 2400 + 1650 = 4050.
+
+---
+
+user
+
+Work out this addition: 7643 + 2357.
+
+assistant
+
+This is an addition question. 7643 + 2357 = 10000.
+
+---
+
+user
+
+What is 56 + 89?
+
+assistant
+
+This is an addition question. 56 + 89 = 145.
+
+---
+
+user
+
+Add 12050 and 7950.
+
+assistant
+
+This is an addition question. 12050 + 7950 = 20000.
+
+---
+
+user
+
+Find the sum of 345 and 678.
+
+assistant
+
+This is an addition question. 345 + 678 = 1023.
+
+---
+
+user
+
+Can you calculate 9999 plus 10001?
+
+assistant
+
+This is an addition question. 9999 + 10001 = 20000.
+
+---
+
+user
+
+Work out this addition: 43210 + 8765.
+
+assistant
+
+This is an addition question. 43210 + 8765 = 51975.
+
+---
+
+user
+
+What is 7 + 16?
+
+assistant
+
+This is an addition question. 7 + 16 = 23.
+
+---
+
+user
+
+Add 250000 and 175000.
+
+assistant
+
+This is an addition question. 250000 + 175000 = 425000.
+
+---
+
+user
+
+Find the sum of 63 and 147.
+
+assistant
+
+This is an addition question. 63 + 147 = 210.
+
+---
+
+user
+
+Can you calculate 805 plus 195?
+
+assistant
+
+This is an addition question. 805 + 195 = 1000.
+
+---
+
+user
+
+Work out this addition: 123456 + 654321.
+
+assistant
+
+This is an addition question. 123456 + 654321 = 777777.
+
+---
+
+user
+
+What is 2.75 + 1.25?
+
+assistant
+
+This is an addition question. 2.75 + 1.25 = 4.
+
+---
+
+user
+
+Add 14.6 and 3.85.
+
+assistant
+
+This is an addition question. 14.6 + 3.85 = 18.45.
+
+---
+
+user
+
+Find the sum of 0.48 and 0.52.
+
+assistant
+
+This is an addition question. 0.48 + 0.52 = 1.
+
+---
+
+user
+
+Can you calculate 125.75 plus 74.25?
+
+assistant
+
+This is an addition question. 125.75 + 74.25 = 200.
+
+---
+
+user
+
+Work out this addition: 999.9 + 0.1.
+
+assistant
+
+This is an addition question. 999.9 + 0.1 = 1000.
+
+---
+
+user
+
+What is 50 − 18?
+
+assistant
+
+This is a subtraction question. 50 − 18 = 32.
+
+---
+
+user
+
+Subtract 275 from 900.
+
+assistant
+
+This is a subtraction question. 900 − 275 = 625.
+
+---
+
+user
+
+Find the difference between 1500 and 675.
+
+assistant
+
+This is a subtraction question. 1500 − 675 = 825.
+
+---
+
+user
+
+Calculate 10000 take away 4321.
+
+assistant
+
+This is a subtraction question. 10000 − 4321 = 5679.
+
+---
+
+user
+
+Work out this subtraction: 76543 − 12345.
+
+assistant
+
+This is a subtraction question. 76543 − 12345 = 64198.
+
+---
+
+user
+
+What is 84 − 29?
+
+assistant
+
+This is a subtraction question. 84 − 29 = 55.
+
+---
+
+user
+
+Subtract 8750 from 25000.
+
+assistant
+
+This is a subtraction question. 25000 − 8750 = 16250.
+
+---
+
+user
+
+Find the difference between 1000000 and 375000.
+
+assistant
+
+This is a subtraction question. 1000000 − 375000 = 625000.
+
+---
+
+user
+
+Calculate 701 take away 296.
+
+assistant
+
+This is a subtraction question. 701 − 296 = 405.
+
+---
+
+user
+
+Work out this subtraction: 54321 − 9876.
+
+assistant
+
+This is a subtraction question. 54321 − 9876 = 44445.
+
+---
+
+user
+
+What is 120 − 45?
+
+assistant
+
+This is a subtraction question. 120 − 45 = 75.
+
+---
+
+user
+
+Subtract 808 from 8080.
+
+assistant
+
+This is a subtraction question. 8080 − 808 = 7272.
+
+---
+
+user
+
+Find the difference between 99999 and 1.
+
+assistant
+
+This is a subtraction question. 99999 − 1 = 99998.
+
+---
+
+user
+
+Calculate 650 take away 275.
+
+assistant
+
+This is a subtraction question. 650 − 275 = 375.
+
+---
+
+user
+
+Work out this subtraction: 300000 − 125500.
+
+assistant
+
+This is a subtraction question. 300000 − 125500 = 174500.
+
+---
+
+user
+
+What is 8.5 − 2.25?
+
+assistant
+
+This is a subtraction question. 8.5 − 2.25 = 6.25.
+
+---
+
+user
+
+Subtract 4.5 from 19.75.
+
+assistant
+
+This is a subtraction question. 19.75 − 4.5 = 15.25.
+
+---
+
+user
+
+Find the difference between 1 and 0.36.
+
+assistant
+
+This is a subtraction question. 1 − 0.36 = 0.64.
+
+---
+
+user
+
+Calculate 250.5 take away 125.25.
+
+assistant
+
+This is a subtraction question. 250.5 − 125.25 = 125.25.
+
+---
+
+user
+
+Work out this subtraction: 1000 − 0.01.
+
+assistant
+
+This is a subtraction question. 1000 − 0.01 = 999.99.
+
+---
+
+user
+
+What is 7 × 8?
+
+assistant
+
+This is a multiplication question. 7 × 8 = 56.
+
+---
+
+user
+
+Multiply 12 by 14.
+
+assistant
+
+This is a multiplication question. 12 × 14 = 168.
+
+---
+
+user
+
+Find the product of 25 and 16.
+
+assistant
+
+This is a multiplication question. 25 × 16 = 400.
+
+---
+
+user
+
+How much is 125 groups of 8?
+
+assistant
+
+This is a multiplication question. 125 × 8 = 1000.
+
+---
+
+user
+
+Calculate 36 times 24.
+
+assistant
+
+This is a multiplication question. 36 × 24 = 864.
+
+---
+
+user
+
+What is 48 × 15?
+
+assistant
+
+This is a multiplication question. 48 × 15 = 720.
+
+---
+
+user
+
+Multiply 250 by 32.
+
+assistant
+
+This is a multiplication question. 250 × 32 = 8000.
+
+---
+
+user
+
+Find the product of 105 and 27.
+
+assistant
+
+This is a multiplication question. 105 × 27 = 2835.
+
+---
+
+user
+
+How much is 999 groups of 11?
+
+assistant
+
+This is a multiplication question. 999 × 11 = 10989.
+
+---
+
+user
+
+Calculate 1250 times 40.
+
+assistant
+
+This is a multiplication question. 1250 × 40 = 50000.
+
+---
+
+user
+
+What is 64 × 75?
+
+assistant
+
+This is a multiplication question. 64 × 75 = 4800.
+
+---
+
+user
+
+Multiply 320 by 125.
+
+assistant
+
+This is a multiplication question. 320 × 125 = 40000.
+
+---
+
+user
+
+Find the product of 2048 and 16.
+
+assistant
+
+This is a multiplication question. 2048 × 16 = 32768.
+
+---
+
+user
+
+How much is 123 groups of 45?
+
+assistant
+
+This is a multiplication question. 123 × 45 = 5535.
+
+---
+
+user
+
+Calculate 2500 times 250.
+
+assistant
+
+This is a multiplication question. 2500 × 250 = 625000.
+
+---
+
+user
+
+What is 2.5 × 4?
+
+assistant
+
+This is a multiplication question. 2.5 × 4 = 10.
+
+---
+
+user
+
+Multiply 1.2 by 3.5.
+
+assistant
+
+This is a multiplication question. 1.2 × 3.5 = 4.2.
+
+---
+
+user
+
+Find the product of 0.25 and 12.
+
+assistant
+
+This is a multiplication question. 0.25 × 12 = 3.
+
+---
+
+user
+
+How much is 7.5 groups of 0.8?
+
+assistant
+
+This is a multiplication question. 7.5 × 0.8 = 6.
+
+---
+
+user
+
+Calculate 125.5 times 2.
+
+assistant
+
+This is a multiplication question. 125.5 × 2 = 251.
+
+---
+
+user
+
+What is 56 ÷ 7?
+
+assistant
+
+This is a division question. 56 ÷ 7 = 8.
+
+---
+
+user
+
+Divide 144 by 12.
+
+assistant
+
+This is a division question. 144 ÷ 12 = 12.
+
+---
+
+user
+
+How many times does 15 go into 360?
+
+assistant
+
+This is a division question. 360 ÷ 15 = 24.
+
+---
+
+user
+
+Find the quotient of 1024 and 16.
+
+assistant
+
+This is a division question. 1024 ÷ 16 = 64.
+
+---
+
+user
+
+Work out 975 shared equally among 25 groups.
+
+assistant
+
+This is a division question. 975 ÷ 25 = 39.
+
+---
+
+user
+
+What is 840 ÷ 21?
+
+assistant
+
+This is a division question. 840 ÷ 21 = 40.
+
+---
+
+user
+
+Divide 1250 by 50.
+
+assistant
+
+This is a division question. 1250 ÷ 50 = 25.
+
+---
+
+user
+
+How many times does 9 go into 9999?
+
+assistant
+
+This is a division question. 9999 ÷ 9 = 1111.
+
+---
+
+user
+
+Find the quotient of 7200 and 80.
+
+assistant
+
+This is a division question. 7200 ÷ 80 = 90.
+
+---
+
+user
+
+Work out 123456 shared equally among 12 groups.
+
+assistant
+
+This is a division question. 123456 ÷ 12 = 10288.
+
+---
+
+user
+
+What is 250000 ÷ 125?
+
+assistant
+
+This is a division question. 250000 ÷ 125 = 2000.
+
+---
+
+user
+
+Divide 864 by 24.
+
+assistant
+
+This is a division question. 864 ÷ 24 = 36.
+
+---
+
+user
+
+How many times does 36 go into 1440?
+
+assistant
+
+This is a division question. 1440 ÷ 36 = 40.
+
+---
+
+user
+
+Find the quotient of 625 and 25.
+
+assistant
+
+This is a division question. 625 ÷ 25 = 25.
+
+---
+
+user
+
+Work out 1000000 shared equally among 1000 groups.
+
+assistant
+
+This is a division question. 1000000 ÷ 1000 = 1000.
+
+---
+
+user
+
+What is 8.4 ÷ 2?
+
+assistant
+
+This is a division question. 8.4 ÷ 2 = 4.2.
+
+---
+
+user
+
+Divide 7.5 by 0.5.
+
+assistant
+
+This is a division question. 7.5 ÷ 0.5 = 15.
+
+---
+
+user
+
+How many times does 3 go into 12.6?
+
+assistant
+
+This is a division question. 12.6 ÷ 3 = 4.2.
+
+---
+
+user
+
+Find the quotient of 0.96 and 0.8.
+
+assistant
+
+This is a division question. 0.96 ÷ 0.8 = 1.2.
+
+---
+
+user
+
+Work out 125.5 shared equally among 5 groups.
+
+assistant
+
+This is a division question. 125.5 ÷ 5 = 25.1.
+
+---
+
+user
+
+What is 9 squared?
+
+assistant
+
+This is a square-number question. 9² = 81.
+
+---
+
+user
+
+Find the cube of 4.
+
+assistant
+
+This is a cube question. 4³ = 64.
+
+---
+
+user
+
+What is the square root of 196?
+
+assistant
+
+This is a square-root question. √196 = 14.
+
+---
+
+user
+
+Evaluate 2 to the power of 6.
+
+assistant
+
+This is an exponentiation question. 2⁶ = 64.
+
+---
+
+user
+
+What is 15% of 240?
+
+assistant
+
+This is a percentage question. 0.15 × 240 = 36.
+
+---
+
+user
+
+Calculate 40% of 850.
+
+assistant
+
+This is a percentage question. 0.40 × 850 = 340.
+
+---
+
+user
+
+What is one-third of ninety-nine?
+
+assistant
+
+This is a fraction-of-a-number question. 99 ÷ 3 = 33.
+
+---
+
+user
+
+Find three-quarters of 120.
+
+assistant
+
+This is a fraction-of-a-number question. 120 × 3/4 = 90.
+
+---
+
+user
+
+Simplify 18/24.
+
+assistant
+
+This is a fraction-simplification question. 18/24 = 3/4.
+
+---
+
+user
+
+Convert 0.375 to a fraction in simplest form.
+
+assistant
+
+This is a decimal-to-fraction conversion question. 0.375 = 3/8.
+
+---
+
+user
+
+Convert 0.62 to a percentage.
+
+assistant
+
+This is a decimal-to-percentage conversion question. 0.62 × 100% = 62%.
+
+---
+
+user
+
+Write 7/20 as a percentage.
+
+assistant
+
+This is a fraction-to-percentage conversion question. (7 ÷ 20) × 100% = 35%.
+
+---
+
+user
+
+What is 2.4 + 0.65?
+
+assistant
+
+This is a decimal-addition question. 2.4 + 0.65 = 3.05.
+
+---
+
+user
+
+Work out 9.8 − 3.46.
+
+assistant
+
+This is a decimal-subtraction question. 9.8 − 3.46 = 6.34.
+
+---
+
+user
+
+Multiply 0.6 by 0.7.
+
+assistant
+
+This is a decimal-multiplication question. 0.6 × 0.7 = 0.42.
+
+---
+
+user
+
+What is the absolute value of −23?
+
+assistant
+
+This is an absolute-value question. |−23| = 23.
+
+---
+
+user
+
+Evaluate −8 + 13.
+
+assistant
+
+This is an integer-addition question. −8 + 13 = 5.
+
+---
+
+user
+
+What is 5 factorial?
+
+assistant
+
+This is a factorial question. 5! = 120.
+
+---
+
+user
+
+Find the remainder when 47 is divided by 6.
+
+assistant
+
+This is a remainder question. 47 ÷ 6 = remainder 5.
+
+---
+
+user
+
+What is the average of 6, 10, and 14?
+
+assistant
+
+This is an arithmetic-mean question. (6 + 10 + 14) ÷ 3 = 10.
+
+---
+
+user
+
+What number is 9 more than 34?
+
+assistant
+
+This is addition: 34 + 9 = 43.
+
+---
+
+user
+
+Increase 145 by 28.
+
+assistant
+
+This is addition: 145 + 28 = 173.
+
+---
+
+user
+
+Add 760 to 1,240.
+
+assistant
+
+This is addition: 1,240 + 760 = 2,000.
+
+---
+
+user
+
+A number is 125 greater than 875. What is it?
+
+assistant
+
+This is addition: 875 + 125 = 1,000.
+
+---
+
+user
+
+What do you get when 3,600 is increased by 450?
+
+assistant
+
+This is addition: 3,600 + 450 = 4,050.
+
+---
+
+user
+
+Find the amount that is 17 more than 208.
+
+assistant
+
+This is addition: 208 + 17 = 225.
+
+---
+
+user
+
+Add another 2,750 to 6,250.
+
+assistant
+
+This is addition: 6,250 + 2,750 = 9,000.
+
+---
+
+user
+
+How much is 0.8 more than 2.35?
+
+assistant
+
+This is addition: 2.35 + 0.8 = 3.15.
+
+---
+
+user
+
+What is 15 added to 4,985?
+
+assistant
+
+This is addition: 4,985 + 15 = 5,000.
+
+---
+
+user
+
+Take 36 and make it 64 larger. What is the result?
+
+assistant
+
+This is addition: 36 + 64 = 100.
+
+---
+
+user
+
+What is 8 less than 50?
+
+assistant
+
+This is subtraction: 50 − 8 = 42.
+
+---
+
+user
+
+Decrease 900 by 275.
+
+assistant
+
+This is subtraction: 900 − 275 = 625.
+
+---
+
+user
+
+Take 460 away from 1,000.
+
+assistant
+
+This is subtraction: 1,000 − 460 = 540.
+
+---
+
+user
+
+How much smaller is 725 than 1,200?
+
+assistant
+
+This is subtraction: 1,200 − 725 = 475.
+
+---
+
+user
+
+Find the amount left after removing 1,350 from 5,000.
+
+assistant
+
+This is subtraction: 5,000 − 1,350 = 3,650.
+
+---
+
+user
+
+What number is 45 below 310?
+
+assistant
+
+This is subtraction: 310 − 45 = 265.
+
+---
+
+user
+
+Subtract 0.75 from 5.5.
+
+assistant
+
+This is subtraction: 5.5 − 0.75 = 4.75.
+
+---
+
+user
+
+The difference between 2,450 and 1,875 is what?
+
+assistant
+
+This is subtraction: 2,450 − 1,875 = 575.
+
+---
+
+user
+
+Remove 999 from 10,000.
+
+assistant
+
+This is subtraction: 10,000 − 999 = 9,001.
+
+---
+
+user
+
+How far must 68 go down to reach 23?
+
+assistant
+
+This is subtraction: 68 − 23 = 45.
+
+---
+
+user
+
+What is double 37?
+
+assistant
+
+This is multiplication by 2: 37 × 2 = 74.
+
+---
+
+user
+
+Triple 125 for me.
+
+assistant
+
+This is multiplication by 3: 125 × 3 = 375.
+
+---
+
+user
+
+What is four times 26?
+
+assistant
+
+This is multiplication: 4 × 26 = 104.
+
+---
+
+user
+
+Find seven groups of 18.
+
+assistant
+
+This is multiplication: 7 × 18 = 126.
+
+---
+
+user
+
+Nine lots of 45 equals what?
+
+assistant
+
+This is multiplication: 9 × 45 = 405.
+
+---
+
+user
+
+A value is multiplied by 12. What is 12 times 250?
+
+assistant
+
+This is multiplication: 12 × 250 = 3,000.
+
+---
+
+user
+
+What is twice 1,250?
+
+assistant
+
+This is multiplication by 2: 1,250 × 2 = 2,500.
+
+---
+
+user
+
+Calculate six times 0.5.
+
+assistant
+
+This is multiplication: 6 × 0.5 = 3.
+
+---
+
+user
+
+How much is 15 lots of 80?
+
+assistant
+
+This is multiplication: 15 × 80 = 1,200.
+
+---
+
+user
+
+Find the product when 125 is taken 16 times.
+
+assistant
+
+This is multiplication: 125 × 16 = 2,000.
+
+---
+
+user
+
+What is half of 90?
+
+assistant
+
+This is division: 90 ÷ 2 = 45.
+
+---
+
+user
+
+Share 144 equally among 12 people. How much each?
+
+assistant
+
+This is division: 144 ÷ 12 = 12 each.
+
+---
+
+user
+
+What is one-third of 81?
+
+assistant
+
+This is division: 81 ÷ 3 = 27.
+
+---
+
+user
+
+Divide 1,000 into 5 equal parts.
+
+assistant
+
+This is division: 1,000 ÷ 5 = 200.
+
+---
+
+user
+
+How many groups of 8 fit into 96?
+
+assistant
+
+This is division: 96 ÷ 8 = 12 groups.
+
+---
+
+user
+
+What is a quarter of 360?
+
+assistant
+
+This is division: 360 ÷ 4 = 90.
+
+---
+
+user
+
+Split 2,400 equally into 30 portions.
+
+assistant
+
+This is division: 2,400 ÷ 30 = 80 per portion.
+
+---
+
+user
+
+Find one-fifth of 725.
+
+assistant
+
+This is division: 725 ÷ 5 = 145.
+
+---
+
+user
+
+What is 0.6 divided by 3?
+
+assistant
+
+This is division: 0.6 ÷ 3 = 0.2.
+
+---
+
+user
+
+How many groups of 25 are in 625?
+
+assistant
+
+This is division: 625 ÷ 25 = 25 groups.
+
+---
+
+user
+
+Find 10% of 450.
+
+assistant
+
+This is a percentage calculation: 0.10 × 450 = 45.
+
+---
+
+user
+
+What amount is 25 percent of 320?
+
+assistant
+
+This is a percentage calculation: 0.25 × 320 = 80.
+
+---
+
+user
+
+Calculate a 15% discount on 600.
+
+assistant
+
+This is a percentage calculation: 0.15 × 600 = 90.
+
+---
+
+user
+
+What is 125% of 80?
+
+assistant
+
+This is a percentage calculation: 1.25 × 80 = 100.
+
+---
+
+user
+
+Find 2% of 3,500.
+
+assistant
+
+This is a percentage calculation: 0.02 × 3,500 = 70.
+
+---
+
+user
+
+What is 3/5 of 100?
+
+assistant
+
+This is a fraction-of-a-number calculation: 100 × 3/5 = 60.
+
+---
+
+user
+
+Calculate two-thirds of ninety-six.
+
+assistant
+
+This is a fraction-of-a-number calculation: 96 × 2/3 = 64.
+
+---
+
+user
+
+How much is 7/8 of 64?
+
+assistant
+
+This is a fraction-of-a-number calculation: 64 × 7/8 = 56.
+
+---
+
+user
+
+Find 5/6 of 72.
+
+assistant
+
+This is a fraction-of-a-number calculation: 72 × 5/6 = 60.
+
+---
+
+user
+
+What is 40% of 2,750?
+
+assistant
+
+This is a percentage calculation: 0.40 × 2,750 = 1,100.
+
+---
+
+user
+
+Is 29 more than 30?
+
+assistant
+
+This is a number-comparison question. No calculation is needed: 29 is less than 30.
+
+---
+
+user
+
+Which is greater, 0.7 or 0.65?
+
+assistant
+
+This is a decimal-comparison question. No calculation is needed: 0.7 is greater than 0.65.
+
+---
+
+user
+
+Does 48 belong to the even numbers?
+
+assistant
+
+This is an even-or-odd classification question. No calculation beyond checking divisibility by 2 is needed: 48 is even.
+
+---
+
+user
+
+Is 91 an odd number?
+
+assistant
+
+This is an even-or-odd classification question. No calculation is needed: 91 is odd.
+
+---
+
+user
+
+Is 37 a prime number?
+
+assistant
+
+This is a prime-number question. Yes. 37 has exactly two positive factors: 1 and 37.
+
+---
+
+user
+
+Is 51 prime?
+
+assistant
+
+This is a prime-number question. No. 51 = 3 × 17, so it has more than two positive factors.
+
+---
+
+user
+
+Name a factor of 42 other than 1 and 42.
+
+assistant
+
+This is a factor-identification question. For example, 6 is a factor of 42 because 42 ÷ 6 = 7.
+
+---
+
+user
+
+Is 8 a multiple of 4?
+
+assistant
+
+This is a multiple-identification question. Yes. 8 = 4 × 2.
+
+---
+
+user
+
+How many sides does a hexagon have?
+
+assistant
+
+This is a geometry-fact question. A hexagon has 6 sides; no calculation is required.
+
+---
+
+user
+
+Are the angles in a triangle always 180 degrees in total?
+
+assistant
+
+This is a geometry-concept question. Yes. The interior angles of a plane triangle add up to 180°.
+
+---
+
+user
+
+Write 3/4 as a decimal.
+
+assistant
+
+3 ÷ 4 = 0.75.
+
+---
+
+user
+
+Convert 5/8 into a decimal.
+
+assistant
+
+5 ÷ 8 = 0.625.
+
+---
+
+user
+
+Express 0.2 as a fraction in simplest form.
+
+assistant
+
+0.2 = 2/10 = 1/5.
+
+---
+
+user
+
+Turn 45% into a decimal.
+
+assistant
+
+45% = 45 ÷ 100 = 0.45.
+
+---
+
+user
+
+What percentage is 9 out of 20?
+
+assistant
+
+(9 ÷ 20) × 100% = 45%.
+
+---
+
+user
+
+Simplify the fraction 42/56.
+
+assistant
+
+42/56 = 3/4.
+
+---
+
+user
+
+Reduce 84/126 to its lowest terms.
+
+assistant
+
+84/126 = 2/3.
+
+---
+
+user
+
+Are 2/3 and 8/12 equivalent fractions?
+
+assistant
+
+Yes. 8/12 simplifies to 2/3, so the fractions are equivalent.
+
+---
+
+user
+
+Which is larger: 5/6 or 3/4?
+
+assistant
+
+5/6 is larger because 5/6 = 10/12 and 3/4 = 9/12.
+
+---
+
+user
+
+What is 1/4 + 1/4?
+
+assistant
+
+This is fraction addition: 1/4 + 1/4 = 1/2.
+
+---
+
+user
+
+Calculate 2/5 + 1/5.
+
+assistant
+
+This is fraction addition: 2/5 + 1/5 = 3/5.
+
+---
+
+user
+
+Subtract 1/8 from 5/8.
+
+assistant
+
+This is fraction subtraction: 5/8 − 1/8 = 1/2.
+
+---
+
+user
+
+Find 30% of 90.
+
+assistant
+
+This is a percentage calculation: 0.30 × 90 = 27.
+
+---
+
+user
+
+What is 75 percent of 240?
+
+assistant
+
+This is a percentage calculation: 0.75 × 240 = 180.
+
+---
+
+user
+
+Calculate 12.5% of 800.
+
+assistant
+
+This is a percentage calculation: 0.125 × 800 = 100.
+
+---
+
+user
+
+Increase 200 by 10%.
+
+assistant
+
+This is a percentage-increase question: 200 + (0.10 × 200) = 220.
+
+---
+
+user
+
+Decrease 500 by 20%.
+
+assistant
+
+This is a percentage-decrease question: 500 − (0.20 × 500) = 400.
+
+---
+
+user
+
+A score rises from 40 to 50. What is the percentage increase?
+
+assistant
+
+This is a percentage-change question: ((50 − 40) ÷ 40) × 100% = 25%.
+
+---
+
+user
+
+What percentage of 80 is 12?
+
+assistant
+
+This is a percentage comparison: (12 ÷ 80) × 100% = 15%.
+
+---
+
+user
+
+Find 2/7 of 98.
+
+assistant
+
+This is a fraction-of-a-number calculation: 98 × 2/7 = 28.
+
+---
+
+user
+
+What is 5/9 of 81?
+
+assistant
+
+This is a fraction-of-a-number calculation: 81 × 5/9 = 45.
+
+---
+
+user
+
+Calculate 7/10 of 350.
+
+assistant
+
+This is a fraction-of-a-number calculation: 350 × 7/10 = 245.
+
+---
+
+user
+
+Find one-eighth of 1,024.
+
+assistant
+
+This is a fraction-of-a-number calculation: 1,024 ÷ 8 = 128.
+
+---
+
+user
+
+How much is 3/16 of 160?
+
+assistant
+
+This is a fraction-of-a-number calculation: 160 × 3/16 = 30.
+
+---
+
+user
+
+Is 0.125 equal to 1/8?
+
+assistant
+
+Yes. 1 ÷ 8 = 0.125, so they are equivalent.
+
+---
+
+user
+
+Which fraction represents 50%?
+
+assistant
+
+50% = 50/100 = 1/2.
+
+---
+
+user
+
+Convert 2.75 into a mixed number.
+
+assistant
+
+2.75 = 2 + 75/100 = 2 3/4.
+
+---
+
+user
+
+Write 1 2/5 as an improper fraction.
+
+assistant
+
+1 2/5 = 7/5.
+
+---
+
+user
+
+What is the reciprocal of 7/9?
+
+assistant
+
+The reciprocal of 7/9 is 9/7.
+
+---
+
+user
+
+What is the reciprocal of 12?
+
+assistant
+
+The reciprocal of 12 is 1/12.
+
+---
+
+user
+
+Does 100% represent the whole amount?
+
+assistant
+
+Yes. 100% represents one whole, or 1.
+
+---
+
+user
+
+Is 150% greater than one whole?
+
+assistant
+
+Yes. 150% = 1.5, which is greater than 1.
+
+---
+
+user
+
+What does the denominator of a fraction tell us?
+
+assistant
+
+The denominator tells how many equal parts make up one whole.
+
+---
+
+user
+
+What does the numerator show in 3/7?
+
+assistant
+
+The numerator is 3. It tells how many sevenths are being counted.
+
+---
+
+user
+
+Can a proper fraction be greater than 1?
+
+assistant
+
+No. A proper fraction has a numerator smaller than its denominator, so its value is less than 1.
+
+---
+
+user
+
+What kind of fraction is 9/4?
+
+assistant
+
+9/4 is an improper fraction because its numerator is greater than its denominator.
+
+---
+
+user
+
+Is 0.6 the same as 60%?
+
+assistant
+
+Yes. 0.6 × 100% = 60%.
+
+---
+
+user
+
+What is the simplest form of 100/100?
+
+assistant
+
+100/100 = 1.
+
+---
+
+user
+
+Does 1/3 have a terminating decimal expansion?
+
+assistant
+
+No. 1/3 = 0.333… and its decimal expansion repeats.
+
+---
+
+user
+
+Is 0.25 a terminating decimal?
+
+assistant
+
+Yes. 0.25 has a finite number of decimal places.
+
+---
+
+user
+
+What makes a number an even number?
+
+assistant
+
+An even number is an integer divisible by 2 with no remainder.
+
+---
+
+user
+
+Explain what an odd number is.
+
+assistant
+
+An odd integer is not divisible by 2; it leaves a remainder of 1 when divided by 2.
+
+---
+
+user
+
+Is zero even or odd?
+
+assistant
+
+Zero is even because 0 is divisible by 2: 0 = 2 × 0.
+
+---
+
+user
+
+Is 1 a prime number?
+
+assistant
+
+No. A prime number has exactly two distinct positive factors, while 1 has only one.
+
+---
+
+user
+
+What is a composite number?
+
+assistant
+
+A composite number is a whole number greater than 1 that has more than two positive factors.
+
+---
+
+user
+
+Is every prime number odd?
+
+assistant
+
+No. The number 2 is prime and is the only even prime number.
+
+---
+
+user
+
+What is the smallest prime number?
+
+assistant
+
+The smallest prime number is 2.
+
+---
+
+user
+
+What is the smallest composite positive integer?
+
+assistant
+
+The smallest composite positive integer is 4.
+
+---
+
+user
+
+Is 0 a prime number?
+
+assistant
+
+No. Prime numbers are positive integers greater than 1, and 0 does not meet that definition.
+
+---
+
+user
+
+What are the only positive factors of 13?
+
+assistant
+
+The only positive factors of 13 are 1 and 13, so 13 is prime.
+
+---
+
+user
+
+What is a factor of a number?
+
+assistant
+
+A factor is an integer that divides the number exactly, leaving no remainder.
+
+---
+
+user
+
+What is a multiple of 6?
+
+assistant
+
+A multiple of 6 is a number formed by multiplying 6 by an integer, such as 6, 12, or 18.
+
+---
+
+user
+
+Is 45 divisible by 5?
+
+assistant
+
+Yes. A whole number ending in 0 or 5 is divisible by 5; 45 ends in 5.
+
+---
+
+user
+
+What is the divisibility rule for 10?
+
+assistant
+
+A whole number is divisible by 10 when its last digit is 0.
+
+---
+
+user
+
+How can you tell whether a whole number is divisible by 3?
+
+assistant
+
+Add its digits. If the digit sum is divisible by 3, the original number is divisible by 3.
+
+---
+
+user
+
+What is the place value of 7 in 4,725?
+
+assistant
+
+The 7 is in the hundreds place, so its place value is 700.
+
+---
+
+user
+
+In 83,416, which digit is in the thousands place?
+
+assistant
+
+The digit in the thousands place is 3.
+
+---
+
+user
+
+What is the value of the digit 9 in 592,104?
+
+assistant
+
+The 9 is in the ten-thousands place, so its value is 90,000.
+
+---
+
+user
+
+What is the predecessor of an integer?
+
+assistant
+
+The predecessor is the integer immediately before it, found by subtracting 1.
+
+---
+
+user
+
+What is the successor of a whole number?
+
+assistant
+
+The successor is the next whole number, found by adding 1.
+
+---
+
+user
+
+What is the identity element for addition?
+
+assistant
+
+Zero is the additive identity because adding 0 does not change a number.
+
+---
+
+user
+
+What is the multiplicative identity?
+
+assistant
+
+One is the multiplicative identity because multiplying a number by 1 leaves it unchanged.
+
+---
+
+user
+
+What is the commutative property of addition?
+
+assistant
+
+It means the order of the addends can change without changing the sum: a + b = b + a.
+
+---
+
+user
+
+Does subtraction have the commutative property?
+
+assistant
+
+No. In general, a − b is not equal to b − a.
+
+---
+
+user
+
+What is the associative property of multiplication?
+
+assistant
+
+It means changing the grouping does not change the product: (a × b) × c = a × (b × c).
+
+---
+
+user
+
+What is the distributive property?
+
+assistant
+
+It states that a × (b + c) = (a × b) + (a × c).
+
+---
+
+user
+
+What does the order of operations tell us?
+
+assistant
+
+It gives the agreed sequence for evaluating an expression, including brackets, powers, multiplication or division, and addition or subtraction.
+
+---
+
+user
+
+Which operation is the inverse of addition?
+
+assistant
+
+Subtraction is the inverse operation of addition.
+
+---
+
+user
+
+Which operation reverses multiplication by a nonzero number?
+
+assistant
+
+Division reverses multiplication by that nonzero number.
+
+---
+
+user
+
+What is the result of multiplying any number by zero?
+
+assistant
+
+The product is always zero.
+
+---
+
+user
+
+Can you divide a number by zero in ordinary arithmetic?
+
+assistant
+
+No. Division by zero is undefined in ordinary arithmetic.
+
+---
+
+user
+
+What is an integer?
+
+assistant
+
+An integer is a whole number, its negative, or zero; it has no fractional part.
+
+---
+
+user
+
+Are all integers rational numbers?
+
+assistant
+
+Yes. Every integer can be written as a fraction with denominator 1.
+
+---
+
+user
+
+What is a rational number?
+
+assistant
+
+A rational number can be written as a/b, where a and b are integers and b is not zero.
+
+---
+
+user
+
+What is an irrational number?
+
+assistant
+
+An irrational number cannot be written as a ratio of two integers; its decimal expansion is non-terminating and non-repeating.
+
+---
+
+user
+
+Is pi rational or irrational?
+
+assistant
+
+Pi is irrational; it cannot be expressed exactly as a ratio of two integers.
+
+---
+
+user
+
+Is every natural number a whole number?
+
+assistant
+
+Under the common school definition, yes: whole numbers are 0 and the positive integers. Some conventions include 0 among natural numbers and some do not.
+
+---
+
+user
+
+What is the absolute value of a number?
+
+assistant
+
+Absolute value is the number's distance from zero on the number line, without regard to direction.
+
+---
+
+user
+
+What is the opposite of a positive integer?
+
+assistant
+
+Its opposite is the corresponding negative integer, the same distance from zero.
+
+---
+
+user
+
+What is a prime factorization?
+
+assistant
+
+It is writing a positive integer as a product of prime numbers.
+
+---
+
+user
+
+What is the greatest common factor?
+
+assistant
+
+The greatest common factor is the largest positive integer that divides each of the given integers exactly.
+
+---
+
+user
+
+What is the least common multiple?
+
+assistant
+
+The least common multiple is the smallest positive integer that is a multiple of each given integer.
+
+---
+
+user
+
+What is a ratio?
+
+assistant
+
+A ratio compares two quantities by division.
+
+---
+
+user
+
+What does a proportion represent?
+
+assistant
+
+A proportion states that two ratios are equal.
+
+---
+
+user
+
+What is a percentage?
+
+assistant
+
+A percentage is a quantity expressed as parts per hundred.
+
+---
+
+user
+
+What is the mean of a data set?
+
+assistant
+
+The mean is the sum of all values divided by the number of values.
+
+---
+
+user
+
+What is the median?
+
+assistant
+
+The median is the middle value after the data are arranged in order; for an even number of values, it is the mean of the two middle values.
+
+---
+
+user
+
+What is the mode of a data set?
+
+assistant
+
+The mode is the value that occurs most often.
+
+---
+
+user
+
+What is the range in a data set?
+
+assistant
+
+The range is the largest value minus the smallest value.
+
+---
+
+user
+
+How many degrees are in a right angle?
+
+assistant
+
+A right angle measures 90°.
+
+---
+
+user
+
+What is an acute angle?
+
+assistant
+
+An acute angle measures more than 0° and less than 90°.
+
+---
+
+user
+
+What is an obtuse angle?
+
+assistant
+
+An obtuse angle measures more than 90° and less than 180°.
+
+---
+
+user
+
+What is a straight angle?
+
+assistant
+
+A straight angle measures 180°.
+
+---
+
+user
+
+What is a reflex angle?
+
+assistant
+
+A reflex angle measures more than 180° and less than 360°.
+
+---
+
+user
+
+How many sides does a pentagon have?
+
+assistant
+
+A pentagon has 5 sides.
+
+---
+
+user
+
+How many sides does an octagon have?
+
+assistant
+
+An octagon has 8 sides.
+
+---
+
+user
+
+What is a polygon?
+
+assistant
+
+A polygon is a closed, flat shape made from straight line segments.
+
+---
+
+user
+
+What is a regular polygon?
+
+assistant
+
+A regular polygon has all sides equal in length and all interior angles equal.
+
+---
+
+user
+
+How many faces does a cube have?
+
+assistant
+
+A cube has 6 square faces.
+
+---
+
+user
+
+How many edges does a cube have?
+
+assistant
+
+A cube has 12 edges.
+
+---
+
+user
+
+What is the perimeter of a shape?
+
+assistant
+
+The perimeter is the total distance around the outside boundary of a two-dimensional shape.
+
+---
+
+user
+
+What does area measure?
+
+assistant
+
+Area measures the amount of surface covered by a two-dimensional shape.
+
+---
+
+user
+
+What does volume measure?
+
+assistant
+
+Volume measures the space occupied by a three-dimensional object.
+
+---
+
+user
+
+What is the formula for the area of a rectangle?
+
+assistant
+
+The area of a rectangle is length × width.
+
+---
+
+user
+
+How do you find the perimeter of a rectangle?
+
+assistant
+
+Add all four sides, or use 2 × (length + width).
+
+---
+
+user
+
+What is the area formula for a triangle?
+
+assistant
+
+The area of a triangle is 1/2 × base × perpendicular height.
+
+---
+
+user
+
+What is the circumference of a circle?
+
+assistant
+
+The circumference is the distance around a circle; it is given by 2πr or πd.
+
+---
+
+user
+
+What is the radius of a circle?
+
+assistant
+
+The radius is the distance from the centre of a circle to its circumference.
+
+---
+
+user
+
+What is the diameter of a circle?
+
+assistant
+
+The diameter is a straight line through the centre joining two points on the circle; it is twice the radius.
+
+---
+
+user
+
+What is a line segment?
+
+assistant
+
+A line segment is a part of a line with two endpoints.
+
+---
+
+user
+
+What are parallel lines?
+
+assistant
+
+Parallel lines lie in the same plane and never meet, however far they are extended.
+
+---
+
+user
+
+What are perpendicular lines?
+
+assistant
+
+Perpendicular lines intersect at a right angle of 90°.
+
+---
+
+user
+
+What is the sum of the interior angles of a quadrilateral?
+
+assistant
+
+The interior angles of a quadrilateral add up to 360°.
+
+---
+
+user
+
+What is an equilateral triangle?
+
+assistant
+
+An equilateral triangle has three equal sides and three equal angles of 60° each.
+
+---
+
+user
+
+What is an isosceles triangle?
+
+assistant
+
+An isosceles triangle has at least two sides of equal length.
+
+---
+
+user
+
+What is a scalene triangle?
+
+assistant
+
+A scalene triangle has three sides of different lengths.
+
+---
+
+user
+
+What is a coordinate in a two-dimensional plane?
+
+assistant
+
+A coordinate pair (x, y) identifies a point by its horizontal and vertical positions.
+
+---
+
+user
+
+What does the x-axis represent on a standard coordinate plane?
+
+assistant
+
+The x-axis is the horizontal axis.
+
+---
+
+user
+
+What does the y-axis represent on a standard coordinate plane?
+
+assistant
+
+The y-axis is the vertical axis.
+
+---
+
+user
+
+What is a variable in algebra?
+
+assistant
+
+A variable is a symbol, often a letter, that represents a number or an unknown value.
+
+---
+
+user
+
+What is a coefficient?
+
+assistant
+
+A coefficient is the numerical factor multiplying a variable in an algebraic term.
+
+---
+
+user
+
+What is a constant term?
+
+assistant
+
+A constant term is a term whose value does not depend on a variable.
+
+---
+
+user
+
+What is an equation?
+
+assistant
+
+An equation is a mathematical statement that says two expressions are equal.
+
+---
+
+user
+
+What is an inequality?
+
+assistant
+
+An inequality compares two expressions using symbols such as <, >, ≤, or ≥.
+
+---
+
+user
+
+What does it mean to solve an equation?
+
+assistant
+
+It means finding the value or values of the variable that make the equation true.
+
+---
+
+user
+
+What is an exponent?
+
+assistant
+
+An exponent tells how many times the base is used as a factor.
+
+---
+
+user
+
+What is the base in 5⁴?
+
+assistant
+
+The base is 5; the exponent is 4.
+
+---
+
+user
+
+What is a square number?
+
+assistant
+
+A square number is the product of an integer multiplied by itself.
+
+---
+
+user
+
+What is a cube number?
+
+assistant
+
+A cube number is the product of a number multiplied by itself three times.
+
+---
+
+user
+
+What is a square root?
+
+assistant
+
+A square root of a number is a value that, when squared, gives the original number.
+
+---
+
+user
+
+What does estimation mean in mathematics?
+
+assistant
+
+Estimation means finding a useful approximate value rather than an exact one.
+
+---
+
+user
+
+When is rounding useful?
+
+assistant
+
+Rounding is useful when an approximate value is sufficient or when making a number easier to work with.
+
+---
+
+user
+
+What is the difference between an exact answer and an estimate?
+
+assistant
+
+An exact answer is the precise value; an estimate is an approximate value.
+
+---
+
+user
+
+Does the order of digits matter in a number?
+
+assistant
+
+Yes. Changing digit positions changes their place values and can change the number.
+
+---
+
+user
+
+What is a terminating decimal?
+
+assistant
+
+A terminating decimal has a finite number of digits after the decimal point.
+
+---
+
+user
+
+What is a recurring decimal?
+
+assistant
+
+A recurring decimal has a digit or group of digits that repeats indefinitely.
+
+---
+
+user
+
+What is the unit fraction?
+
+assistant
+
+A unit fraction has a numerator of 1 and a positive whole-number denominator.
+
+---
+
+user
+
+What is a mixed number?
+
+assistant
+
+A mixed number contains a whole-number part and a proper-fraction part.
+
+---
+
+user
+
+What is an improper fraction?
+
+assistant
+
+An improper fraction has a numerator greater than or equal to its positive denominator.
+
+---
+
+user
+
+What is the additive inverse of 12?
+
+assistant
+
+The additive inverse of 12 is −12 because 12 + (−12) = 0.
+
+---
+
+user
+
+A reading room has 128 storybooks and receives 76 more. How many storybooks are there now?
+
+assistant
+
+128 + 76 = 204 books.
+
+---
+
+user
+
+A reading room has 245 storybooks and receives 355 more. How many storybooks are there now?
+
+assistant
+
+245 + 355 = 600 books.
+
+---
+
+user
+
+A reading room has 870 storybooks and receives 640 more. How many storybooks are there now?
+
+assistant
+
+870 + 640 = 1,510 books.
+
+---
+
+user
+
+A wildlife centre recorded 128 birds on Monday and 76 on Tuesday. How many birds were recorded across both days?
+
+assistant
+
+128 + 76 = 204 birds.
+
+---
+
+user
+
+A wildlife centre recorded 245 birds on Monday and 355 on Tuesday. How many birds were recorded across both days?
+
+assistant
+
+245 + 355 = 600 birds.
+
+---
+
+user
+
+A wildlife centre recorded 870 birds on Monday and 640 on Tuesday. How many birds were recorded across both days?
+
+assistant
+
+870 + 640 = 1,510 birds.
+
+---
+
+user
+
+A warehouse packs 128 cartons in the morning and 76 in the afternoon. Find the total number of cartons packed.
+
+assistant
+
+128 + 76 = 204 cartons.
+
+---
+
+user
+
+A warehouse packs 245 cartons in the morning and 355 in the afternoon. Find the total number of cartons packed.
+
+assistant
+
+245 + 355 = 600 cartons.
+
+---
+
+user
+
+A warehouse packs 870 cartons in the morning and 640 in the afternoon. Find the total number of cartons packed.
+
+assistant
+
+870 + 640 = 1,510 cartons.
+
+---
+
+user
+
+A school collected 128 plastic bottles from one class and 76 from another. How many bottles did the two classes collect altogether?
+
+assistant
+
+128 + 76 = 204 bottles.
+
+---
+
+user
+
+A school collected 245 plastic bottles from one class and 355 from another. How many bottles did the two classes collect altogether?
+
+assistant
+
+245 + 355 = 600 bottles.
+
+---
+
+user
+
+A school collected 870 plastic bottles from one class and 640 from another. How many bottles did the two classes collect altogether?
+
+assistant
+
+870 + 640 = 1,510 bottles.
+
+---
+
+user
+
+A town has 128 residents in one district and 76 in a neighbouring district. What is their combined population?
+
+assistant
+
+128 + 76 = 204 residents.
+
+---
+
+user
+
+A town has 245 residents in one district and 355 in a neighbouring district. What is their combined population?
+
+assistant
+
+245 + 355 = 600 residents.
+
+---
+
+user
+
+A town has 870 residents in one district and 640 in a neighbouring district. What is their combined population?
+
+assistant
+
+870 + 640 = 1,510 residents.
+
+---
+
+user
+
+A runner covers 128 metres before lunch and 76 metres later in the day. What total distance does the runner cover?
+
+assistant
+
+128 + 76 = 204 m.
+
+---
+
+user
+
+A runner covers 245 metres before lunch and 355 metres later in the day. What total distance does the runner cover?
+
+assistant
+
+245 + 355 = 600 m.
+
+---
+
+user
+
+A runner covers 870 metres before lunch and 640 metres later in the day. What total distance does the runner cover?
+
+assistant
+
+870 + 640 = 1,510 m.
+
+---
+
+user
+
+A gardener plants 128 tulip bulbs and 76 daffodil bulbs. How many bulbs are planted in all?
+
+assistant
+
+128 + 76 = 204 bulbs.
+
+---
+
+user
+
+A gardener plants 245 tulip bulbs and 355 daffodil bulbs. How many bulbs are planted in all?
+
+assistant
+
+245 + 355 = 600 bulbs.
+
+---
+
+user
+
+A gardener plants 870 tulip bulbs and 640 daffodil bulbs. How many bulbs are planted in all?
+
+assistant
+
+870 + 640 = 1,510 bulbs.
+
+---
+
+user
+
+A digital library adds 128 files in one update and 76 in the next. How many files are added?
+
+assistant
+
+128 + 76 = 204 files.
+
+---
+
+user
+
+A digital library adds 245 files in one update and 355 in the next. How many files are added?
+
+assistant
+
+245 + 355 = 600 files.
+
+---
+
+user
+
+A digital library adds 870 files in one update and 640 in the next. How many files are added?
+
+assistant
+
+870 + 640 = 1,510 files.
+
+---
+
+user
+
+A museum welcomes 128 visitors on Saturday and 76 on Sunday. How many visitors come over the weekend?
+
+assistant
+
+128 + 76 = 204 visitors.
+
+---
+
+user
+
+A museum welcomes 245 visitors on Saturday and 355 on Sunday. How many visitors come over the weekend?
+
+assistant
+
+245 + 355 = 600 visitors.
+
+---
+
+user
+
+A museum welcomes 870 visitors on Saturday and 640 on Sunday. How many visitors come over the weekend?
+
+assistant
+
+870 + 640 = 1,510 visitors.
+
+---
+
+user
+
+A farmer harvests 128 kg of rice from one field and 76 kg from another. What is the total harvest?
+
+assistant
+
+128 + 76 = 204 kg.
+
+---
+
+user
+
+A farmer harvests 245 kg of rice from one field and 355 kg from another. What is the total harvest?
+
+assistant
+
+245 + 355 = 600 kg.
+
+---
+
+user
+
+A farmer harvests 870 kg of rice from one field and 640 kg from another. What is the total harvest?
+
+assistant
+
+870 + 640 = 1,510 kg.
+
+---
+
+user
+
+A delivery van travels 128 km in the morning and 76 km in the evening. How far does it travel altogether?
+
+assistant
+
+128 + 76 = 204 km.
+
+---
+
+user
+
+A delivery van travels 245 km in the morning and 355 km in the evening. How far does it travel altogether?
+
+assistant
+
+245 + 355 = 600 km.
+
+---
+
+user
+
+A delivery van travels 870 km in the morning and 640 km in the evening. How far does it travel altogether?
+
+assistant
+
+870 + 640 = 1,510 km.
+
+---
+
+user
+
+A science club has 128 members from Grade 8 and 76 from Grade 9. How many members are in the club?
+
+assistant
+
+128 + 76 = 204 members.
+
+---
+
+user
+
+A science club has 245 members from Grade 8 and 355 from Grade 9. How many members are in the club?
+
+assistant
+
+245 + 355 = 600 members.
+
+---
+
+user
+
+A science club has 870 members from Grade 8 and 640 from Grade 9. How many members are in the club?
+
+assistant
+
+870 + 640 = 1,510 members.
+
+---
+
+user
+
+A printer produces 128 pages before noon and 76 pages after noon. How many pages does it print in total?
+
+assistant
+
+128 + 76 = 204 pages.
+
+---
+
+user
+
+A printer produces 245 pages before noon and 355 pages after noon. How many pages does it print in total?
+
+assistant
+
+245 + 355 = 600 pages.
+
+---
+
+user
+
+A printer produces 870 pages before noon and 640 pages after noon. How many pages does it print in total?
+
+assistant
+
+870 + 640 = 1,510 pages.
+
+---
+
+user
+
+A water tank contains 128 litres, and another 76 litres are poured in. How much water is in it now?
+
+assistant
+
+128 + 76 = 204 L.
+
+---
+
+user
+
+A water tank contains 245 litres, and another 355 litres are poured in. How much water is in it now?
+
+assistant
+
+245 + 355 = 600 L.
+
+---
+
+user
+
+A water tank contains 870 litres, and another 640 litres are poured in. How much water is in it now?
+
+assistant
+
+870 + 640 = 1,510 L.
+
+---
+
+user
+
+A shop sells 128 notebooks on Friday and 76 on Saturday. How many notebooks are sold over the two days?
+
+assistant
+
+128 + 76 = 204 notebooks.
+
+---
+
+user
+
+A shop sells 245 notebooks on Friday and 355 on Saturday. How many notebooks are sold over the two days?
+
+assistant
+
+245 + 355 = 600 notebooks.
+
+---
+
+user
+
+A shop sells 870 notebooks on Friday and 640 on Saturday. How many notebooks are sold over the two days?
+
+assistant
+
+870 + 640 = 1,510 notebooks.
+
+---
+
+user
+
+A stadium has 128 seats in one stand and 76 seats in another. How many seats are in those stands combined?
+
+assistant
+
+128 + 76 = 204 seats.
+
+---
+
+user
+
+A stadium has 245 seats in one stand and 355 seats in another. How many seats are in those stands combined?
+
+assistant
+
+245 + 355 = 600 seats.
+
+---
+
+user
+
+A stadium has 870 seats in one stand and 640 seats in another. How many seats are in those stands combined?
+
+assistant
+
+870 + 640 = 1,510 seats.
+
+---
+
+user
+
+An app receives 128 downloads in its first week and 76 in its second week. What is the total number of downloads?
+
+assistant
+
+128 + 76 = 204 downloads.
+
+---
+
+user
+
+An app receives 245 downloads in its first week and 355 in its second week. What is the total number of downloads?
+
+assistant
+
+245 + 355 = 600 downloads.
+
+---
+
+user
+
+An app receives 870 downloads in its first week and 640 in its second week. What is the total number of downloads?
+
+assistant
+
+870 + 640 = 1,510 downloads.
+
+---
+
+user
+
+A baker makes 128 bread rolls at dawn and 76 more in the afternoon. How many rolls are made?
+
+assistant
+
+128 + 76 = 204 rolls.
+
+---
+
+user
+
+A baker makes 245 bread rolls at dawn and 355 more in the afternoon. How many rolls are made?
+
+assistant
+
+245 + 355 = 600 rolls.
+
+---
+
+user
+
+A baker makes 870 bread rolls at dawn and 640 more in the afternoon. How many rolls are made?
+
+assistant
+
+870 + 640 = 1,510 rolls.
+
+---
+
+user
+
+A family drives 128 km on the first day of a trip and 76 km on the second day. What is the total distance?
+
+assistant
+
+128 + 76 = 204 km.
+
+---
+
+user
+
+A family drives 245 km on the first day of a trip and 355 km on the second day. What is the total distance?
+
+assistant
+
+245 + 355 = 600 km.
+
+---
+
+user
+
+A family drives 870 km on the first day of a trip and 640 km on the second day. What is the total distance?
+
+assistant
+
+870 + 640 = 1,510 km.
+
+---
+
+user
+
+A charity receives ₹128 from one fundraiser and ₹76 from another. How much money does it receive altogether?
+
+assistant
+
+128 + 76 = 204 rupees (₹204).
+
+---
+
+user
+
+A charity receives ₹245 from one fundraiser and ₹355 from another. How much money does it receive altogether?
+
+assistant
+
+245 + 355 = 600 rupees (₹600).
+
+---
+
+user
+
+A charity receives ₹870 from one fundraiser and ₹640 from another. How much money does it receive altogether?
+
+assistant
+
+870 + 640 = 1,510 rupees (₹1,510).
+
+---
+
+user
+
+A library had 250 books and lent out 78. How many books remain?
+
+assistant
+
+250 − 78 = 172 books.
+
+---
+
+user
+
+A library had 1,200 books and lent out 475. How many books remain?
+
+assistant
+
+1,200 − 475 = 725 books.
+
+---
+
+user
+
+A library had 9,500 books and lent out 3,650. How many books remain?
+
+assistant
+
+9,500 − 3,650 = 5,850 books.
+
+---
+
+user
+
+A theatre has 250 seats. If 78 seats are occupied, how many are empty?
+
+assistant
+
+250 − 78 = 172 seats.
+
+---
+
+user
+
+A theatre has 1,200 seats. If 475 seats are occupied, how many are empty?
+
+assistant
+
+1,200 − 475 = 725 seats.
+
+---
+
+user
+
+A theatre has 9,500 seats. If 3,650 seats are occupied, how many are empty?
+
+assistant
+
+9,500 − 3,650 = 5,850 seats.
+
+---
+
+user
+
+A shop stocked 250 pencils and sold 78. Find the number of pencils left.
+
+assistant
+
+250 − 78 = 172 pencils.
+
+---
+
+user
+
+A shop stocked 1,200 pencils and sold 475. Find the number of pencils left.
+
+assistant
+
+1,200 − 475 = 725 pencils.
+
+---
+
+user
+
+A shop stocked 9,500 pencils and sold 3,650. Find the number of pencils left.
+
+assistant
+
+9,500 − 3,650 = 5,850 pencils.
+
+---
+
+user
+
+A water tank held 250 litres. The garden used 78 litres. How much water remains?
+
+assistant
+
+250 − 78 = 172 L.
+
+---
+
+user
+
+A water tank held 1,200 litres. The garden used 475 litres. How much water remains?
+
+assistant
+
+1,200 − 475 = 725 L.
+
+---
+
+user
+
+A water tank held 9,500 litres. The garden used 3,650 litres. How much water remains?
+
+assistant
+
+9,500 − 3,650 = 5,850 L.
+
+---
+
+user
+
+A train journey is 250 km long. The train has already travelled 78 km. How far is left?
+
+assistant
+
+250 − 78 = 172 km.
+
+---
+
+user
+
+A train journey is 1,200 km long. The train has already travelled 475 km. How far is left?
+
+assistant
+
+1,200 − 475 = 725 km.
+
+---
+
+user
+
+A train journey is 9,500 km long. The train has already travelled 3,650 km. How far is left?
+
+assistant
+
+9,500 − 3,650 = 5,850 km.
+
+---
+
+user
+
+A school planned to collect 250 cans and has collected 78 so far. How many more cans are needed?
+
+assistant
+
+250 − 78 = 172 cans.
+
+---
+
+user
+
+A school planned to collect 1,200 cans and has collected 475 so far. How many more cans are needed?
+
+assistant
+
+1,200 − 475 = 725 cans.
+
+---
+
+user
+
+A school planned to collect 9,500 cans and has collected 3,650 so far. How many more cans are needed?
+
+assistant
+
+9,500 − 3,650 = 5,850 cans.
+
+---
+
+user
+
+A farmer gathered 250 kg of apples and delivered 78 kg. How many kilograms are still at the farm?
+
+assistant
+
+250 − 78 = 172 kg.
+
+---
+
+user
+
+A farmer gathered 1,200 kg of apples and delivered 475 kg. How many kilograms are still at the farm?
+
+assistant
+
+1,200 − 475 = 725 kg.
+
+---
+
+user
+
+A farmer gathered 9,500 kg of apples and delivered 3,650 kg. How many kilograms are still at the farm?
+
+assistant
+
+9,500 − 3,650 = 5,850 kg.
+
+---
+
+user
+
+A stadium can hold 250 people. If 78 people attend, how many places are unoccupied?
+
+assistant
+
+250 − 78 = 172 places.
+
+---
+
+user
+
+A stadium can hold 1,200 people. If 475 people attend, how many places are unoccupied?
+
+assistant
+
+1,200 − 475 = 725 places.
+
+---
+
+user
+
+A stadium can hold 9,500 people. If 3,650 people attend, how many places are unoccupied?
+
+assistant
+
+9,500 − 3,650 = 5,850 places.
+
+---
+
+user
+
+A phone had 250 MB of free storage. An update used 78 MB. How much free storage remains?
+
+assistant
+
+250 − 78 = 172 MB.
+
+---
+
+user
+
+A phone had 1,200 MB of free storage. An update used 475 MB. How much free storage remains?
+
+assistant
+
+1,200 − 475 = 725 MB.
+
+---
+
+user
+
+A phone had 9,500 MB of free storage. An update used 3,650 MB. How much free storage remains?
+
+assistant
+
+9,500 − 3,650 = 5,850 MB.
+
+---
+
+user
+
+A machine is designed to make 250 parts and has made 78. How many parts are still to be made?
+
+assistant
+
+250 − 78 = 172 parts.
+
+---
+
+user
+
+A machine is designed to make 1,200 parts and has made 475. How many parts are still to be made?
+
+assistant
+
+1,200 − 475 = 725 parts.
+
+---
+
+user
+
+A machine is designed to make 9,500 parts and has made 3,650. How many parts are still to be made?
+
+assistant
+
+9,500 − 3,650 = 5,850 parts.
+
+---
+
+user
+
+A museum expected 250 visitors but welcomed 78. How many fewer visitors arrived than expected?
+
+assistant
+
+250 − 78 = 172 visitors.
+
+---
+
+user
+
+A museum expected 1,200 visitors but welcomed 475. How many fewer visitors arrived than expected?
+
+assistant
+
+1,200 − 475 = 725 visitors.
+
+---
+
+user
+
+A museum expected 9,500 visitors but welcomed 3,650. How many fewer visitors arrived than expected?
+
+assistant
+
+9,500 − 3,650 = 5,850 visitors.
+
+---
+
+user
+
+A rope is 250 metres long. A piece of 78 metres is cut off. What length remains?
+
+assistant
+
+250 − 78 = 172 m.
+
+---
+
+user
+
+A rope is 1,200 metres long. A piece of 475 metres is cut off. What length remains?
+
+assistant
+
+1,200 − 475 = 725 m.
+
+---
+
+user
+
+A rope is 9,500 metres long. A piece of 3,650 metres is cut off. What length remains?
+
+assistant
+
+9,500 − 3,650 = 5,850 m.
+
+---
+
+user
+
+A bus route is 250 km long. After travelling 78 km, how much of the route remains?
+
+assistant
+
+250 − 78 = 172 km.
+
+---
+
+user
+
+A bus route is 1,200 km long. After travelling 475 km, how much of the route remains?
+
+assistant
+
+1,200 − 475 = 725 km.
+
+---
+
+user
+
+A bus route is 9,500 km long. After travelling 3,650 km, how much of the route remains?
+
+assistant
+
+9,500 − 3,650 = 5,850 km.
+
+---
+
+user
+
+A warehouse had 250 boxes. It shipped 78 boxes. How many boxes are still there?
+
+assistant
+
+250 − 78 = 172 boxes.
+
+---
+
+user
+
+A warehouse had 1,200 boxes. It shipped 475 boxes. How many boxes are still there?
+
+assistant
+
+1,200 − 475 = 725 boxes.
+
+---
+
+user
+
+A warehouse had 9,500 boxes. It shipped 3,650 boxes. How many boxes are still there?
+
+assistant
+
+9,500 − 3,650 = 5,850 boxes.
+
+---
+
+user
+
+A student needs 250 points for a target and has earned 78. How many points are still required?
+
+assistant
+
+250 − 78 = 172 points.
+
+---
+
+user
+
+A student needs 1,200 points for a target and has earned 475. How many points are still required?
+
+assistant
+
+1,200 − 475 = 725 points.
+
+---
+
+user
+
+A student needs 9,500 points for a target and has earned 3,650. How many points are still required?
+
+assistant
+
+9,500 − 3,650 = 5,850 points.
+
+---
+
+user
+
+A reservoir contained 250 million litres and supplied 78 million litres. How much remains?
+
+assistant
+
+250 − 78 = 172 million litres.
+
+---
+
+user
+
+A reservoir contained 1,200 million litres and supplied 475 million litres. How much remains?
+
+assistant
+
+1,200 − 475 = 725 million litres.
+
+---
+
+user
+
+A reservoir contained 9,500 million litres and supplied 3,650 million litres. How much remains?
+
+assistant
+
+9,500 − 3,650 = 5,850 million litres.
+
+---
+
+user
+
+A shop's monthly target is 250 items. It has sold 78. How many items short of the target is it?
+
+assistant
+
+250 − 78 = 172 items.
+
+---
+
+user
+
+A shop's monthly target is 1,200 items. It has sold 475. How many items short of the target is it?
+
+assistant
+
+1,200 − 475 = 725 items.
+
+---
+
+user
+
+A shop's monthly target is 9,500 items. It has sold 3,650. How many items short of the target is it?
+
+assistant
+
+9,500 − 3,650 = 5,850 items.
+
+---
+
+user
+
+A book has 250 pages. Mira has read 78 pages. How many pages are unread?
+
+assistant
+
+250 − 78 = 172 pages.
+
+---
+
+user
+
+A book has 1,200 pages. Mira has read 475 pages. How many pages are unread?
+
+assistant
+
+1,200 − 475 = 725 pages.
+
+---
+
+user
+
+A book has 9,500 pages. Mira has read 3,650 pages. How many pages are unread?
+
+assistant
+
+9,500 − 3,650 = 5,850 pages.
+
+---
+
+user
+
+A road project covers 250 metres. Workers have completed 78 metres. How many metres remain?
+
+assistant
+
+250 − 78 = 172 m.
+
+---
+
+user
+
+A road project covers 1,200 metres. Workers have completed 475 metres. How many metres remain?
+
+assistant
+
+1,200 − 475 = 725 m.
+
+---
+
+user
+
+A road project covers 9,500 metres. Workers have completed 3,650 metres. How many metres remain?
+
+assistant
+
+9,500 − 3,650 = 5,850 m.
+
+---
+
+user
+
+A school received 250 applications and reviewed 78. How many applications are still waiting for review?
+
+assistant
+
+250 − 78 = 172 applications.
+
+---
+
+user
+
+A school received 1,200 applications and reviewed 475. How many applications are still waiting for review?
+
+assistant
+
+1,200 − 475 = 725 applications.
+
+---
+
+user
+
+A school received 9,500 applications and reviewed 3,650. How many applications are still waiting for review?
+
+assistant
+
+9,500 − 3,650 = 5,850 applications.
+
+---
+
+user
+
+There are 3 trays with 12 muffins on each tray. How many muffins are there?
+
+assistant
+
+3 × 12 = 36 muffins.
+
+---
+
+user
+
+There are 18 trays with 24 muffins on each tray. How many muffins are there?
+
+assistant
+
+18 × 24 = 432 muffins.
+
+---
+
+user
+
+There are 125 trays with 32 muffins on each tray. How many muffins are there?
+
+assistant
+
+125 × 32 = 4,000 muffins.
+
+---
+
+user
+
+A school orders 3 packs of markers, with 12 markers in each pack. Find the total number of markers.
+
+assistant
+
+3 × 12 = 36 markers.
+
+---
+
+user
+
+A school orders 18 packs of markers, with 24 markers in each pack. Find the total number of markers.
+
+assistant
+
+18 × 24 = 432 markers.
+
+---
+
+user
+
+A school orders 125 packs of markers, with 32 markers in each pack. Find the total number of markers.
+
+assistant
+
+125 × 32 = 4,000 markers.
+
+---
+
+user
+
+A bus makes 3 trips, carrying 12 passengers on each trip. How many passenger-journeys are made?
+
+assistant
+
+3 × 12 = 36 passenger-journeys.
+
+---
+
+user
+
+A bus makes 18 trips, carrying 24 passengers on each trip. How many passenger-journeys are made?
+
+assistant
+
+18 × 24 = 432 passenger-journeys.
+
+---
+
+user
+
+A bus makes 125 trips, carrying 32 passengers on each trip. How many passenger-journeys are made?
+
+assistant
+
+125 × 32 = 4,000 passenger-journeys.
+
+---
+
+user
+
+A factory makes 3 components every hour for 12 hours. How many components does it make?
+
+assistant
+
+3 × 12 = 36 components.
+
+---
+
+user
+
+A factory makes 18 components every hour for 24 hours. How many components does it make?
+
+assistant
+
+18 × 24 = 432 components.
+
+---
+
+user
+
+A factory makes 125 components every hour for 32 hours. How many components does it make?
+
+assistant
+
+125 × 32 = 4,000 components.
+
+---
+
+user
+
+A gardener plants 3 rows with 12 plants in every row. How many plants are planted?
+
+assistant
+
+3 × 12 = 36 plants.
+
+---
+
+user
+
+A gardener plants 18 rows with 24 plants in every row. How many plants are planted?
+
+assistant
+
+18 × 24 = 432 plants.
+
+---
+
+user
+
+A gardener plants 125 rows with 32 plants in every row. How many plants are planted?
+
+assistant
+
+125 × 32 = 4,000 plants.
+
+---
+
+user
+
+One notebook costs ₹3. What is the cost of 12 notebooks?
+
+assistant
+
+₹3 × 12 = ₹36.
+
+---
+
+user
+
+One notebook costs ₹18. What is the cost of 24 notebooks?
+
+assistant
+
+₹18 × 24 = ₹432.
+
+---
+
+user
+
+One notebook costs ₹125. What is the cost of 32 notebooks?
+
+assistant
+
+₹125 × 32 = ₹4,000.
+
+---
+
+user
+
+A theatre has 3 rows with 12 seats in each row. How many seats are there?
+
+assistant
+
+3 × 12 = 36 seats.
+
+---
+
+user
+
+A theatre has 18 rows with 24 seats in each row. How many seats are there?
+
+assistant
+
+18 × 24 = 432 seats.
+
+---
+
+user
+
+A theatre has 125 rows with 32 seats in each row. How many seats are there?
+
+assistant
+
+125 × 32 = 4,000 seats.
+
+---
+
+user
+
+A cyclist rides 3 km each day for 12 days. What distance does the cyclist cover?
+
+assistant
+
+3 × 12 = 36 km.
+
+---
+
+user
+
+A cyclist rides 18 km each day for 24 days. What distance does the cyclist cover?
+
+assistant
+
+18 × 24 = 432 km.
+
+---
+
+user
+
+A cyclist rides 125 km each day for 32 days. What distance does the cyclist cover?
+
+assistant
+
+125 × 32 = 4,000 km.
+
+---
+
+user
+
+A printer makes 3 labels per minute. How many labels can it make in 12 minutes?
+
+assistant
+
+3 × 12 = 36 labels.
+
+---
+
+user
+
+A printer makes 18 labels per minute. How many labels can it make in 24 minutes?
+
+assistant
+
+18 × 24 = 432 labels.
+
+---
+
+user
+
+A printer makes 125 labels per minute. How many labels can it make in 32 minutes?
+
+assistant
+
+125 × 32 = 4,000 labels.
+
+---
+
+user
+
+A carton contains 3 bottles. How many bottles are in 12 cartons?
+
+assistant
+
+3 × 12 = 36 bottles.
+
+---
+
+user
+
+A carton contains 18 bottles. How many bottles are in 24 cartons?
+
+assistant
+
+18 × 24 = 432 bottles.
+
+---
+
+user
+
+A carton contains 125 bottles. How many bottles are in 32 cartons?
+
+assistant
+
+125 × 32 = 4,000 bottles.
+
+---
+
+user
+
+A library shelf holds 3 books, and there are 12 identical shelves. How many books fit in total?
+
+assistant
+
+3 × 12 = 36 books.
+
+---
+
+user
+
+A library shelf holds 18 books, and there are 24 identical shelves. How many books fit in total?
+
+assistant
+
+18 × 24 = 432 books.
+
+---
+
+user
+
+A library shelf holds 125 books, and there are 32 identical shelves. How many books fit in total?
+
+assistant
+
+125 × 32 = 4,000 books.
+
+---
+
+user
+
+A baker uses 3 grams of flour for one loaf. How much flour is needed for 12 loaves?
+
+assistant
+
+3 × 12 = 36 g.
+
+---
+
+user
+
+A baker uses 18 grams of flour for one loaf. How much flour is needed for 24 loaves?
+
+assistant
+
+18 × 24 = 432 g.
+
+---
+
+user
+
+A baker uses 125 grams of flour for one loaf. How much flour is needed for 32 loaves?
+
+assistant
+
+125 × 32 = 4,000 g.
+
+---
+
+user
+
+A game awards 3 points for each completed level. How many points are earned for 12 levels?
+
+assistant
+
+3 × 12 = 36 points.
+
+---
+
+user
+
+A game awards 18 points for each completed level. How many points are earned for 24 levels?
+
+assistant
+
+18 × 24 = 432 points.
+
+---
+
+user
+
+A game awards 125 points for each completed level. How many points are earned for 32 levels?
+
+assistant
+
+125 × 32 = 4,000 points.
+
+---
+
+user
+
+A water pump transfers 3 litres each minute. How many litres does it transfer in 12 minutes?
+
+assistant
+
+3 × 12 = 36 L.
+
+---
+
+user
+
+A water pump transfers 18 litres each minute. How many litres does it transfer in 24 minutes?
+
+assistant
+
+18 × 24 = 432 L.
+
+---
+
+user
+
+A water pump transfers 125 litres each minute. How many litres does it transfer in 32 minutes?
+
+assistant
+
+125 × 32 = 4,000 L.
+
+---
+
+user
+
+A packet has 3 stickers. How many stickers are in 12 packets?
+
+assistant
+
+3 × 12 = 36 stickers.
+
+---
+
+user
+
+A packet has 18 stickers. How many stickers are in 24 packets?
+
+assistant
+
+18 × 24 = 432 stickers.
+
+---
+
+user
+
+A packet has 125 stickers. How many stickers are in 32 packets?
+
+assistant
+
+125 × 32 = 4,000 stickers.
+
+---
+
+user
+
+An auditorium has 3 blocks, each containing 12 chairs. How many chairs are installed?
+
+assistant
+
+3 × 12 = 36 chairs.
+
+---
+
+user
+
+An auditorium has 18 blocks, each containing 24 chairs. How many chairs are installed?
+
+assistant
+
+18 × 24 = 432 chairs.
+
+---
+
+user
+
+An auditorium has 125 blocks, each containing 32 chairs. How many chairs are installed?
+
+assistant
+
+125 × 32 = 4,000 chairs.
+
+---
+
+user
+
+A delivery worker places 3 parcels at each building and visits 12 buildings. How many parcels are placed?
+
+assistant
+
+3 × 12 = 36 parcels.
+
+---
+
+user
+
+A delivery worker places 18 parcels at each building and visits 24 buildings. How many parcels are placed?
+
+assistant
+
+18 × 24 = 432 parcels.
+
+---
+
+user
+
+A delivery worker places 125 parcels at each building and visits 32 buildings. How many parcels are placed?
+
+assistant
+
+125 × 32 = 4,000 parcels.
+
+---
+
+user
+
+A runner completes 3 laps per session and trains for 12 sessions. How many laps are completed?
+
+assistant
+
+3 × 12 = 36 laps.
+
+---
+
+user
+
+A runner completes 18 laps per session and trains for 24 sessions. How many laps are completed?
+
+assistant
+
+18 × 24 = 432 laps.
+
+---
+
+user
+
+A runner completes 125 laps per session and trains for 32 sessions. How many laps are completed?
+
+assistant
+
+125 × 32 = 4,000 laps.
+
+---
+
+user
+
+A farm has 3 rows of trees with 12 trees per row. How many trees are there?
+
+assistant
+
+3 × 12 = 36 trees.
+
+---
+
+user
+
+A farm has 18 rows of trees with 24 trees per row. How many trees are there?
+
+assistant
+
+18 × 24 = 432 trees.
+
+---
+
+user
+
+A farm has 125 rows of trees with 32 trees per row. How many trees are there?
+
+assistant
+
+125 × 32 = 4,000 trees.
+
+---
+
+user
+
+A machine fills 3 jars every minute. How many jars does it fill in 12 minutes?
+
+assistant
+
+3 × 12 = 36 jars.
+
+---
+
+user
+
+A machine fills 18 jars every minute. How many jars does it fill in 24 minutes?
+
+assistant
+
+18 × 24 = 432 jars.
+
+---
+
+user
+
+A machine fills 125 jars every minute. How many jars does it fill in 32 minutes?
+
+assistant
+
+125 × 32 = 4,000 jars.
+
+---
+
+user
+
+A teacher has 144 worksheets and gives the same number to each of 12 students. How many does each student get?
+
+assistant
+
+144 ÷ 12 = 12 worksheets each.
+
+---
+
+user
+
+A teacher has 840 worksheets and gives the same number to each of 21 students. How many does each student get?
+
+assistant
+
+840 ÷ 21 = 40 worksheets each.
+
+---
+
+user
+
+A teacher has 1,250 worksheets and gives the same number to each of 25 students. How many does each student get?
+
+assistant
+
+1,250 ÷ 25 = 50 worksheets each.
+
+---
+
+user
+
+Share 144 oranges equally among 12 baskets. How many oranges go in each basket?
+
+assistant
+
+144 ÷ 12 = 12 oranges per basket.
+
+---
+
+user
+
+Share 840 oranges equally among 21 baskets. How many oranges go in each basket?
+
+assistant
+
+840 ÷ 21 = 40 oranges per basket.
+
+---
+
+user
+
+Share 1,250 oranges equally among 25 baskets. How many oranges go in each basket?
+
+assistant
+
+1,250 ÷ 25 = 50 oranges per basket.
+
+---
+
+user
+
+A total of 144 pages is divided into 12 equal reading sessions. How many pages are in each session?
+
+assistant
+
+144 ÷ 12 = 12 pages per session.
+
+---
+
+user
+
+A total of 840 pages is divided into 21 equal reading sessions. How many pages are in each session?
+
+assistant
+
+840 ÷ 21 = 40 pages per session.
+
+---
+
+user
+
+A total of 1,250 pages is divided into 25 equal reading sessions. How many pages are in each session?
+
+assistant
+
+1,250 ÷ 25 = 50 pages per session.
+
+---
+
+user
+
+A bus travels 144 km in 12 hours at a constant speed. What is its speed?
+
+assistant
+
+144 km ÷ 12 h = 12 km/h.
+
+---
+
+user
+
+A bus travels 840 km in 21 hours at a constant speed. What is its speed?
+
+assistant
+
+840 km ÷ 21 h = 40 km/h.
+
+---
+
+user
+
+A bus travels 1,250 km in 25 hours at a constant speed. What is its speed?
+
+assistant
+
+1,250 km ÷ 25 h = 50 km/h.
+
+---
+
+user
+
+A baker packs 144 biscuits into boxes of 12 biscuits each. How many full boxes can be filled?
+
+assistant
+
+144 ÷ 12 = 12 boxes.
+
+---
+
+user
+
+A baker packs 840 biscuits into boxes of 21 biscuits each. How many full boxes can be filled?
+
+assistant
+
+840 ÷ 21 = 40 boxes.
+
+---
+
+user
+
+A baker packs 1,250 biscuits into boxes of 25 biscuits each. How many full boxes can be filled?
+
+assistant
+
+1,250 ÷ 25 = 50 boxes.
+
+---
+
+user
+
+A rope 144 metres long is cut into 12 equal pieces. What is the length of each piece?
+
+assistant
+
+144 ÷ 12 = 12 m.
+
+---
+
+user
+
+A rope 840 metres long is cut into 21 equal pieces. What is the length of each piece?
+
+assistant
+
+840 ÷ 21 = 40 m.
+
+---
+
+user
+
+A rope 1,250 metres long is cut into 25 equal pieces. What is the length of each piece?
+
+assistant
+
+1,250 ÷ 25 = 50 m.
+
+---
+
+user
+
+A club collects ₹144 and splits it equally among 12 teams. How much does each team receive?
+
+assistant
+
+₹144 ÷ 12 = ₹12 rupees per team.
+
+---
+
+user
+
+A club collects ₹840 and splits it equally among 21 teams. How much does each team receive?
+
+assistant
+
+₹840 ÷ 21 = ₹40 rupees per team.
+
+---
+
+user
+
+A club collects ₹1,250 and splits it equally among 25 teams. How much does each team receive?
+
+assistant
+
+₹1,250 ÷ 25 = ₹50 rupees per team.
+
+---
+
+user
+
+A printer produces 144 pages in 12 minutes at a steady rate. How many pages does it print per minute?
+
+assistant
+
+144 ÷ 12 = 12 pages/min.
+
+---
+
+user
+
+A printer produces 840 pages in 21 minutes at a steady rate. How many pages does it print per minute?
+
+assistant
+
+840 ÷ 21 = 40 pages/min.
+
+---
+
+user
+
+A printer produces 1,250 pages in 25 minutes at a steady rate. How many pages does it print per minute?
+
+assistant
+
+1,250 ÷ 25 = 50 pages/min.
+
+---
+
+user
+
+There are 144 students arranged equally in 12 rows. How many students are in each row?
+
+assistant
+
+144 ÷ 12 = 12 students per row.
+
+---
+
+user
+
+There are 840 students arranged equally in 21 rows. How many students are in each row?
+
+assistant
+
+840 ÷ 21 = 40 students per row.
+
+---
+
+user
+
+There are 1,250 students arranged equally in 25 rows. How many students are in each row?
+
+assistant
+
+1,250 ÷ 25 = 50 students per row.
+
+---
+
+user
+
+A total of 144 litres is poured equally into 12 containers. How much goes into each container?
+
+assistant
+
+144 ÷ 12 = 12 L per container.
+
+---
+
+user
+
+A total of 840 litres is poured equally into 21 containers. How much goes into each container?
+
+assistant
+
+840 ÷ 21 = 40 L per container.
+
+---
+
+user
+
+A total of 1,250 litres is poured equally into 25 containers. How much goes into each container?
+
+assistant
+
+1,250 ÷ 25 = 50 L per container.
+
+---
+
+user
+
+A delivery service distributes 144 parcels equally over 12 routes. How many parcels are assigned to each route?
+
+assistant
+
+144 ÷ 12 = 12 parcels per route.
+
+---
+
+user
+
+A delivery service distributes 840 parcels equally over 21 routes. How many parcels are assigned to each route?
+
+assistant
+
+840 ÷ 21 = 40 parcels per route.
+
+---
+
+user
+
+A delivery service distributes 1,250 parcels equally over 25 routes. How many parcels are assigned to each route?
+
+assistant
+
+1,250 ÷ 25 = 50 parcels per route.
+
+---
+
+user
+
+A school has ₹144 and pens cost ₹12 each. How many pens can it buy?
+
+assistant
+
+144 ÷ 12 = 12 pens.
+
+---
+
+user
+
+A school has ₹840 and pens cost ₹21 each. How many pens can it buy?
+
+assistant
+
+840 ÷ 21 = 40 pens.
+
+---
+
+user
+
+A school has ₹1,250 and pens cost ₹25 each. How many pens can it buy?
+
+assistant
+
+1,250 ÷ 25 = 50 pens.
+
+---
+
+user
+
+A group walks 144 km over 12 equal days. How many kilometres do they walk each day on average?
+
+assistant
+
+144 ÷ 12 = 12 km per day.
+
+---
+
+user
+
+A group walks 840 km over 21 equal days. How many kilometres do they walk each day on average?
+
+assistant
+
+840 ÷ 21 = 40 km per day.
+
+---
+
+user
+
+A group walks 1,250 km over 25 equal days. How many kilometres do they walk each day on average?
+
+assistant
+
+1,250 ÷ 25 = 50 km per day.
+
+---
+
+user
+
+A library places 144 books equally on 12 shelves. How many books go on each shelf?
+
+assistant
+
+144 ÷ 12 = 12 books per shelf.
+
+---
+
+user
+
+A library places 840 books equally on 21 shelves. How many books go on each shelf?
+
+assistant
+
+840 ÷ 21 = 40 books per shelf.
+
+---
+
+user
+
+A library places 1,250 books equally on 25 shelves. How many books go on each shelf?
+
+assistant
+
+1,250 ÷ 25 = 50 books per shelf.
+
+---
+
+user
+
+A total of 144 minutes is split into 12 equal practice rounds. How long is each round?
+
+assistant
+
+144 ÷ 12 = 12 minutes per round.
+
+---
+
+user
+
+A total of 840 minutes is split into 21 equal practice rounds. How long is each round?
+
+assistant
+
+840 ÷ 21 = 40 minutes per round.
+
+---
+
+user
+
+A total of 1,250 minutes is split into 25 equal practice rounds. How long is each round?
+
+assistant
+
+1,250 ÷ 25 = 50 minutes per round.
+
+---
+
+user
+
+A farm packs 144 eggs into trays holding 12 eggs each. How many trays are needed?
+
+assistant
+
+144 ÷ 12 = 12 trays.
+
+---
+
+user
+
+A farm packs 840 eggs into trays holding 21 eggs each. How many trays are needed?
+
+assistant
+
+840 ÷ 21 = 40 trays.
+
+---
+
+user
+
+A farm packs 1,250 eggs into trays holding 25 eggs each. How many trays are needed?
+
+assistant
+
+1,250 ÷ 25 = 50 trays.
+
+---
+
+user
+
+A company sends 144 files equally to 12 servers. How many files are sent to each server?
+
+assistant
+
+144 ÷ 12 = 12 files per server.
+
+---
+
+user
+
+A company sends 840 files equally to 21 servers. How many files are sent to each server?
+
+assistant
+
+840 ÷ 21 = 40 files per server.
+
+---
+
+user
+
+A company sends 1,250 files equally to 25 servers. How many files are sent to each server?
+
+assistant
+
+1,250 ÷ 25 = 50 files per server.
+
+---
+
+user
+
+A ribbon 144 cm long is divided into 12 equal lengths. Find the length of each part.
+
+assistant
+
+144 ÷ 12 = 12 cm.
+
+---
+
+user
+
+A ribbon 840 cm long is divided into 21 equal lengths. Find the length of each part.
+
+assistant
+
+840 ÷ 21 = 40 cm.
+
+---
+
+user
+
+A ribbon 1,250 cm long is divided into 25 equal lengths. Find the length of each part.
+
+assistant
+
+1,250 ÷ 25 = 50 cm.
+
+---
+
+user
+
+A class reads 144 pages equally over 12 days. How many pages are read each day?
+
+assistant
+
+144 ÷ 12 = 12 pages per day.
+
+---
+
+user
+
+A class reads 840 pages equally over 21 days. How many pages are read each day?
+
+assistant
+
+840 ÷ 21 = 40 pages per day.
+
+---
+
+user
+
+A class reads 1,250 pages equally over 25 days. How many pages are read each day?
+
+assistant
+
+1,250 ÷ 25 = 50 pages per day.
+
+---
+
+user
+
+A vehicle covers 144 metres in 12 seconds at a constant rate. What is its speed?
+
+assistant
+
+144 m ÷ 12 s = 12 m/s.
+
+---
+
+user
+
+A vehicle covers 840 metres in 21 seconds at a constant rate. What is its speed?
+
+assistant
+
+840 m ÷ 21 s = 40 m/s.
+
+---
+
+user
+
+A vehicle covers 1,250 metres in 25 seconds at a constant rate. What is its speed?
+
+assistant
+
+1,250 m ÷ 25 s = 50 m/s.
+
+---
+
+user
+
+Riya buys a pen for ₹35 and a notebook for ₹48. What is the total cost?
+
+assistant
+
+₹35 + ₹48 = ₹83.
+
+---
+
+user
+
+Riya buys a pen for ₹125 and a notebook for ₹275. What is the total cost?
+
+assistant
+
+₹125 + ₹275 = ₹400.
+
+---
+
+user
+
+Riya buys a pen for ₹640 and a notebook for ₹385. What is the total cost?
+
+assistant
+
+₹640 + ₹385 = ₹1025.
+
+---
+
+user
+
+A snack costs ₹35 and a juice costs ₹48. How much do both items cost together?
+
+assistant
+
+₹35 + ₹48 = ₹83.
+
+---
+
+user
+
+A snack costs ₹125 and a juice costs ₹275. How much do both items cost together?
+
+assistant
+
+₹125 + ₹275 = ₹400.
+
+---
+
+user
+
+A snack costs ₹640 and a juice costs ₹385. How much do both items cost together?
+
+assistant
+
+₹640 + ₹385 = ₹1025.
+
+---
+
+user
+
+A student spends ₹35 on art supplies and ₹48 on a folder. Find the total spending.
+
+assistant
+
+₹35 + ₹48 = ₹83.
+
+---
+
+user
+
+A student spends ₹125 on art supplies and ₹275 on a folder. Find the total spending.
+
+assistant
+
+₹125 + ₹275 = ₹400.
+
+---
+
+user
+
+A student spends ₹640 on art supplies and ₹385 on a folder. Find the total spending.
+
+assistant
+
+₹640 + ₹385 = ₹1025.
+
+---
+
+user
+
+A family pays ₹35 for transport and ₹48 for groceries. What is the combined amount?
+
+assistant
+
+₹35 + ₹48 = ₹83.
+
+---
+
+user
+
+A family pays ₹125 for transport and ₹275 for groceries. What is the combined amount?
+
+assistant
+
+₹125 + ₹275 = ₹400.
+
+---
+
+user
+
+A family pays ₹640 for transport and ₹385 for groceries. What is the combined amount?
+
+assistant
+
+₹640 + ₹385 = ₹1025.
+
+---
+
+user
+
+A shop sells one toy for ₹35 and another for ₹48. What is the price of both toys together?
+
+assistant
+
+₹35 + ₹48 = ₹83.
+
+---
+
+user
+
+A shop sells one toy for ₹125 and another for ₹275. What is the price of both toys together?
+
+assistant
+
+₹125 + ₹275 = ₹400.
+
+---
+
+user
+
+A shop sells one toy for ₹640 and another for ₹385. What is the price of both toys together?
+
+assistant
+
+₹640 + ₹385 = ₹1025.
+
+---
+
+user
+
+A customer pays ₹200 for an item costing ₹175. How much change should the customer receive?
+
+assistant
+
+₹200 − ₹175 = ₹25 change.
+
+---
+
+user
+
+A customer pays ₹1000 for an item costing ₹685. How much change should the customer receive?
+
+assistant
+
+₹1000 − ₹685 = ₹315 change.
+
+---
+
+user
+
+A customer pays ₹3000 for an item costing ₹2450. How much change should the customer receive?
+
+assistant
+
+₹3000 − ₹2450 = ₹550 change.
+
+---
+
+user
+
+A book costs ₹175. Arun gives the cashier ₹200. Find the change.
+
+assistant
+
+₹200 − ₹175 = ₹25 change.
+
+---
+
+user
+
+A book costs ₹685. Arun gives the cashier ₹1000. Find the change.
+
+assistant
+
+₹1000 − ₹685 = ₹315 change.
+
+---
+
+user
+
+A book costs ₹2450. Arun gives the cashier ₹3000. Find the change.
+
+assistant
+
+₹3000 − ₹2450 = ₹550 change.
+
+---
+
+user
+
+A ticket costs ₹175, and the buyer hands over ₹200. How much money is returned?
+
+assistant
+
+₹200 − ₹175 = ₹25 change.
+
+---
+
+user
+
+A ticket costs ₹685, and the buyer hands over ₹1000. How much money is returned?
+
+assistant
+
+₹1000 − ₹685 = ₹315 change.
+
+---
+
+user
+
+A ticket costs ₹2450, and the buyer hands over ₹3000. How much money is returned?
+
+assistant
+
+₹3000 − ₹2450 = ₹550 change.
+
+---
+
+user
+
+A shopper's bill is ₹175. They pay ₹200 in cash. What is the change?
+
+assistant
+
+₹200 − ₹175 = ₹25 change.
+
+---
+
+user
+
+A shopper's bill is ₹685. They pay ₹1000 in cash. What is the change?
+
+assistant
+
+₹1000 − ₹685 = ₹315 change.
+
+---
+
+user
+
+A shopper's bill is ₹2450. They pay ₹3000 in cash. What is the change?
+
+assistant
+
+₹3000 − ₹2450 = ₹550 change.
+
+---
+
+user
+
+A toy is priced at ₹175. A customer pays ₹200. Calculate the amount returned.
+
+assistant
+
+₹200 − ₹175 = ₹25 change.
+
+---
+
+user
+
+A toy is priced at ₹685. A customer pays ₹1000. Calculate the amount returned.
+
+assistant
+
+₹1000 − ₹685 = ₹315 change.
+
+---
+
+user
+
+A toy is priced at ₹2450. A customer pays ₹3000. Calculate the amount returned.
+
+assistant
+
+₹3000 − ₹2450 = ₹550 change.
+
+---
+
+user
+
+A backpack marked at ₹800 has a 10% discount. How much is the discount?
+
+assistant
+
+Discount = ₹800 × 10/100 = ₹80.
+
+---
+
+user
+
+A backpack marked at ₹1,200 has a 25% discount. How much is the discount?
+
+assistant
+
+Discount = ₹1,200 × 25/100 = ₹300.
+
+---
+
+user
+
+A backpack marked at ₹2,500 has a 12% discount. How much is the discount?
+
+assistant
+
+Discount = ₹2,500 × 12/100 = ₹300.
+
+---
+
+user
+
+A jacket costs ₹800 before a sale. The shop reduces its price by 10%. Find the discount amount.
+
+assistant
+
+Discount = ₹800 × 10/100 = ₹80.
+
+---
+
+user
+
+A jacket costs ₹1,200 before a sale. The shop reduces its price by 25%. Find the discount amount.
+
+assistant
+
+Discount = ₹1,200 × 25/100 = ₹300.
+
+---
+
+user
+
+A jacket costs ₹2,500 before a sale. The shop reduces its price by 12%. Find the discount amount.
+
+assistant
+
+Discount = ₹2,500 × 12/100 = ₹300.
+
+---
+
+user
+
+A school bag is listed for ₹800. It is offered at 10% off. How much money is saved?
+
+assistant
+
+Discount = ₹800 × 10/100 = ₹80.
+
+---
+
+user
+
+A school bag is listed for ₹1,200. It is offered at 25% off. How much money is saved?
+
+assistant
+
+Discount = ₹1,200 × 25/100 = ₹300.
+
+---
+
+user
+
+A school bag is listed for ₹2,500. It is offered at 12% off. How much money is saved?
+
+assistant
+
+Discount = ₹2,500 × 12/100 = ₹300.
+
+---
+
+user
+
+A store advertises 10% off a calculator priced at ₹800. Calculate the amount deducted.
+
+assistant
+
+Discount = ₹800 × 10/100 = ₹80.
+
+---
+
+user
+
+A store advertises 25% off a calculator priced at ₹1,200. Calculate the amount deducted.
+
+assistant
+
+Discount = ₹1,200 × 25/100 = ₹300.
+
+---
+
+user
+
+A store advertises 12% off a calculator priced at ₹2,500. Calculate the amount deducted.
+
+assistant
+
+Discount = ₹2,500 × 12/100 = ₹300.
+
+---
+
+user
+
+A bicycle accessory costs ₹800 and has a 10% price reduction. What is the reduction in rupees?
+
+assistant
+
+Discount = ₹800 × 10/100 = ₹80.
+
+---
+
+user
+
+A bicycle accessory costs ₹1,200 and has a 25% price reduction. What is the reduction in rupees?
+
+assistant
+
+Discount = ₹1,200 × 25/100 = ₹300.
+
+---
+
+user
+
+A bicycle accessory costs ₹2,500 and has a 12% price reduction. What is the reduction in rupees?
+
+assistant
+
+Discount = ₹2,500 × 12/100 = ₹300.
+
+---
+
+user
+
+A group shares a restaurant bill of ₹960 equally among 8 people. How much does each person pay?
+
+assistant
+
+₹960 ÷ 8 = ₹120 each.
+
+---
+
+user
+
+A group shares a restaurant bill of ₹1,575 equally among 15 people. How much does each person pay?
+
+assistant
+
+₹1,575 ÷ 15 = ₹105 each.
+
+---
+
+user
+
+A group shares a restaurant bill of ₹12,600 equally among 28 people. How much does each person pay?
+
+assistant
+
+₹12,600 ÷ 28 = ₹450 each.
+
+---
+
+user
+
+₹960 is divided equally among 8 classmates. What is each person's share?
+
+assistant
+
+₹960 ÷ 8 = ₹120 each.
+
+---
+
+user
+
+₹1,575 is divided equally among 15 classmates. What is each person's share?
+
+assistant
+
+₹1,575 ÷ 15 = ₹105 each.
+
+---
+
+user
+
+₹12,600 is divided equally among 28 classmates. What is each person's share?
+
+assistant
+
+₹12,600 ÷ 28 = ₹450 each.
+
+---
+
+user
+
+A team has a prize of ₹960 to split equally among 8 players. Find each share.
+
+assistant
+
+₹960 ÷ 8 = ₹120 each.
+
+---
+
+user
+
+A team has a prize of ₹1,575 to split equally among 15 players. Find each share.
+
+assistant
+
+₹1,575 ÷ 15 = ₹105 each.
+
+---
+
+user
+
+A team has a prize of ₹12,600 to split equally among 28 players. Find each share.
+
+assistant
+
+₹12,600 ÷ 28 = ₹450 each.
+
+---
+
+user
+
+A club collects ₹960 for an event and divides it equally among 8 volunteers. How much does each volunteer receive?
+
+assistant
+
+₹960 ÷ 8 = ₹120 each.
+
+---
+
+user
+
+A club collects ₹1,575 for an event and divides it equally among 15 volunteers. How much does each volunteer receive?
+
+assistant
+
+₹1,575 ÷ 15 = ₹105 each.
+
+---
+
+user
+
+A club collects ₹12,600 for an event and divides it equally among 28 volunteers. How much does each volunteer receive?
+
+assistant
+
+₹12,600 ÷ 28 = ₹450 each.
+
+---
+
+user
+
+A family sets aside ₹960 equally for 8 weeks. What amount is available per week?
+
+assistant
+
+₹960 ÷ 8 = ₹120 each.
+
+---
+
+user
+
+A family sets aside ₹1,575 equally for 15 weeks. What amount is available per week?
+
+assistant
+
+₹1,575 ÷ 15 = ₹105 each.
+
+---
+
+user
+
+A family sets aside ₹12,600 equally for 28 weeks. What amount is available per week?
+
+assistant
+
+₹12,600 ÷ 28 = ₹450 each.
+
+---
+
+user
+
+A hiking path has a 2.4 km section followed by a 1.6 km section. What is the full path length?
+
+assistant
+
+2.4 + 1.6 = 4 km.
+
+---
+
+user
+
+A hiking path has a 125 km section followed by a 75 km section. What is the full path length?
+
+assistant
+
+125 + 75 = 200 km.
+
+---
+
+user
+
+A hiking path has a 3.5 km section followed by a 1.25 km section. What is the full path length?
+
+assistant
+
+3.5 + 1.25 = 4.75 km.
+
+---
+
+user
+
+A hiking path has a 18.6 km section followed by a 7.4 km section. What is the full path length?
+
+assistant
+
+18.6 + 7.4 = 26 km.
+
+---
+
+user
+
+A hiking path has a 9.75 km section followed by a 2.25 km section. What is the full path length?
+
+assistant
+
+9.75 + 2.25 = 12 km.
+
+---
+
+user
+
+A hiking path has a 250 km section followed by a 85 km section. What is the full path length?
+
+assistant
+
+250 + 85 = 335 km.
+
+---
+
+user
+
+A ribbon is 2.4 cm long and another ribbon is 1.6 cm long. What is their combined length?
+
+assistant
+
+2.4 + 1.6 = 4 cm.
+
+---
+
+user
+
+A ribbon is 125 cm long and another ribbon is 75 cm long. What is their combined length?
+
+assistant
+
+125 + 75 = 200 cm.
+
+---
+
+user
+
+A ribbon is 3.5 cm long and another ribbon is 1.25 cm long. What is their combined length?
+
+assistant
+
+3.5 + 1.25 = 4.75 cm.
+
+---
+
+user
+
+A ribbon is 18.6 cm long and another ribbon is 7.4 cm long. What is their combined length?
+
+assistant
+
+18.6 + 7.4 = 26 cm.
+
+---
+
+user
+
+A ribbon is 9.75 cm long and another ribbon is 2.25 cm long. What is their combined length?
+
+assistant
+
+9.75 + 2.25 = 12 cm.
+
+---
+
+user
+
+A ribbon is 250 cm long and another ribbon is 85 cm long. What is their combined length?
+
+assistant
+
+250 + 85 = 335 cm.
+
+---
+
+user
+
+A container holds 2.4 L of water and 1.6 L more is poured in. How much water is there?
+
+assistant
+
+2.4 + 1.6 = 4 L.
+
+---
+
+user
+
+A container holds 125 L of water and 75 L more is poured in. How much water is there?
+
+assistant
+
+125 + 75 = 200 L.
+
+---
+
+user
+
+A container holds 3.5 L of water and 1.25 L more is poured in. How much water is there?
+
+assistant
+
+3.5 + 1.25 = 4.75 L.
+
+---
+
+user
+
+A container holds 18.6 L of water and 7.4 L more is poured in. How much water is there?
+
+assistant
+
+18.6 + 7.4 = 26 L.
+
+---
+
+user
+
+A container holds 9.75 L of water and 2.25 L more is poured in. How much water is there?
+
+assistant
+
+9.75 + 2.25 = 12 L.
+
+---
+
+user
+
+A container holds 250 L of water and 85 L more is poured in. How much water is there?
+
+assistant
+
+250 + 85 = 335 L.
+
+---
+
+user
+
+A parcel weighs 2.4 kg and a second parcel weighs 1.6 kg. Find their combined mass.
+
+assistant
+
+2.4 + 1.6 = 4 kg.
+
+---
+
+user
+
+A parcel weighs 125 kg and a second parcel weighs 75 kg. Find their combined mass.
+
+assistant
+
+125 + 75 = 200 kg.
+
+---
+
+user
+
+A parcel weighs 3.5 kg and a second parcel weighs 1.25 kg. Find their combined mass.
+
+assistant
+
+3.5 + 1.25 = 4.75 kg.
+
+---
+
+user
+
+A parcel weighs 18.6 kg and a second parcel weighs 7.4 kg. Find their combined mass.
+
+assistant
+
+18.6 + 7.4 = 26 kg.
+
+---
+
+user
+
+A parcel weighs 9.75 kg and a second parcel weighs 2.25 kg. Find their combined mass.
+
+assistant
+
+9.75 + 2.25 = 12 kg.
+
+---
+
+user
+
+A parcel weighs 250 kg and a second parcel weighs 85 kg. Find their combined mass.
+
+assistant
+
+250 + 85 = 335 kg.
+
+---
+
+user
+
+A cyclist travels 2.4 km before a break and 1.6 km afterwards. Find the total distance.
+
+assistant
+
+2.4 + 1.6 = 4 km.
+
+---
+
+user
+
+A cyclist travels 125 km before a break and 75 km afterwards. Find the total distance.
+
+assistant
+
+125 + 75 = 200 km.
+
+---
+
+user
+
+A cyclist travels 3.5 km before a break and 1.25 km afterwards. Find the total distance.
+
+assistant
+
+3.5 + 1.25 = 4.75 km.
+
+---
+
+user
+
+A cyclist travels 18.6 km before a break and 7.4 km afterwards. Find the total distance.
+
+assistant
+
+18.6 + 7.4 = 26 km.
+
+---
+
+user
+
+A cyclist travels 9.75 km before a break and 2.25 km afterwards. Find the total distance.
+
+assistant
+
+9.75 + 2.25 = 12 km.
+
+---
+
+user
+
+A cyclist travels 250 km before a break and 85 km afterwards. Find the total distance.
+
+assistant
+
+250 + 85 = 335 km.
+
+---
+
+user
+
+A 2.4 m wire has 1.6 m removed. How much wire remains?
+
+assistant
+
+2.4 − 1.6 = 0.8 m.
+
+---
+
+user
+
+A 125 m wire has 75 m removed. How much wire remains?
+
+assistant
+
+125 − 75 = 50 m.
+
+---
+
+user
+
+A 3.5 m wire has 1.25 m removed. How much wire remains?
+
+assistant
+
+3.5 − 1.25 = 2.25 m.
+
+---
+
+user
+
+A 18.6 m wire has 7.4 m removed. How much wire remains?
+
+assistant
+
+18.6 − 7.4 = 11.2 m.
+
+---
+
+user
+
+A 9.75 m wire has 2.25 m removed. How much wire remains?
+
+assistant
+
+9.75 − 2.25 = 7.5 m.
+
+---
+
+user
+
+A 250 m wire has 85 m removed. How much wire remains?
+
+assistant
+
+250 − 85 = 165 m.
+
+---
+
+user
+
+A bottle contained 2.4 mL of juice. After 1.6 mL is poured out, how much remains?
+
+assistant
+
+2.4 − 1.6 = 0.8 mL.
+
+---
+
+user
+
+A bottle contained 125 mL of juice. After 75 mL is poured out, how much remains?
+
+assistant
+
+125 − 75 = 50 mL.
+
+---
+
+user
+
+A bottle contained 3.5 mL of juice. After 1.25 mL is poured out, how much remains?
+
+assistant
+
+3.5 − 1.25 = 2.25 mL.
+
+---
+
+user
+
+A bottle contained 18.6 mL of juice. After 7.4 mL is poured out, how much remains?
+
+assistant
+
+18.6 − 7.4 = 11.2 mL.
+
+---
+
+user
+
+A bottle contained 9.75 mL of juice. After 2.25 mL is poured out, how much remains?
+
+assistant
+
+9.75 − 2.25 = 7.5 mL.
+
+---
+
+user
+
+A bottle contained 250 mL of juice. After 85 mL is poured out, how much remains?
+
+assistant
+
+250 − 85 = 165 mL.
+
+---
+
+user
+
+A plank is 2.4 cm long and a piece of 1.6 cm is cut off. Find the remaining length.
+
+assistant
+
+2.4 − 1.6 = 0.8 cm.
+
+---
+
+user
+
+A plank is 125 cm long and a piece of 75 cm is cut off. Find the remaining length.
+
+assistant
+
+125 − 75 = 50 cm.
+
+---
+
+user
+
+A plank is 3.5 cm long and a piece of 1.25 cm is cut off. Find the remaining length.
+
+assistant
+
+3.5 − 1.25 = 2.25 cm.
+
+---
+
+user
+
+A plank is 18.6 cm long and a piece of 7.4 cm is cut off. Find the remaining length.
+
+assistant
+
+18.6 − 7.4 = 11.2 cm.
+
+---
+
+user
+
+A plank is 9.75 cm long and a piece of 2.25 cm is cut off. Find the remaining length.
+
+assistant
+
+9.75 − 2.25 = 7.5 cm.
+
+---
+
+user
+
+A plank is 250 cm long and a piece of 85 cm is cut off. Find the remaining length.
+
+assistant
+
+250 − 85 = 165 cm.
+
+---
+
+user
+
+A route is 2.4 km long; 1.6 km have been completed. How many kilometres are left?
+
+assistant
+
+2.4 − 1.6 = 0.8 km.
+
+---
+
+user
+
+A route is 125 km long; 75 km have been completed. How many kilometres are left?
+
+assistant
+
+125 − 75 = 50 km.
+
+---
+
+user
+
+A route is 3.5 km long; 1.25 km have been completed. How many kilometres are left?
+
+assistant
+
+3.5 − 1.25 = 2.25 km.
+
+---
+
+user
+
+A route is 18.6 km long; 7.4 km have been completed. How many kilometres are left?
+
+assistant
+
+18.6 − 7.4 = 11.2 km.
+
+---
+
+user
+
+A route is 9.75 km long; 2.25 km have been completed. How many kilometres are left?
+
+assistant
+
+9.75 − 2.25 = 7.5 km.
+
+---
+
+user
+
+A route is 250 km long; 85 km have been completed. How many kilometres are left?
+
+assistant
+
+250 − 85 = 165 km.
+
+---
+
+user
+
+A bag has a mass of 2.4 kg. If 1.6 kg of material is removed, what is its new mass?
+
+assistant
+
+2.4 − 1.6 = 0.8 kg.
+
+---
+
+user
+
+A bag has a mass of 125 kg. If 75 kg of material is removed, what is its new mass?
+
+assistant
+
+125 − 75 = 50 kg.
+
+---
+
+user
+
+A bag has a mass of 3.5 kg. If 1.25 kg of material is removed, what is its new mass?
+
+assistant
+
+3.5 − 1.25 = 2.25 kg.
+
+---
+
+user
+
+A bag has a mass of 18.6 kg. If 7.4 kg of material is removed, what is its new mass?
+
+assistant
+
+18.6 − 7.4 = 11.2 kg.
+
+---
+
+user
+
+A bag has a mass of 9.75 kg. If 2.25 kg of material is removed, what is its new mass?
+
+assistant
+
+9.75 − 2.25 = 7.5 kg.
+
+---
+
+user
+
+A bag has a mass of 250 kg. If 85 kg of material is removed, what is its new mass?
+
+assistant
+
+250 − 85 = 165 kg.
+
+---
+
+user
+
+A class begins at 8:15 AM and ends at 9:45 AM. How long is the class?
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A class begins at 10:20 AM and ends at 12:05 PM. How long is the class?
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A class begins at 1:10 PM and ends at 3:40 PM. How long is the class?
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A train leaves at 8:15 AM and arrives at 9:45 AM on the same day. Find the travel time.
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A train leaves at 10:20 AM and arrives at 12:05 PM on the same day. Find the travel time.
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A train leaves at 1:10 PM and arrives at 3:40 PM on the same day. Find the travel time.
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A study session runs from 8:15 AM until 9:45 AM. What is its duration?
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A study session runs from 10:20 AM until 12:05 PM. What is its duration?
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A study session runs from 1:10 PM until 3:40 PM. What is its duration?
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A film starts at 8:15 AM and finishes at 9:45 AM. How long does it last?
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A film starts at 10:20 AM and finishes at 12:05 PM. How long does it last?
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A film starts at 1:10 PM and finishes at 3:40 PM. How long does it last?
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A museum opens at 8:15 AM and closes at 9:45 AM. How many hours and minutes is it open?
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A museum opens at 10:20 AM and closes at 12:05 PM. How many hours and minutes is it open?
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A museum opens at 1:10 PM and closes at 3:40 PM. How many hours and minutes is it open?
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A sports practice starts at 8:15 AM and finishes at 9:45 AM. Calculate the duration.
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A sports practice starts at 10:20 AM and finishes at 12:05 PM. Calculate the duration.
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A sports practice starts at 1:10 PM and finishes at 3:40 PM. Calculate the duration.
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A delivery route starts at 8:15 AM and is completed at 9:45 AM. How much time passes?
+
+assistant
+
+9:45 AM − 8:15 AM = 1 h 30 min.
+
+---
+
+user
+
+A delivery route starts at 10:20 AM and is completed at 12:05 PM. How much time passes?
+
+assistant
+
+12:05 PM − 10:20 AM = 1 h 45 min.
+
+---
+
+user
+
+A delivery route starts at 1:10 PM and is completed at 3:40 PM. How much time passes?
+
+assistant
+
+3:40 PM − 1:10 PM = 2 h 30 min.
+
+---
+
+user
+
+A cooking process starts at 9:20 AM and takes 1 h 15 min. At what time does it finish?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A cooking process starts at 11:35 AM and takes 1 h 50 min. At what time does it finish?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A cooking process starts at 2:10 PM and takes 2 h 15 min. At what time does it finish?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+A coach leaves at 9:20 AM for a trip lasting 1 h 15 min. When will it arrive?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A coach leaves at 11:35 AM for a trip lasting 1 h 50 min. When will it arrive?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A coach leaves at 2:10 PM for a trip lasting 2 h 15 min. When will it arrive?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+A test begins at 9:20 AM and lasts 1 h 15 min. What is the finishing time?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A test begins at 11:35 AM and lasts 1 h 50 min. What is the finishing time?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A test begins at 2:10 PM and lasts 2 h 15 min. What is the finishing time?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+A scheduled class starts at 9:20 AM and runs for 1 h 15 min. When does it end?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A scheduled class starts at 11:35 AM and runs for 1 h 50 min. When does it end?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A scheduled class starts at 2:10 PM and runs for 2 h 15 min. When does it end?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+A machine starts operating at 9:20 AM and runs for 1 h 15 min. At what time does it stop?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A machine starts operating at 11:35 AM and runs for 1 h 50 min. At what time does it stop?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A machine starts operating at 2:10 PM and runs for 2 h 15 min. At what time does it stop?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+A play begins at 9:20 AM and lasts 1 h 15 min. When will it be over?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A play begins at 11:35 AM and lasts 1 h 50 min. When will it be over?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A play begins at 2:10 PM and lasts 2 h 15 min. When will it be over?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+A delivery starts at 9:20 AM and takes 1 h 15 min. What is the expected arrival time?
+
+assistant
+
+9:20 AM + 1 h 15 min = 10:35 AM.
+
+---
+
+user
+
+A delivery starts at 11:35 AM and takes 1 h 50 min. What is the expected arrival time?
+
+assistant
+
+11:35 AM + 1 h 50 min = 1:25 PM.
+
+---
+
+user
+
+A delivery starts at 2:10 PM and takes 2 h 15 min. What is the expected arrival time?
+
+assistant
+
+2:10 PM + 2 h 15 min = 4:25 PM.
+
+---
+
+user
+
+Nila studies for 35 minutes in the morning and 45 minutes in the evening. How long does she study altogether?
+
+assistant
+
+35 min + 45 min = 1 h 20 min.
+
+---
+
+user
+
+Nila studies for 68 minutes in the morning and 52 minutes in the evening. How long does she study altogether?
+
+assistant
+
+68 min + 52 min = 2 h.
+
+---
+
+user
+
+Nila studies for 125 minutes in the morning and 95 minutes in the evening. How long does she study altogether?
+
+assistant
+
+125 min + 95 min = 3 h 40 min.
+
+---
+
+user
+
+A delivery driver spends 35 minutes on the first route and 45 minutes on the second. Find the total driving time.
+
+assistant
+
+35 min + 45 min = 1 h 20 min.
+
+---
+
+user
+
+A delivery driver spends 68 minutes on the first route and 52 minutes on the second. Find the total driving time.
+
+assistant
+
+68 min + 52 min = 2 h.
+
+---
+
+user
+
+A delivery driver spends 125 minutes on the first route and 95 minutes on the second. Find the total driving time.
+
+assistant
+
+125 min + 95 min = 3 h 40 min.
+
+---
+
+user
+
+A student practises music for 35 minutes on Monday and 45 minutes on Tuesday. What is the combined practice time?
+
+assistant
+
+35 min + 45 min = 1 h 20 min.
+
+---
+
+user
+
+A student practises music for 68 minutes on Monday and 52 minutes on Tuesday. What is the combined practice time?
+
+assistant
+
+68 min + 52 min = 2 h.
+
+---
+
+user
+
+A student practises music for 125 minutes on Monday and 95 minutes on Tuesday. What is the combined practice time?
+
+assistant
+
+125 min + 95 min = 3 h 40 min.
+
+---
+
+user
+
+A machine runs for 35 minutes during one cycle and 45 minutes during another. Find the total running time.
+
+assistant
+
+35 min + 45 min = 1 h 20 min.
+
+---
+
+user
+
+A machine runs for 68 minutes during one cycle and 52 minutes during another. Find the total running time.
+
+assistant
+
+68 min + 52 min = 2 h.
+
+---
+
+user
+
+A machine runs for 125 minutes during one cycle and 95 minutes during another. Find the total running time.
+
+assistant
+
+125 min + 95 min = 3 h 40 min.
+
+---
+
+user
+
+A team trains for 35 minutes before lunch and 45 minutes after lunch. How long is the total training?
+
+assistant
+
+35 min + 45 min = 1 h 20 min.
+
+---
+
+user
+
+A team trains for 68 minutes before lunch and 52 minutes after lunch. How long is the total training?
+
+assistant
+
+68 min + 52 min = 2 h.
+
+---
+
+user
+
+A team trains for 125 minutes before lunch and 95 minutes after lunch. How long is the total training?
+
+assistant
+
+125 min + 95 min = 3 h 40 min.
+
+---
+
+user
+
+Two videos last 35 minutes and 45 minutes. What is their combined duration?
+
+assistant
+
+35 min + 45 min = 1 h 20 min.
+
+---
+
+user
+
+Two videos last 68 minutes and 52 minutes. What is their combined duration?
+
+assistant
+
+68 min + 52 min = 2 h.
+
+---
+
+user
+
+Two videos last 125 minutes and 95 minutes. What is their combined duration?
+
+assistant
+
+125 min + 95 min = 3 h 40 min.
+
+---
+
+user
+
+A basket contains 80 oranges. 1/4 of them are ripe. How many oranges are ripe?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A basket contains 150 oranges. 2/5 of them are ripe. How many oranges are ripe?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A basket contains 240 oranges. 3/8 of them are ripe. How many oranges are ripe?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A class has 80 students. 1/4 of the students walk to school. How many students walk?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A class has 150 students. 2/5 of the students walk to school. How many students walk?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A class has 240 students. 3/8 of the students walk to school. How many students walk?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A library has 80 books on display. 1/4 of them are science books. How many science books are displayed?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A library has 150 books on display. 2/5 of them are science books. How many science books are displayed?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A library has 240 books on display. 3/8 of them are science books. How many science books are displayed?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A farmer has 80 seedlings. 1/4 are tomato seedlings. How many are tomato seedlings?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A farmer has 150 seedlings. 2/5 are tomato seedlings. How many are tomato seedlings?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A farmer has 240 seedlings. 3/8 are tomato seedlings. How many are tomato seedlings?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A water tank holds 80 litres. 1/4 of the water is used. How many litres are used?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A water tank holds 150 litres. 2/5 of the water is used. How many litres are used?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A water tank holds 240 litres. 3/8 of the water is used. How many litres are used?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A packet contains 80 biscuits. 1/4 are packed for a trip. How many biscuits are packed?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A packet contains 150 biscuits. 2/5 are packed for a trip. How many biscuits are packed?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A packet contains 240 biscuits. 3/8 are packed for a trip. How many biscuits are packed?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A school has 80 computers. 1/4 are in the computer lab. How many computers are in the lab?
+
+assistant
+
+80 × 1/4 = 20.
+
+---
+
+user
+
+A school has 150 computers. 2/5 are in the computer lab. How many computers are in the lab?
+
+assistant
+
+150 × 2/5 = 60.
+
+---
+
+user
+
+A school has 240 computers. 3/8 are in the computer lab. How many computers are in the lab?
+
+assistant
+
+240 × 3/8 = 90.
+
+---
+
+user
+
+A school has 200 students, and 15% join the science club. How many students join?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A school has 480 students, and 25% join the science club. How many students join?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A school has 1,200 students, and 12.5% join the science club. How many students join?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A shop has 200 notebooks in stock. It sells 15% of them. How many notebooks are sold?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A shop has 480 notebooks in stock. It sells 25% of them. How many notebooks are sold?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A shop has 1,200 notebooks in stock. It sells 12.5% of them. How many notebooks are sold?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A town plants 200 trees, and 15% are fruit trees. How many fruit trees are planted?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A town plants 480 trees, and 25% are fruit trees. How many fruit trees are planted?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A town plants 1,200 trees, and 12.5% are fruit trees. How many fruit trees are planted?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A test has 200 marks available. A student earns 15% of the marks. How many marks is that?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A test has 480 marks available. A student earns 25% of the marks. How many marks is that?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A test has 1,200 marks available. A student earns 12.5% of the marks. How many marks is that?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A library collection contains 200 books. 15% are fiction. How many fiction books are there?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A library collection contains 480 books. 25% are fiction. How many fiction books are there?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A library collection contains 1,200 books. 12.5% are fiction. How many fiction books are there?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A factory makes 200 bulbs. 15% pass inspection. How many bulbs pass?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A factory makes 480 bulbs. 25% pass inspection. How many bulbs pass?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A factory makes 1,200 bulbs. 12.5% pass inspection. How many bulbs pass?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A class collected 200 kg of paper. 15% is recycled. How many kilograms are recycled?
+
+assistant
+
+15% × 200 = 30.
+
+---
+
+user
+
+A class collected 480 kg of paper. 25% is recycled. How many kilograms are recycled?
+
+assistant
+
+25% × 480 = 120.
+
+---
+
+user
+
+A class collected 1,200 kg of paper. 12.5% is recycled. How many kilograms are recycled?
+
+assistant
+
+12.5% × 1,200 = 150.
+
+---
+
+user
+
+A student has completed 1/4 of a 80-page book. How many pages are still unread?
+
+assistant
+
+Remaining = 80 − (80 × 1/4) = 60.
+
+---
+
+user
+
+A student has completed 2/5 of a 150-page book. How many pages are still unread?
+
+assistant
+
+Remaining = 150 − (150 × 2/5) = 90.
+
+---
+
+user
+
+A student has completed 3/8 of a 240-page book. How many pages are still unread?
+
+assistant
+
+Remaining = 240 − (240 × 3/8) = 150.
+
+---
+
+user
+
+A tank is 1/4 full and has a capacity of 80 litres. How many litres are needed to fill it?
+
+assistant
+
+Remaining = 80 − (80 × 1/4) = 60.
+
+---
+
+user
+
+A tank is 2/5 full and has a capacity of 150 litres. How many litres are needed to fill it?
+
+assistant
+
+Remaining = 150 − (150 × 2/5) = 90.
+
+---
+
+user
+
+A tank is 3/8 full and has a capacity of 240 litres. How many litres are needed to fill it?
+
+assistant
+
+Remaining = 240 − (240 × 3/8) = 150.
+
+---
+
+user
+
+A shop sells 1/4 of its 80 toy cars. How many toy cars remain?
+
+assistant
+
+Remaining = 80 − (80 × 1/4) = 60.
+
+---
+
+user
+
+A shop sells 2/5 of its 150 toy cars. How many toy cars remain?
+
+assistant
+
+Remaining = 150 − (150 × 2/5) = 90.
+
+---
+
+user
+
+A shop sells 3/8 of its 240 toy cars. How many toy cars remain?
+
+assistant
+
+Remaining = 240 − (240 × 3/8) = 150.
+
+---
+
+user
+
+A team wins 1/4 of its 80 matches. How many matches does it not win?
+
+assistant
+
+Remaining = 80 − (80 × 1/4) = 60.
+
+---
+
+user
+
+A team wins 2/5 of its 150 matches. How many matches does it not win?
+
+assistant
+
+Remaining = 150 − (150 × 2/5) = 90.
+
+---
+
+user
+
+A team wins 3/8 of its 240 matches. How many matches does it not win?
+
+assistant
+
+Remaining = 240 − (240 × 3/8) = 150.
+
+---
+
+user
+
+A gardener uses 1/4 of 80 metres of hose. How many metres are unused?
+
+assistant
+
+Remaining = 80 − (80 × 1/4) = 60.
+
+---
+
+user
+
+A gardener uses 2/5 of 150 metres of hose. How many metres are unused?
+
+assistant
+
+Remaining = 150 − (150 × 2/5) = 90.
+
+---
+
+user
+
+A gardener uses 3/8 of 240 metres of hose. How many metres are unused?
+
+assistant
+
+Remaining = 240 − (240 × 3/8) = 150.
+
+---
+
+user
+
+A club has filled 1/4 of its 80 membership places. How many places are still open?
+
+assistant
+
+Remaining = 80 − (80 × 1/4) = 60.
+
+---
+
+user
+
+A club has filled 2/5 of its 150 membership places. How many places are still open?
+
+assistant
+
+Remaining = 150 − (150 × 2/5) = 90.
+
+---
+
+user
+
+A club has filled 3/8 of its 240 membership places. How many places are still open?
+
+assistant
+
+Remaining = 240 − (240 × 3/8) = 150.
+
+---
+
+user
+
+A jug contains 2.4 L of water and another 0.6 L is added. How much water is there?
+
+assistant
+
+2.4 + 0.6 = 3 L.
+
+---
+
+user
+
+A jug contains 8.75 L of water and another 2.5 L is added. How much water is there?
+
+assistant
+
+8.75 + 2.5 = 11.25 L.
+
+---
+
+user
+
+A jug contains 12.6 L of water and another 0.4 L is added. How much water is there?
+
+assistant
+
+12.6 + 0.4 = 13 L.
+
+---
+
+user
+
+A piece of cloth is 8.5 m long. A piece of 2.25 m is cut off. How much remains?
+
+assistant
+
+8.5 − 2.25 = 6.25 m.
+
+---
+
+user
+
+A piece of cloth is 19.75 m long. A piece of 4.5 m is cut off. How much remains?
+
+assistant
+
+19.75 − 4.5 = 15.25 m.
+
+---
+
+user
+
+A piece of cloth is 25.5 m long. A piece of 12.25 m is cut off. How much remains?
+
+assistant
+
+25.5 − 12.25 = 13.25 m.
+
+---
+
+user
+
+One item weighs 2.35 kg and another weighs 1.4 kg. What is their combined mass?
+
+assistant
+
+2.35 + 1.4 = 3.75 kg.
+
+---
+
+user
+
+One item weighs 8.75 kg and another weighs 2.5 kg. What is their combined mass?
+
+assistant
+
+8.75 + 2.5 = 11.25 kg.
+
+---
+
+user
+
+One item weighs 12.6 kg and another weighs 0.4 kg. What is their combined mass?
+
+assistant
+
+12.6 + 0.4 = 13 kg.
+
+---
+
+user
+
+A runner travels 2.4 km and then another 0.6 km. Find the total distance.
+
+assistant
+
+2.4 + 0.6 = 3 km.
+
+---
+
+user
+
+A runner travels 8.4 km and then another 2.1 km. Find the total distance.
+
+assistant
+
+8.4 + 2.1 = 10.5 km.
+
+---
+
+user
+
+A runner travels 12.6 km and then another 0.3 km. Find the total distance.
+
+assistant
+
+12.6 + 0.3 = 12.9 km.
+
+---
+
+user
+
+A bottle contains 8.5 L of juice. If 2.25 L is poured out, how much remains?
+
+assistant
+
+8.5 − 2.25 = 6.25 L.
+
+---
+
+user
+
+A bottle contains 19.75 L of juice. If 4.5 L is poured out, how much remains?
+
+assistant
+
+19.75 − 4.5 = 15.25 L.
+
+---
+
+user
+
+A bottle contains 25.5 L of juice. If 12.25 L is poured out, how much remains?
+
+assistant
+
+25.5 − 12.25 = 13.25 L.
+
+---
+
+user
+
+A board is 2.4 cm wide and 1.6 cm long. What is its area?
+
+assistant
+
+2.4 × 1.6 = 3.84 cm².
+
+---
+
+user
+
+A board is 8.5 cm wide and 4 cm long. What is its area?
+
+assistant
+
+8.5 × 4 = 34 cm².
+
+---
+
+user
+
+A board is 12.5 cm wide and 6.4 cm long. What is its area?
+
+assistant
+
+12.5 × 6.4 = 80 cm².
+
+---
+
+user
+
+A car uses 2.4 L of fuel per 100 km. How much fuel does it use for 3 such 100-km intervals?
+
+assistant
+
+2.4 × 3 = 7.2 L.
+
+---
+
+user
+
+A car uses 8.4 L of fuel per 100 km. How much fuel does it use for 5 such 100-km intervals?
+
+assistant
+
+8.4 × 5 = 42 L.
+
+---
+
+user
+
+A car uses 12.6 L of fuel per 100 km. How much fuel does it use for 8 such 100-km intervals?
+
+assistant
+
+12.6 × 8 = 100.8 L.
+
+---
+
+user
+
+A ribbon of 2.4 m is divided into 3 equal pieces. How long is each piece?
+
+assistant
+
+2.4 ÷ 3 = 0.8 m.
+
+---
+
+user
+
+A ribbon of 8.4 m is divided into 4 equal pieces. How long is each piece?
+
+assistant
+
+8.4 ÷ 4 = 2.1 m.
+
+---
+
+user
+
+A ribbon of 12.6 m is divided into 6 equal pieces. How long is each piece?
+
+assistant
+
+12.6 ÷ 6 = 2.1 m.
+
+---
+
+user
+
+A recipe needs 0.75 kg of flour for one batch. How much flour is needed for 3 batches?
+
+assistant
+
+0.75 × 3 = 2.25 kg.
+
+---
+
+user
+
+A recipe needs 1.25 kg of flour for one batch. How much flour is needed for 4 batches?
+
+assistant
+
+1.25 × 4 = 5 kg.
+
+---
+
+user
+
+A recipe needs 2.5 kg of flour for one batch. How much flour is needed for 6 batches?
+
+assistant
+
+2.5 × 6 = 15 kg.
+
+---
+
+user
+
+A tank has 8.5 L of fuel and uses 2.25 L. What quantity is left?
+
+assistant
+
+8.5 − 2.25 = 6.25 L.
+
+---
+
+user
+
+A tank has 19.75 L of fuel and uses 4.5 L. What quantity is left?
+
+assistant
+
+19.75 − 4.5 = 15.25 L.
+
+---
+
+user
+
+A tank has 25.5 L of fuel and uses 12.25 L. What quantity is left?
+
+assistant
+
+25.5 − 12.25 = 13.25 L.
+
+---
+
+user
+
+A parcel weighs 2.35 kg and the packaging weighs 1.4 kg. Find the total mass.
+
+assistant
+
+2.35 + 1.4 = 3.75 kg.
+
+---
+
+user
+
+A parcel weighs 8.75 kg and the packaging weighs 2.5 kg. Find the total mass.
+
+assistant
+
+8.75 + 2.5 = 11.25 kg.
+
+---
+
+user
+
+A parcel weighs 12.6 kg and the packaging weighs 0.4 kg. Find the total mass.
+
+assistant
+
+12.6 + 0.4 = 13 kg.
+
+---
+
+user
+
+A wire is 2.4 m long and is cut into 3 equal parts. What is each part's length?
+
+assistant
+
+2.4 ÷ 3 = 0.8 m.
+
+---
+
+user
+
+A wire is 8.4 m long and is cut into 4 equal parts. What is each part's length?
+
+assistant
+
+8.4 ÷ 4 = 2.1 m.
+
+---
+
+user
+
+A wire is 12.6 m long and is cut into 6 equal parts. What is each part's length?
+
+assistant
+
+12.6 ÷ 6 = 2.1 m.
+
+---
+
+user
+
+A shop sells 2.4 kg of rice at ₹60 per kg. What is the total price?
+
+assistant
+
+₹2.4 × 60 = ₹144.
+
+---
+
+user
+
+A shop sells 8.4 kg of rice at ₹35 per kg. What is the total price?
+
+assistant
+
+₹8.4 × 35 = ₹294.
+
+---
+
+user
+
+A shop sells 12.6 kg of rice at ₹48 per kg. What is the total price?
+
+assistant
+
+₹12.6 × 48 = ₹604.8.
+
+---
+
+user
+
+A cyclist rides at 2.4 km per hour for 0.6 hours. How far does the cyclist travel?
+
+assistant
+
+2.4 × 0.6 = 1.44 km.
+
+---
+
+user
+
+A cyclist rides at 8.4 km per hour for 2.1 hours. How far does the cyclist travel?
+
+assistant
+
+8.4 × 2.1 = 17.64 km.
+
+---
+
+user
+
+A cyclist rides at 12.6 km per hour for 0.3 hours. How far does the cyclist travel?
+
+assistant
+
+12.6 × 0.3 = 3.78 km.
+
+---
+
+user
+
+A container holds 2.4 L and another holds 0.6 L. Find their combined capacity.
+
+assistant
+
+2.4 + 0.6 = 3 L.
+
+---
+
+user
+
+A container holds 8.4 L and another holds 2.1 L. Find their combined capacity.
+
+assistant
+
+8.4 + 2.1 = 10.5 L.
+
+---
+
+user
+
+A container holds 12.6 L and another holds 0.3 L. Find their combined capacity.
+
+assistant
+
+12.6 + 0.3 = 12.9 L.
+
+---
+
+user
+
+A wooden strip is 8.5 m long. After 2.25 m is removed, what length is left?
+
+assistant
+
+8.5 − 2.25 = 6.25 m.
+
+---
+
+user
+
+A wooden strip is 19.75 m long. After 4.5 m is removed, what length is left?
+
+assistant
+
+19.75 − 4.5 = 15.25 m.
+
+---
+
+user
+
+A wooden strip is 25.5 m long. After 12.25 m is removed, what length is left?
+
+assistant
+
+25.5 − 12.25 = 13.25 m.
+
+---
+
+user
+
+A printer uses 0.25 m of paper for each poster. How much paper is needed for 5 posters?
+
+assistant
+
+0.25 × 5 = 1.25 m.
+
+---
+
+user
+
+A printer uses 0.75 m of paper for each poster. How much paper is needed for 8 posters?
+
+assistant
+
+0.75 × 8 = 6 m.
+
+---
+
+user
+
+A printer uses 1.2 m of paper for each poster. How much paper is needed for 12 posters?
+
+assistant
+
+1.2 × 12 = 14.4 m.
+
+---
+
+user
+
+A bottle holds 2.4 L. The liquid is shared equally into 3 containers. How much goes into each?
+
+assistant
+
+2.4 ÷ 3 = 0.8 L.
+
+---
+
+user
+
+A bottle holds 8.4 L. The liquid is shared equally into 7 containers. How much goes into each?
+
+assistant
+
+8.4 ÷ 7 = 1.2 L.
+
+---
+
+user
+
+A bottle holds 12.6 L. The liquid is shared equally into 9 containers. How much goes into each?
+
+assistant
+
+12.6 ÷ 9 = 1.4 L.
+
+---
+
+user
+
+A parcel has a mass of 2.35 kg. A second parcel is 1.4 kg heavier. What is the second parcel's mass?
+
+assistant
+
+2.35 + 1.4 = 3.75 kg.
+
+---
+
+user
+
+A parcel has a mass of 8.75 kg. A second parcel is 2.5 kg heavier. What is the second parcel's mass?
+
+assistant
+
+8.75 + 2.5 = 11.25 kg.
+
+---
+
+user
+
+A parcel has a mass of 12.6 kg. A second parcel is 0.4 kg heavier. What is the second parcel's mass?
+
+assistant
+
+12.6 + 0.4 = 13 kg.
+
+---
+
+user
+
+A swimmer completes 0.25 km in each lap. What distance is covered in 4 laps?
+
+assistant
+
+0.25 × 4 = 1 km.
+
+---
+
+user
+
+A swimmer completes 0.75 km in each lap. What distance is covered in 8 laps?
+
+assistant
+
+0.75 × 8 = 6 km.
+
+---
+
+user
+
+A swimmer completes 1.2 km in each lap. What distance is covered in 12 laps?
+
+assistant
+
+1.2 × 12 = 14.4 km.
+
+---
+
+user
+
+A warehouse has 1,250 boxes. It receives 375 more and then ships 420. How many boxes remain?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 boxes.
+
+---
+
+user
+
+A warehouse has 8,400 boxes. It receives 1,600 more and then ships 2,750. How many boxes remain?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 boxes.
+
+---
+
+user
+
+A warehouse has 25,000 boxes. It receives 5,000 more and then ships 7,500. How many boxes remain?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 boxes.
+
+---
+
+user
+
+A school has 1,250 students. 375 new students join, then 420 leave. How many students are there now?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 students.
+
+---
+
+user
+
+A school has 8,400 students. 1,600 new students join, then 2,750 leave. How many students are there now?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 students.
+
+---
+
+user
+
+A school has 25,000 students. 5,000 new students join, then 7,500 leave. How many students are there now?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 students.
+
+---
+
+user
+
+A farmer harvests 1,250 kg of grain on Monday and 375 kg on Tuesday, then sells 420 kg. How much grain remains?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 kg of grain.
+
+---
+
+user
+
+A farmer harvests 8,400 kg of grain on Monday and 1,600 kg on Tuesday, then sells 2,750 kg. How much grain remains?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 kg of grain.
+
+---
+
+user
+
+A farmer harvests 25,000 kg of grain on Monday and 5,000 kg on Tuesday, then sells 7,500 kg. How much grain remains?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 kg of grain.
+
+---
+
+user
+
+A library starts with 1,250 books, buys 375 more, and lends out 420. How many books are in the library?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 books.
+
+---
+
+user
+
+A library starts with 8,400 books, buys 1,600 more, and lends out 2,750. How many books are in the library?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 books.
+
+---
+
+user
+
+A library starts with 25,000 books, buys 5,000 more, and lends out 7,500. How many books are in the library?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 books.
+
+---
+
+user
+
+A delivery centre has 1,250 parcels. It receives 375 parcels and delivers 420. How many parcels are still there?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 parcels.
+
+---
+
+user
+
+A delivery centre has 8,400 parcels. It receives 1,600 parcels and delivers 2,750. How many parcels are still there?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 parcels.
+
+---
+
+user
+
+A delivery centre has 25,000 parcels. It receives 5,000 parcels and delivers 7,500. How many parcels are still there?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 parcels.
+
+---
+
+user
+
+A stadium has 1,250 seats. It adds 375 seats, then reserves 420 for staff. How many seats remain for general use?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 seats.
+
+---
+
+user
+
+A stadium has 8,400 seats. It adds 1,600 seats, then reserves 2,750 for staff. How many seats remain for general use?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 seats.
+
+---
+
+user
+
+A stadium has 25,000 seats. It adds 5,000 seats, then reserves 7,500 for staff. How many seats remain for general use?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 seats.
+
+---
+
+user
+
+A shop has 1,250 notebooks and orders 375 more. It sells 420. How many notebooks are left?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 notebooks.
+
+---
+
+user
+
+A shop has 8,400 notebooks and orders 1,600 more. It sells 2,750. How many notebooks are left?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 notebooks.
+
+---
+
+user
+
+A shop has 25,000 notebooks and orders 5,000 more. It sells 7,500. How many notebooks are left?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 notebooks.
+
+---
+
+user
+
+A tank contains 1,250 litres. A pump adds 375 litres and a pipe releases 420 litres. How much water remains?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 L.
+
+---
+
+user
+
+A tank contains 8,400 litres. A pump adds 1,600 litres and a pipe releases 2,750 litres. How much water remains?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 L.
+
+---
+
+user
+
+A tank contains 25,000 litres. A pump adds 5,000 litres and a pipe releases 7,500 litres. How much water remains?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 L.
+
+---
+
+user
+
+A city has 1,250 residents in one area and 375 in another. If 420 residents move away, what is the combined population left?
+
+assistant
+
+1,250 + 375 − 420 = 1,205 residents.
+
+---
+
+user
+
+A city has 8,400 residents in one area and 1,600 in another. If 2,750 residents move away, what is the combined population left?
+
+assistant
+
+8,400 + 1,600 − 2,750 = 7,250 residents.
+
+---
+
+user
+
+A city has 25,000 residents in one area and 5,000 in another. If 7,500 residents move away, what is the combined population left?
+
+assistant
+
+25,000 + 5,000 − 7,500 = 22,500 residents.
+
+---
+
+user
+
+A factory makes 125 parts per day for 8 days, then sends 420 parts to a customer. How many parts remain?
+
+assistant
+
+(125 × 8) − 420 = 580 parts.
+
+---
+
+user
+
+A factory makes 840 parts per day for 12 days, then sends 2,750 parts to a customer. How many parts remain?
+
+assistant
+
+(840 × 12) − 2,750 = 7,330 parts.
+
+---
+
+user
+
+A factory makes 2,500 parts per day for 30 days, then sends 7,500 parts to a customer. How many parts remain?
+
+assistant
+
+(2,500 × 30) − 7,500 = 67,500 parts.
+
+---
+
+user
+
+A school buys 18 packs with 24 pens in each pack and gives 125 pens to students. How many pens remain?
+
+assistant
+
+(18 × 24) − 125 = 307 pens.
+
+---
+
+user
+
+A school buys 125 packs with 32 pens in each pack and gives 750 pens to students. How many pens remain?
+
+assistant
+
+(125 × 32) − 750 = 3,250 pens.
+
+---
+
+user
+
+A school buys 240 packs with 15 pens in each pack and gives 600 pens to students. How many pens remain?
+
+assistant
+
+(240 × 15) − 600 = 3,000 pens.
+
+---
+
+user
+
+A hall has 18 rows with 24 chairs per row. If 42 chairs are removed, how many chairs remain?
+
+assistant
+
+(18 × 24) − 42 = 390 chairs.
+
+---
+
+user
+
+A hall has 45 rows with 32 chairs per row. If 175 chairs are removed, how many chairs remain?
+
+assistant
+
+(45 × 32) − 175 = 1,265 chairs.
+
+---
+
+user
+
+A hall has 125 rows with 24 chairs per row. If 300 chairs are removed, how many chairs remain?
+
+assistant
+
+(125 × 24) − 300 = 2,700 chairs.
+
+---
+
+user
+
+A farm has 125 trees in each of 24 rows. If 420 trees are removed, how many trees remain?
+
+assistant
+
+(125 × 24) − 420 = 2,580 trees remain.
+
+---
+
+user
+
+A farm has 850 trees in each of 12 rows. If 2,750 trees are removed, how many trees remain?
+
+assistant
+
+(850 × 12) − 2,750 = 7,450 trees remain.
+
+---
+
+user
+
+A farm has 1,250 trees in each of 16 rows. If 7,500 trees are removed, how many trees remain?
+
+assistant
+
+(1,250 × 16) − 7,500 = 12,500 trees remain.
+
+---
+
+user
+
+A printer makes 125 pages each hour for 8 hours and then reprints 420 damaged pages. How many pages are printed in total?
+
+assistant
+
+(125 × 8) + 420 = 1,420 pages.
+
+---
+
+user
+
+A printer makes 840 pages each hour for 12 hours and then reprints 2,750 damaged pages. How many pages are printed in total?
+
+assistant
+
+(840 × 12) + 2,750 = 12,830 pages.
+
+---
+
+user
+
+A printer makes 2,500 pages each hour for 30 hours and then reprints 7,500 damaged pages. How many pages are printed in total?
+
+assistant
+
+(2,500 × 30) + 7,500 = 82,500 pages.
+
+---
+
+user
+
+A school receives 18 cartons containing 24 notebooks each, then donates 125 notebooks. How many notebooks are kept?
+
+assistant
+
+(18 × 24) − 125 = 307 notebooks.
+
+---
+
+user
+
+A school receives 125 cartons containing 32 notebooks each, then donates 750 notebooks. How many notebooks are kept?
+
+assistant
+
+(125 × 32) − 750 = 3,250 notebooks.
+
+---
+
+user
+
+A school receives 240 cartons containing 15 notebooks each, then donates 600 notebooks. How many notebooks are kept?
+
+assistant
+
+(240 × 15) − 600 = 3,000 notebooks.
+
+---
+
+user
+
+A sports club collects ₹1,250 from each of 8 teams and spends ₹420. How much money remains?
+
+assistant
+
+(₹1,250 × 8) − ₹420 = ₹9,580.
+
+---
+
+user
+
+A sports club collects ₹8,400 from each of 12 teams and spends ₹2,750. How much money remains?
+
+assistant
+
+(₹8,400 × 12) − ₹2,750 = ₹98,050.
+
+---
+
+user
+
+A sports club collects ₹25,000 from each of 16 teams and spends ₹7,500. How much money remains?
+
+assistant
+
+(₹25,000 × 16) − ₹7,500 = ₹392,500.
+
+---
+
+user
+
+A family saves ₹2,500 each month for 12 months, then spends ₹4,200. How much savings remain?
+
+assistant
+
+(₹2,500 × 12) − ₹4,200 = ₹25,800.
+
+---
+
+user
+
+A family saves ₹8,400 each month for 10 months, then spends ₹27,500. How much savings remain?
+
+assistant
+
+(₹8,400 × 10) − ₹27,500 = ₹56,500.
+
+---
+
+user
+
+A family saves ₹1,500 each month for 24 months, then spends ₹7,500. How much savings remain?
+
+assistant
+
+(₹1,500 × 24) − ₹7,500 = ₹28,500.
+
+---
+
+user
+
+A store sells 250 items at ₹35 each and pays ₹420 in delivery costs. What amount remains after paying delivery costs?
+
+assistant
+
+(₹250 × 35) − ₹420 = ₹8,330.
+
+---
+
+user
+
+A store sells 480 items at ₹125 each and pays ₹2,750 in delivery costs. What amount remains after paying delivery costs?
+
+assistant
+
+(₹480 × 125) − ₹2,750 = ₹57,250.
+
+---
+
+user
+
+A store sells 1,250 items at ₹80 each and pays ₹7,500 in delivery costs. What amount remains after paying delivery costs?
+
+assistant
+
+(₹1,250 × 80) − ₹7,500 = ₹92,500.
+
+---
+
+user
+
+A book has 850 pages. A student reads 45 pages each day for 4 days. How many pages remain unread?
+
+assistant
+
+850 − (45 × 4) = 670 pages remain unread.
+
+---
+
+user
+
+A book has 1,200 pages. A student reads 75 pages each day for 5 days. How many pages remain unread?
+
+assistant
+
+1,200 − (75 × 5) = 825 pages remain unread.
+
+---
+
+user
+
+A book has 2,400 pages. A student reads 320 pages each day for 6 days. How many pages remain unread?
+
+assistant
+
+2,400 − (320 × 6) = 480 pages remain unread.
+
+---
+
+user
+
+A vehicle travels 125 km each day for 5 days, then travels another 40 km. What is the total distance?
+
+assistant
+
+(125 × 5) + 40 = 665 km.
+
+---
+
+user
+
+A vehicle travels 240 km each day for 8 days, then travels another 125 km. What is the total distance?
+
+assistant
+
+(240 × 8) + 125 = 2,045 km.
+
+---
+
+user
+
+A vehicle travels 380 km each day for 12 days, then travels another 250 km. What is the total distance?
+
+assistant
+
+(380 × 12) + 250 = 4,810 km.
