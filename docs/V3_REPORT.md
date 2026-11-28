@@ -214,7 +214,17 @@ simulates a device with no Node.js and asserts exactly that.
 
 4. **No code execution sandbox.** Deliberately out of scope for V3.
 
-5. **The engines are separate from the model's weights.** A maths question is
+5. **Live-chat testing found three bugs that unit tests did not.** Shipping the
+   server and talking to it exposed (a) a single shared conversation across all
+   clients, which filled the 512-token context and degenerated replies to
+   `"This."`, (b) conversational follow-ups ("now do 77 * 33") missing the
+   router, and (c) verbal arithmetic ("subtract X from Y") unsupported even
+   though that phrasing is in the training data. All three are fixed, with
+   regression tests. The lesson is recorded because it generalises: the test
+   suite exercises the engines, but only a real conversation exercises the
+   *state*.
+
+6. **The engines are separate from the model's weights.** A maths question is
    answered by Python, with the model contributing nothing. That is the design,
    not a limitation — but it means "Boxz can add" is a statement about the
    engine, never about the network.
