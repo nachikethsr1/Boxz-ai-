@@ -197,6 +197,57 @@ simulates a device with no Node.js and asserts exactly that.
 | `test_prepare_v3.py` | parser regressions incl. the real data files |
 | `test_gradckpt.py` | checkpointed gradients match the reference |
 
+## 9b. Why the first SFT produced unusable text — root cause
+
+Asking the live server to "code a snake game" returned `"This."` and `"Three."`.
+Diagnosed in order, each step verified rather than assumed:
+
+| hypothesis | test | result |
+|---|---|---|
+| tokenizer corrupts data | encode→decode all 8,208 messages | **0 differ** — clean |
+| train/inference format differs | prompt copied byte-for-byte from SFT rows | identical format |
+| KV cache drifts | compare cached vs full logits | `max abs diff 0.0` |
+| conversation state leaked | inspect `prompt_tokens` | fixed separately (per-session) |
+| **not enough training** | teacher-forced accuracy on *train* rows | **55.0%** on seen data |
+
+55% per-token accuracy on data the model was trained on is the whole story: a
+20-token answer then has `0.55^20 ≈ 3e-6` chance of being fully correct, so
+errors compound into nonsense. Two concrete causes were found and fixed.
+
+**Cause 1 — it never converged.** The run was 1,200 steps × batch 4 = 4,800
+samples over 4,104 rows, i.e. **1.2 epochs**, and validation loss was *still
+falling* when the step limit stopped it (3.1013 → 3.0744 at the last eval). That
+is an arbitrary budget, not a converged model.
+
+**Cause 2 — a real bug: every row was trained double-terminated.** The shared
+template already appends `<|end|>` to assistant turns, and the SFT encoder
+appended a *second* one with weight 4.0. Verified: **4,104/4,104 rows** ended in
+`<|end|><|end|>`, which taught the model to emit the stop token twice. It also
+left the template's own `<|end|>` at weight 1.0 instead of the intended 4.0.
+
+**Capacity was never the limit.** Measured directly: fine-tuning the single
+506-token snake-game row for **30 steps** reaches **100% teacher-forced token
+accuracy**, and free-running `generate_ids` then reproduces **all 496 tokens**
+of that answer, correctly, ending with a clean stop — on 2 cores, in ~85 s, no
+OOM. A 26M model can hold a full game page in its weights. What it could not do
+was learn 4,100 answers from a 1.2-epoch pass.
+
+**Cause 3 — a data gap, not a bug.** The questions being asked had **zero**
+training rows: "what is a function", "what is a loop", "what is a promise",
+"teach me", "snake", "pong", "platformer", "event listener", "cors", and
+"let and var" all matched nothing. The scraped sources simply never covered
+code generation or beginner teaching. 29 hand-written, correct-by-construction
+rows were added (`data/sources/curated_code.jsonl`): 15 concept and debugging
+answers, 3 complete playable games, 5 teaching answers. All 29 fit the
+512-token window (the platformer lands at exactly 512) with **0 dropped**.
+
+A fourth, smaller bug was found on the way: `generate_ids` decoded with
+`skip_special_tokens=False` and kept the token that triggered the stop, so raw
+callers received a literal `<|end|>` glued to every reply.
+
+Every one of these is fixed and covered by a regression test. The retrain with
+the corrected encoder and 10 epochs is reported in §4.
+
 ## 10. Limitations — what V3 does **not** do
 
 1. **The language model is weak.** Measured on 30 held-out V3 rows:
