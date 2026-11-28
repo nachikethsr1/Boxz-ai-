@@ -1,0 +1,11 @@
+{
+  "title": "Boxz Web Code Corpus",
+  "licence": "MIT (three.js, jQuery) - licence verified via the GitHub API at fetch time",
+  "url": "",
+  "filename": "code_corpus/clean.json",
+  "fmt": "codejson",
+  "text_field": "code",
+  "sha256": null,
+  "notes": "Bounded slice of public MIT-licensed web-game code: three.js examples/*.html (Three.js, WebGL, shaders, animation, games) and jquery/src/*.js (idiomatic browser JavaScript). Fetched by python -m boxz.data.code_corpus, which verifies each project's licence through api.github.com before downloading and records the exact commit SHA per file in data/raw/code_corpus/manifest.json. Files are cleaned of vendored CDN includes; only the project's own markup and code is kept. Not committed to git (large); the fetcher and manifest are. Filtered by python -m boxz.data.code_quality: meta/link/title noise, lines repeated in >=40 files and near-duplicate pages are removed (32% smaller).",
+  "allowed_use": "MIT licensed source code; excerpts redistributed for model training with attribution retained in the manifest."
+}

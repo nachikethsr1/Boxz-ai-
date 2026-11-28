@@ -1,0 +1,1191 @@
+=== CATEGORY: 2d_arcade_games
+
+=== TEMPLATE: js_snake
+- Make a Snake game where the tail grows each time the player eats a dot.
+- I want the classic snake game with arrow key controls and a running score.
+- Create a browser snake game that ends when the snake hits a wall or itself.
+- Can you make the snake wrap around the screen instead of crashing at the edges?
+- Build a small grid-based snake game with a pause button and restart option.
+- Make the food appear in random empty cells and increase the snake speed over time.
+- I need a simple mobile-friendly snake game controlled with swipe gestures.
+- Add a best-score display to my JavaScript snake game and keep it between rounds.
+- Create a neon arcade snake game with a dark grid and glowing food.
+- Can the snake move continuously after I press a direction instead of moving one tile per key tap?
+- Make a two-player snake game where each player uses a different set of keys.
+- I want obstacles inside the arena that the snake must avoid while collecting food.
+- Build a snake game with three speed settings and a visible countdown before play starts.
+- My snake should get longer after eating fruit, and the game should show a game-over screen.
+
+=== TEMPLATE: js_pong
+- Create a two-paddle Pong game with a ball that bounces between the paddles.
+- Make a Pong clone where I control the left paddle with W and S.
+- I want to play table tennis against a simple computer opponent in the browser.
+- Add a score limit so the first player to reach seven points wins the match.
+- Build a local two-player Pong game using the keyboard for both paddles.
+- Can you make the ball accelerate slightly after every successful paddle hit?
+- Give the Pong court a retro arcade look with a dashed center line and pixel-style score.
+- Make the computer paddle easier at first and more accurate as the match continues.
+- Add a start screen, serve button, pause control, and match reset to my Pong game.
+- I need a Pong game that fits a phone screen and has touch controls for each paddle.
+- Make the ball change its bounce angle depending on where it strikes the paddle.
+- Create a tournament mode where two players can play several short Pong rounds.
+- Add sound effects when the ball hits a wall, paddle, or scoring edge.
+- The paddles should stay inside the court while the ball keeps moving smoothly.
+
+=== TEMPLATE: js_breakout
+- Make a brick breaker game where a paddle keeps the ball from falling off the screen.
+- Create a Breakout-style arcade game with rows of colored bricks and a score counter.
+- I want some bricks to need two hits before they disappear.
+- Add several levels with different brick layouts to my browser brick breaker.
+- Build a breakout game with a wide paddle and a ball that speeds up as bricks are cleared.
+- Can you add falling power-ups that make the paddle longer for a few seconds?
+- Make the player launch the ball by clicking or tapping the game area.
+- Add three lives and show how many remain beside the score.
+- I need a mobile version of brick breaker with a paddle that follows my finger.
+- Create a colorful retro brick game with a level-complete panel after every stage.
+- Put unbreakable blocks and bonus bricks into the later levels.
+- Make the ball bounce naturally from the sides of bricks and the paddle.
+- Add a pause menu and a button to retry the current brick breaker level.
+- Show a victory message when the last brick is removed and let me continue to the next level.
+
+=== TEMPLATE: js_space_shooter
+- Create a 2D space shooter where my ship moves sideways and fires at incoming targets.
+- Make an arcade spaceship game with enemy formations and a score for each hit.
+- I want to dodge asteroids while shooting small enemy ships in a browser game.
+- Add waves of enemies that become quicker after each completed round.
+- Build a space shooter with keyboard movement and a mouse-controlled aiming option.
+- Give the player three hearts and show a game-over panel when they run out.
+- Can you add a large final enemy with a health bar at the end of the space game?
+- Make different colored enemy ships follow different movement patterns.
+- Add collectible shields and rapid-fire boosts that disappear after a short time.
+- I need a vertical scrolling space shooter that works with touch buttons on mobile.
+- Create a simple pixel-art galaxy background that scrolls behind the player ship.
+- Let me choose between three ships, each with a different firing pattern.
+- Add a wave counter, high score, and restart control to the space arcade game.
+- Make enemy projectiles and player shots collide with the correct objects.
+
+=== TEMPLATE: js_flappy_game
+- Make a Flappy Bird-style game where a little bird flies through gaps in pipes.
+- Create a one-button flying game that uses a tap to make the character flap upward.
+- I want the pipes to move from right to left and award a point when I pass them.
+- Add a start screen and a retry button after the bird touches a pipe or the ground.
+- Build a flappy game with increasing pipe speed as the score gets higher.
+- Can the gaps between pipes change slightly so each run feels different?
+- Make a cute flying game with a balloon character and floating obstacle gates.
+- Add a medal display based on the final score in my pipe-dodging game.
+- I need the flying character to respond to both the spacebar and screen taps.
+- Create a day-and-night background cycle while the bird keeps flying.
+- Show the best score next to the current score without interrupting gameplay.
+- Make the player fall with gravity and flap upward only when the input is pressed.
+- Add a short countdown before the first obstacle enters the screen.
+- Give the game a simple sound toggle and a clean mobile layout.
+
+=== TEMPLATE: js_tetris
+- Build a Tetris game where falling blocks can be rotated and fitted into complete rows.
+- Make a block-stacking puzzle with a preview of the next piece.
+- I want a JavaScript Tetris board with keyboard controls and a score display.
+- Add a hold-piece feature so I can save one shape for later in the round.
+- Create a small-screen Tetris game with touch buttons for rotate and move.
+- Make completed rows disappear and award more points when several clear together.
+- Show the current level and increase the falling speed after every ten cleared lines.
+- Add a ghost outline showing where the active block will land.
+- Give the blocks a clean pastel color theme and the board a visible grid.
+- Can the game pause when I press P and resume when I press it again?
+- Make a classic falling-tile game that ends when the stack reaches the top.
+- Add a restart option and remember the highest score during the browser session.
+- Let players choose a slower or faster starting speed before beginning Tetris.
+- Create a two-player split-screen block-stacking challenge on one webpage.
+
+=== TEMPLATE: js_asteroids
+- Make an Asteroids-style game where a small ship rotates and flies around a 2D screen.
+- Create a space arcade game in which I break large asteroids into smaller pieces.
+- I want the ship to wrap around the screen edges instead of stopping at the border.
+- Add a thrust control, rotation keys, and a button to fire projectiles.
+- Make the asteroid fragments split again when a projectile hits them.
+- Build a classic vector-style asteroid game with lives and a high-score counter.
+- Can the player earn bonus points for clearing a whole group of space rocks?
+- Add a brief invulnerability period after the ship loses a life.
+- Give the asteroids different sizes and drift directions each round.
+- I need touch controls for rotating, thrusting, and firing on a phone.
+- Add a start overlay that explains the controls before the first wave begins.
+- Make the background a simple star field while the ship moves freely in every direction.
+- Create a challenge mode with a timer and increasingly crowded asteroid fields.
+- Show a replay button when the ship has used all of its lives.
+
+=== TEMPLATE: js_dodge_game
+- Create a game where I move a small square to avoid blocks falling from above.
+- Make a dodge-the-obstacles arcade game with a score that rises while I survive.
+- I want to steer a car between traffic lanes and avoid the vehicles coming toward me.
+- Add coins between the falling hazards so the player can collect bonus points.
+- Build a simple survival game with left and right controls and gradually faster objects.
+- Can the obstacles spawn in different lanes instead of following one fixed pattern?
+- Make a mobile dodging game with large on-screen left and right buttons.
+- Add a shield pickup that protects the player from one collision.
+- Show the time survived and the best run when the player loses.
+- Create a falling-shapes game where I have to move through the safe gaps.
+- Give the player a short dash move with a cooldown indicator.
+- Make the arena narrow near the end so dodging becomes more challenging.
+- Add a pause control and a clear restart flow to the obstacle dodging game.
+- Use simple geometric graphics and smooth movement for a lightweight browser game.
+
+=== TEMPLATE: js_memory_game
+- Make a card memory game where I flip two tiles and try to find matching pairs.
+- Create a matching-pairs game with animal pictures hidden face down.
+- I want a memory game that counts my moves and total completion time.
+- Add easy, medium, and hard board sizes to the card matching game.
+- Build a memory challenge with symbols instead of images so it loads quickly.
+- Can matching cards stay visible while mismatched cards turn face down after a short delay?
+- Make a two-player memory game that alternates turns after each pair attempt.
+- Add a timer that starts when the first card is flipped.
+- Show a congratulations panel when every pair has been found.
+- Create a colorful memory game that I can play with taps on a phone.
+- Let me restart the board and shuffle all the cards again.
+- Add a limited-moves mode where I must find every pair before the counter reaches zero.
+- Use different themes such as fruit, space icons, and friendly creatures.
+- Remember the best time for each difficulty level in the browser.
+
+=== TEMPLATE: js_whack_a_mole
+- Create a whack-a-mole game where creatures pop out of holes and I click them quickly.
+- Make a reaction game with several holes and a target that appears for a brief moment.
+- I want a score for each correct tap and a penalty for clicking an empty hole.
+- Add a thirty-second round timer to my whack-a-mole browser game.
+- Build a cute garden game where different characters appear from random spots.
+- Can the targets appear faster as the player gets more points?
+- Make it work on a touchscreen with large targets that are easy to tap.
+- Add a combo bonus when I hit several targets in a row without missing.
+- Show the final score and let me start another round immediately.
+- Include a few harmless decoy characters that should not be clicked.
+- Create a whack-a-mole game with three difficulty settings and a countdown.
+- Make the holes light up briefly before a character appears.
+- Add a local best-score record and a sound on or off toggle.
+- I need a quick arcade reaction test with targets appearing in a different order each round.
+
+=== CATEGORY: 2d_platformer_games
+
+=== TEMPLATE: js_platformer
+- Make a 2D platformer where a character runs, jumps, and lands on floating platforms.
+- I want a browser platform game with gravity, solid ground, and simple keyboard controls.
+- Add a double jump that lets the player reach higher ledges.
+- Create a platform level with moving platforms and a flag at the finish.
+- Make the camera follow the player as the character explores a wider level.
+- Add checkpoints so I do not have to restart from the beginning after falling.
+- Build a retro pixel platformer with a player, gaps, and a few roaming enemies.
+- Can the character crouch and jump through special one-way platforms?
+- Give the player a run button and make the jump height depend on how long it is held.
+- Add hearts, collectible stars, and a level-complete screen to the platform game.
+- I need the controls to work with touch buttons on a landscape phone screen.
+- Create a short platform level that teaches movement before introducing harder jumps.
+- Make platforms disappear a moment after the character steps on them.
+- Add a restart button and show the number of coins collected in the level.
+
+=== TEMPLATE: js_side_scroller
+- Create a side-scrolling game where the hero keeps moving through a long 2D world.
+- Make a browser side scroller with parallax hills, platforms, and a moving camera.
+- I want the world to scroll when the player reaches the middle of the screen.
+- Add enemies that patrol the ground while the character jumps over them.
+- Build a horizontal adventure with a start area, a cave section, and an exit gate.
+- Make the player collect tokens while the scenery moves from right to left.
+- Can the camera stop at the end of each level instead of showing empty space?
+- Add checkpoints and a progress bar for a long side-scrolling stage.
+- Create a side-view game with ladders, platforms, and a few hidden paths.
+- Let the player move left to revisit an earlier section of the scrolling map.
+- Give the game a colorful hand-drawn look using simple 2D shapes.
+- Add a boss-sized obstacle at the end of the scrolling stage with a health meter.
+- Make the player animation switch between idle, running, and jumping states.
+- I want a side scroller that pauses when the player reaches a level exit.
+
+=== TEMPLATE: js_runner
+- Make an endless runner where the character automatically moves forward and jumps over barriers.
+- Create a browser running game with sliding, jumping, and obstacles in three lanes.
+- I want a runner where the speed gradually increases the longer I survive.
+- Add collectible coins along the path and a magnet power-up that attracts them.
+- Build a simple endless runner controlled by one tap to jump.
+- Can the runner switch lanes with the left and right arrow keys?
+- Add a distance counter and show the farthest run on the game-over screen.
+- Make the track change between a park, a city street, and a tunnel.
+- Include rolling barriers that require the player to slide underneath.
+- I need large mobile controls for jumping and ducking during the run.
+- Add a temporary speed boost and make its remaining time visible.
+- Create a runner where the path contains gaps that must be jumped across.
+- Give the character three chances before the run ends.
+- Make each new attempt use a different arrangement of obstacles and rewards.
+
+=== TEMPLATE: js_jump_game
+- Build a simple jumping game where a character hops between platforms to climb upward.
+- Make a vertical jumper with platforms that appear higher as the camera follows the player.
+- I want to steer a bouncing character left and right while it jumps automatically.
+- Add spring platforms that launch the character much higher than normal.
+- Create a high-score jumping challenge with a height meter on the side.
+- Can the player land on a platform and bounce without pressing the jump key again?
+- Make some platforms crumble shortly after the character touches them.
+- Add moving ledges and a few safe platforms to the vertical jump game.
+- Give the player a limited air boost that can be used once between landings.
+- I need a phone-friendly jumper with tilt-free left and right touch buttons.
+- Show the highest height reached and offer a retry after the character falls.
+- Create a low-gravity jump game with slow floating movement.
+- Add cloud platforms and collectible stars along the climbing route.
+- Make a timed jumping round where I try to reach the top before time runs out.
+
+=== TEMPLATE: js_coin_collecting_game
+- Create a platform game focused on collecting every coin before reaching the exit.
+- Make a small 2D level where the player searches for hidden coins behind platforms.
+- I want coins to spin, disappear when collected, and update a counter on screen.
+- Add bonus coins in risky places that require careful jumps to reach.
+- Build a treasure-collecting platformer with a locked door that opens after enough coins.
+- Can you scatter gems across several connected rooms and track the total?
+- Make the coin counter show both the amount collected and the level total.
+- Add a secret coin in each stage for players who explore the edges of the map.
+- Create a short platform challenge where collecting all coins unlocks the finish gate.
+- Give the player a magnet item that pulls nearby coins toward the character.
+- I need an animated coin pickup effect and a small score popup.
+- Add a level select screen that shows how many coins I found in every stage.
+- Make some coins move along a path above dangerous gaps.
+- Let the player replay a completed level to find any coins they missed.
+
+=== TEMPLATE: js_obstacle_platformer
+- Make a platformer built around timed jumps over moving spikes and floor hazards.
+- Create a precision jumping game with narrow ledges and disappearing platforms.
+- I want a character to dodge rolling blocks while crossing a series of platforms.
+- Add swinging obstacles that move back and forth above the jump path.
+- Build a trap-filled level with checkpoints placed after difficult sections.
+- Can the player slide under low barriers and jump across wider gaps?
+- Make the hazards reset when I touch them but keep the last checkpoint active.
+- Add a practice mode with slower obstacle movement for learning the level.
+- Create a platform challenge where the safe floor tiles change every few seconds.
+- Show a timer for each obstacle course and record the fastest completion.
+- Give the player a short dash to pass through a moving gate at the right moment.
+- I need clear visual warnings before a floor section becomes unsafe.
+- Make each stage introduce one new obstacle type before combining them.
+- Add a finish marker and a retry button for this 2D obstacle platformer.
+
+=== CATEGORY: 2d_action_games
+
+=== TEMPLATE: js_top_down_action
+- Create a top-down arena game where I move around and launch small energy shots at targets.
+- Make a 2D action game with eight-direction movement and simple enemy chasing behavior.
+- I want a player sprite that can move around obstacles and fire toward the mouse pointer.
+- Add health hearts, a short attack cooldown, and a score for clearing the room.
+- Build a top-down browser adventure with collectible keys and moving hazards.
+- Can enemies patrol until they notice the player, then follow at a steady speed?
+- Give the player a rolling dodge move with a visible cooldown bar.
+- Make projectiles disappear when they hit a wall or an enemy.
+- Add a few rooms connected by doors and show the current room name.
+- Create a small twin-stick style game with keyboard movement and mouse aiming.
+- I need touch joysticks for movement and a separate action button on mobile.
+- Add a score multiplier for avoiding obstacles without taking damage.
+- Make the arena walls block both the player and moving targets.
+- Show a result screen with time played, score, and a retry button.
+
+=== TEMPLATE: js_survival_arena
+- Make a survival arena where I stay inside a small map and avoid waves of moving enemies.
+- Create a top-down game where the goal is to survive as long as possible.
+- I want enemies to approach from the edges while I collect items around the arena.
+- Add a timer, health bar, and survival record to the arena game.
+- Build a simple circular arena with obstacles that can block enemy movement.
+- Can a temporary speed boost help the player escape a crowded area?
+- Make the number of opponents grow slowly as the survival timer increases.
+- Add healing pickups that appear occasionally in safe parts of the map.
+- Give each enemy a different movement speed so the arena feels less predictable.
+- Create an endless survival challenge with no levels and a single high-score goal.
+- I need a pause button and a clear restart option for the survival round.
+- Show a warning before a new group of enemies enters the arena.
+- Let the player dash between obstacles while the enemies continue following.
+- Make the final panel explain how long the player survived and how many items were collected.
+
+=== TEMPLATE: js_enemy_dodge
+- Create a game where I weave through a crowd of enemies without touching them.
+- Make a small 2D dodging challenge with a player, moving pursuers, and a timer.
+- I want to avoid enemies that follow my character around a single-screen arena.
+- Add safe zones that open and close as the round continues.
+- Build an enemy-dodging game where each collision removes one heart.
+- Can the pursuers change direction when they reach the arena boundary?
+- Add a short dash that lets the player slip past a nearby enemy.
+- Make the enemies move in different patterns instead of all following the same path.
+- Show the longest time survived and a replay button when the round ends.
+- I need arrow key controls plus touch controls for dodging on a phone.
+- Create a level with moving barriers that make the escape route change.
+- Add collectible stars that are worth points but placed near the moving enemies.
+- Give the game a simple difficulty selector for slow, normal, and fast enemies.
+- Make the player movement smooth and keep every enemy inside the play area.
+
+=== TEMPLATE: js_wave_survival
+- Build a wave survival game where each new round sends in more moving targets.
+- Create a browser arena with a wave number and a short break between rounds.
+- I want the next wave to begin only after every current enemy has left the screen.
+- Add a countdown banner before each group of opponents appears.
+- Make later waves include quicker enemies and a larger number of targets.
+- Give the player a health meter and restore a little health after every third wave.
+- Can I choose one of three upgrades between completed waves?
+- Add a bonus score for finishing a wave without losing a heart.
+- Create a survival mode with a final challenge round after wave ten.
+- Show how many opponents remain in the current wave.
+- Make the arena layout change after every few rounds to keep the challenge fresh.
+- I need a restart option that begins again from wave one.
+- Add a local record for the highest wave reached.
+- Use simple geometric characters and 2D collision detection for the wave game.
+
+=== TEMPLATE: js_click_action_game
+- Make a click-based action game where I tap targets before they disappear.
+- Create a browser reaction challenge with targets popping up in random positions.
+- I want to click falling objects to stop them from reaching the bottom edge.
+- Add different target types that give different point values.
+- Build a quick reflex game with a thirty-second timer and a miss counter.
+- Can the targets shrink over time so they become harder to hit?
+- Make bonus targets appear briefly and award extra points when clicked.
+- Show a streak counter when I hit several targets without missing.
+- Create a mouse-only arcade game with a clear score and restart screen.
+- I need the action targets to be large enough for touch screens.
+- Add decoy targets that subtract points if I click them.
+- Make the round difficulty increase by showing more targets at once.
+- Include a practice option without a timer so I can learn the target patterns.
+- Display my accuracy percentage after each click challenge.
+
+=== CATEGORY: 2d_puzzle_games
+
+=== TEMPLATE: js_sliding_puzzle
+- Create a sliding number puzzle where I move tiles into the correct order.
+- Make a fifteen-puzzle board with one empty square and numbered tiles.
+- I want to shuffle a picture into squares and slide them until the image is restored.
+- Add a move counter and a timer to the sliding tile challenge.
+- Build a 3 by 3 sliding puzzle with a shuffle button and a solved message.
+- Can the game check that a shuffled board is solvable before starting?
+- Make a harder version with a 4 by 4 grid and smaller numbered pieces.
+- Show the original picture beside the scrambled board as a reference.
+- Add a hint button that briefly highlights a tile that can move toward the solution.
+- Create a touch-friendly sliding puzzle that works with taps on mobile.
+- Let me choose a board size before the number tiles are shuffled.
+- Add a best-move record for each puzzle size.
+- Make the tiles slide smoothly into the empty space instead of jumping instantly.
+- Show the number of moves I used after the puzzle is completed.
+
+=== TEMPLATE: js_match_three
+- Make a match-three game where swapping neighboring gems clears lines of three or more.
+- Create a colorful candy matching board with a score target for each level.
+- I want special pieces to appear when I match four gems in one move.
+- Add a limited-moves challenge and show how many moves remain.
+- Build a match-three puzzle with fruit icons and cascading pieces after a match.
+- Can the board refill from the top after matched items disappear?
+- Make a level map with several stages and different point goals.
+- Add a timer mode where I try to earn as many points as possible.
+- Create a simple match-three game that I can play by swapping tiles with touch.
+- Show a small animation when a row or column of pieces is cleared.
+- Include blocked cells that make certain matches more difficult.
+- Give each level a different target, such as clearing ice or collecting fruit.
+- Add a hint animation when no move is made for a few seconds.
+- Display the final stars earned based on the score at the end of a stage.
+
+=== TEMPLATE: js_tile_puzzle
+- Create a tile puzzle where I rotate pieces until the picture or pattern connects.
+- Make a grid of path tiles that I can turn to connect an entrance to an exit.
+- I want to arrange colored tiles so matching edges touch one another.
+- Build a pipe-connection puzzle where rotating sections creates a complete route.
+- Add a move count and a reset button to the tile arrangement game.
+- Can some tiles be locked so I have to work around their positions?
+- Make a picture pattern puzzle with a target image shown above the board.
+- Create levels where I must rotate every tile to form one continuous path.
+- Let me drag tiles into empty cells instead of using arrow buttons.
+- Add a timer for each board and keep the best completion time.
+- Make the tile grid grow from four squares per side to six in later stages.
+- Show a clear success message as soon as the correct arrangement is reached.
+- Use simple icons and contrasting colors so the tile connections are easy to read.
+- I need a mobile-friendly tile puzzle with large tap targets and smooth rotation.
+
+=== TEMPLATE: js_maze_game
+- Build a maze game where I guide a small character from the entrance to the exit.
+- Create a randomly generated 2D maze with a visible player marker.
+- I want a maze with keys that unlock doors between different sections.
+- Add a timer and track how many steps it takes me to reach the exit.
+- Make a dark maze where a small circle of light follows the player.
+- Can you create a new maze whenever I press the generate button?
+- Build a maze challenge with moving gates that open and close on a schedule.
+- Add several difficulty sizes, from a tiny maze to a large winding one.
+- Make the player move one cell at a time using arrow keys or screen buttons.
+- Show a small map that reveals only the paths I have already explored.
+- Create a maze with checkpoints so I can resume from the last safe room.
+- Add coins in dead ends to reward exploring every corridor.
+- Make the finish tile glow when I have collected all required keys.
+- I want a maze game with a restart control and a new-layout option.
+
+=== TEMPLATE: js_number_puzzle
+- Create a number puzzle where I combine values to reach a target number.
+- Make a 2048-style grid where equal numbered tiles merge when moved together.
+- I want a math puzzle that asks me to arrange digits to make a given total.
+- Add a target value at the top and show whether my tile choices can reach it.
+- Build a number sequence game where I fill in the missing value in each row.
+- Can the puzzle generate a fresh set of numbers every time I start a round?
+- Make a small arithmetic challenge with addition and subtraction tiles.
+- Add a limited number of moves to the number-merging board.
+- Create a daily number challenge with a new target and a score record.
+- Show a helpful hint after I have been stuck without making a move for a while.
+- Make the number tiles slide smoothly and merge when matching values meet.
+- Add easy and hard modes with different grid sizes and target totals.
+- I need a touch-controlled number grid that swipes in four directions.
+- Show the final number reached and offer a clean way to play again.
+
+=== TEMPLATE: js_logic_puzzle
+- Make a logic puzzle where I use clues to work out which person owns each pet.
+- Create a browser deduction game with a grid for marking true and false clues.
+- I want a sequence puzzle where players identify the rule and choose the next symbol.
+- Build a simple light-switch puzzle where one click changes nearby cells too.
+- Add a set of clues and let me submit an answer when I think the grid is solved.
+- Can the game explain which clue I have not satisfied after a wrong attempt?
+- Make a color-and-symbol logic challenge with one correct arrangement.
+- Create several short riddles that unlock the next puzzle after a correct answer.
+- Add a hint system that reveals one clue at a time.
+- I want a puzzle about seating people according to a list of rules.
+- Show a move counter and a reset option for the logic grid.
+- Make the puzzles progress from beginner clues to more complicated combinations.
+- Build a browser puzzle where I must switch every tile to the required state.
+- Display a success message when all the logical conditions are satisfied.
+
+=== TEMPLATE: js_path_finding_puzzle
+- Create a path puzzle where I draw a route from the start tile to the goal.
+- Make a grid game where the player connects matching colored endpoints without crossing paths.
+- I want to guide a character through a board while avoiding blocked squares.
+- Build a path-drawing puzzle with numbered checkpoints that must be visited in order.
+- Add a limited line length so the route must be planned carefully.
+- Can the puzzle show a warning when my path crosses an existing route?
+- Create levels with walls, gates, and keys that open parts of the grid.
+- Make a puzzle where I connect every square while drawing one continuous route.
+- Add a reset-path button and a move counter below the board.
+- I need drag-to-draw controls that work well on a touchscreen.
+- Show a ghost preview of the route while I drag across neighboring cells.
+- Build a color-connection puzzle with several pairs of matching endpoints.
+- Make the board larger in later levels and add more obstacles to navigate around.
+- Display the number of stars earned based on how efficiently I complete each path.
+
+=== CATEGORY: interactive_websites
+
+=== TEMPLATE: html_landing_page
+- Create a responsive landing page for a small game studio with a hero section and call-to-action button.
+- I need a product launch page with a headline, feature highlights, and a signup form.
+- Make a clean landing page for a student club with event details and a contact section.
+- Build a one-page website for a local bakery with opening hours and a menu preview.
+- Can you design a startup homepage with a navigation bar and three service cards?
+- Make the hero section fill the screen and include a button that scrolls to the features.
+- Create a mobile-first landing page with a testimonial carousel and a newsletter field.
+- I want a simple page that introduces my browser game and links to the play screen.
+- Add a pricing section with three plans and highlight the middle option.
+- Build a promotional webpage with a countdown to an upcoming event.
+- Create a landing page for a photography service with a large banner image and booking link.
+- Make a dark themed homepage with a short description and a clear get started button.
+- Add a FAQ accordion and a footer with social links to the landing page.
+- I need a responsive landing page with smooth scrolling and a compact mobile navigation.
+
+=== TEMPLATE: html_portfolio
+- Build a personal portfolio website that introduces me and displays my coding projects.
+- Make a portfolio with project cards, skill badges, and a contact section.
+- I want a simple student portfolio with an about section and a downloadable resume link.
+- Create a developer portfolio with animated project previews and links to live demos.
+- Add a filter so visitors can show only my game projects or website projects.
+- Make a responsive portfolio with a fixed navigation bar and smooth section scrolling.
+- Build an art portfolio where each work opens a larger preview when clicked.
+- Create a portfolio homepage with a short introduction, recent work, and social profiles.
+- I need a timeline section showing my learning journey and completed projects.
+- Add a dark mode toggle to my portfolio without changing the page layout.
+- Make the project cards display a title, screenshot, tools used, and a view-project link.
+- Create a one-page portfolio that looks good on both phones and desktop screens.
+- Add a contact form with name, email, and message fields to the portfolio.
+- Give my portfolio a minimal layout with large typography and subtle hover effects.
+
+=== TEMPLATE: html_product_page
+- Create a product page for wireless headphones with a gallery, price, and feature list.
+- Make a single item page with color choices, quantity controls, and an add-to-cart button.
+- I need a product detail page for a handmade notebook with photos and specifications.
+- Build a product page that shows customer reviews below the main description.
+- Add thumbnail images that update the large product preview when selected.
+- Create a page for a digital course with lesson highlights and an enrollment button.
+- Make a comparison section showing the differences between three product models.
+- Add an expandable details panel for size, materials, and delivery information.
+- I want a product page with a sticky purchase panel on wide screens.
+- Build a responsive product layout with a rating summary and review count.
+- Make the selected color option update the product image and displayed label.
+- Create a product page for a board game with a trailer area and gameplay features.
+- Add a small cart summary that updates when I change the quantity.
+- Give the product page a clean store design with a clear primary purchase action.
+
+=== TEMPLATE: html_dashboard
+- Build an admin dashboard with a sidebar, summary cards, and a recent activity list.
+- Create a dashboard that displays sample sales totals and a simple chart.
+- I want a student dashboard with assignments, progress indicators, and upcoming dates.
+- Make a responsive analytics page with tabs for overview, reports, and settings.
+- Add a filter bar so I can switch the dashboard data between different months.
+- Create a task dashboard with status columns for pending, active, and completed work.
+- Build a dashboard with clickable navigation and a collapsible side menu.
+- Show a profile summary, notification count, and recent messages on the dashboard.
+- Make the dashboard cards rearrange into one column on narrow phone screens.
+- Add a date range selector that updates the visible sample statistics.
+- I need an inventory dashboard with item counts and low-stock warning labels.
+- Create a dashboard where each summary card opens a more detailed panel.
+- Add a theme switch and remember the user's selected dashboard appearance.
+- Make a compact dashboard with a header, side navigation, and main content area.
+
+=== TEMPLATE: html_profile_page
+- Create a profile page with an avatar, bio, interests, and social links.
+- Make a user profile layout with an editable display name and short biography.
+- I want a creator profile page showing followers, posts, and a follow button.
+- Build a profile page with tabs for about, projects, and activity.
+- Add a cover banner above the user's profile photo and introduction.
+- Make a public profile card that expands into a full page when selected.
+- Create a gaming profile with favorite games, badges, and recent achievements.
+- Add an edit profile panel that opens when the edit button is clicked.
+- Show a list of recent posts with like buttons and a comment count.
+- Make the profile page adapt to mobile screens without hiding the important details.
+- Build a profile for a fictional character with stats and a short backstory.
+- Add a contact button that reveals a small message form on the profile.
+- Create a profile page with a dark header and a bright content panel.
+- Let visitors switch between grid and list layouts for the profile's projects.
+
+=== TEMPLATE: html_interactive_story
+- Make an interactive story where readers choose between two paths at each chapter.
+- Create a browser adventure with dialogue boxes and choices that change the ending.
+- I want a visual story page where clicking a character reveals their next line.
+- Build a mystery story with clickable clues that appear in an evidence panel.
+- Add a progress tracker so readers can see which chapters they have completed.
+- Make a branching story where earlier choices affect which scenes become available.
+- Create a storybook with next and previous buttons and gentle page transitions.
+- Can the story show a different conclusion depending on the reader's collected items?
+- Add character profiles that open when their names are clicked inside the story.
+- Make an interactive history page with clickable events on a timeline.
+- Create a short fantasy adventure with a map and several clickable locations.
+- I need a text adventure with a choice panel and a simple inventory display.
+- Add a save progress button so a reader can return to the same chapter later.
+- Build an interactive story that works smoothly on a phone screen.
+
+=== TEMPLATE: html_quiz_page
+- Create a quiz website with multiple-choice questions and a final score.
+- Make a science quiz where the next question appears after I select an answer.
+- I want a timed quiz with a countdown and a result summary at the end.
+- Build a trivia page with ten questions and a progress indicator.
+- Add instant feedback that tells me whether each selected answer is correct.
+- Create a quiz with a few categories that users can choose before starting.
+- Make a practice test where wrong answers can be reviewed after submission.
+- Add a restart quiz button and shuffle the questions for every new attempt.
+- I need a mobile-friendly quiz with large option buttons and readable text.
+- Build a personality quiz where the final result depends on the selected answers.
+- Show one question at a time instead of displaying the entire quiz at once.
+- Add a leaderboard area that displays sample scores from previous attempts.
+- Make the quiz show a short explanation after each answer is submitted.
+- Create a quiz page with a start screen, question area, and results screen.
+
+=== TEMPLATE: html_image_gallery
+- Build an image gallery with clickable thumbnails and a larger preview area.
+- Create a responsive photo gallery that opens images in a lightbox when clicked.
+- I want a grid of artwork that can be filtered by category.
+- Add previous and next controls to browse images in the enlarged view.
+- Make an image gallery with captions that appear when I hover over each picture.
+- Create a masonry-style gallery that rearranges neatly on smaller screens.
+- Add a favorite button to each gallery image and a view for saved favorites.
+- Build a travel photo gallery with location labels and a search field.
+- Make the gallery load more pictures when the visitor reaches the bottom.
+- I need a simple image slider with dots showing the current slide.
+- Add category tabs for landscapes, portraits, and illustrations.
+- Create a full-screen photo viewer that closes when I press Escape.
+- Show image descriptions in a side panel when a thumbnail is selected.
+- Make a clean portfolio gallery with smooth transitions between images.
+
+=== TEMPLATE: html_music_visualizer
+- Create a music visualizer webpage with animated bars that respond to audio input.
+- Make a browser audio player with a colorful waveform display.
+- I want a circular visualizer that pulses while a sample audio track plays.
+- Add play, pause, and volume controls beside the visualization.
+- Build an audio visualizer with several display styles I can switch between.
+- Can the bars change height based on the sound frequencies from the playing audio?
+- Create a music page with a track list and a visualizer area above it.
+- Add a file selection control so I can choose an audio file from my device.
+- Make the background glow gently in time with the music.
+- Show the current track title and playback progress below the visualizer.
+- I need a simple equalizer-style animation that runs with a demo sound.
+- Add a toggle between vertical bars, a waveform, and circular rings.
+- Make the controls usable on a phone while the visualizer fills the remaining space.
+- Create a minimal music visualizer with a dark background and responsive audio graphics.
+
+=== TEMPLATE: html_animated_background
+- Make a homepage with a gently moving gradient background behind the content.
+- Create an interactive website background with floating geometric shapes.
+- I want a starry animated backdrop that slowly drifts behind the landing page.
+- Build a page with soft color blobs that move around without blocking buttons.
+- Add a subtle animated grid background that responds to mouse movement.
+- Make a particle-like background using ordinary 2D browser elements.
+- Create a calm wave pattern that moves horizontally behind the hero section.
+- I need a dark page with tiny glowing dots that fade in and out.
+- Add a moving gradient mesh effect to the top section of my website.
+- Make the background switch between a few color themes when a button is clicked.
+- Create floating bubbles that rise slowly and disappear near the top of the page.
+- Keep the animated background lightweight and stop its motion when reduced motion is preferred.
+- Build a homepage where the background changes gently as the user scrolls.
+- Add a moving abstract pattern while keeping the text and navigation easy to read.
+
+=== CATEGORY: dom_interactions
+
+=== TEMPLATE: js_draggable_objects
+- Make several cards that I can drag around a board and place wherever I like.
+- Create draggable notes that stay inside a fixed workspace area.
+- I want to rearrange photo tiles by dragging them with the mouse.
+- Add snap points so draggable objects line up when they are dropped nearby.
+- Build a desktop-style page where windows can be dragged by their title bars.
+- Can the dragged item become slightly transparent while I am moving it?
+- Make a simple kanban board where task cards can be moved freely within a column.
+- Add a reset layout control that returns every draggable object to its starting place.
+- I need drag movement to work with touch as well as a mouse.
+- Create movable stickers that users can position over a blank poster area.
+- Show a small label with the coordinates of the object while it is being dragged.
+- Make draggable boxes avoid leaving the edges of their container.
+- Add a grid background and snap each object to the nearest grid cell.
+- Build a page where I can move colored panels around to design my own layout.
+
+=== TEMPLATE: js_click_counter
+- Create a click counter with plus, minus, and reset buttons.
+- Make a large tap counter that increases once every time I press the main button.
+- I want a counter that tracks clicks per second during a short challenge.
+- Add separate counters for two players competing to reach a target number.
+- Build a page that counts how many times each colored button has been clicked.
+- Can the counter save its current value when I refresh the browser?
+- Make a clicker with a progress bar that fills as the count approaches one hundred.
+- Add a sound toggle and a small animation each time the counter increases.
+- Create a button-mashing challenge with a ten-second countdown.
+- Show the total clicks and the highest clicks-per-second result.
+- I need a counter with an undo button for correcting an accidental tap.
+- Make a simple scoreboard with separate plus and minus controls for each team.
+- Add a target number and display a success message when the count reaches it.
+- Create a mobile-friendly tally counter with a reset confirmation.
+
+=== TEMPLATE: js_drag_drop
+- Build a drag-and-drop activity where I move words into the correct category boxes.
+- Create a matching exercise where picture cards are dropped onto their labels.
+- I want to sort task cards into three columns by dragging them.
+- Make a small game where users drag puzzle pieces into matching empty spaces.
+- Add a drop zone that highlights when a draggable item is placed over it.
+- Can the page check whether every item has been dropped into the right group?
+- Create a drag-and-drop quiz for matching countries with their flags.
+- Make the items return to their original position when dropped outside a valid zone.
+- Add a score for each correctly sorted object and show the total at the end.
+- I need drag-and-drop controls that also work with touch input.
+- Build a simple schedule planner where events can be dragged into time slots.
+- Let users reorder a list by dragging each row up or down.
+- Show a short success animation when an item reaches the correct drop target.
+- Create a sorting challenge with a timer and a reset button.
+
+=== TEMPLATE: js_interactive_cards
+- Make profile cards that flip over when clicked to show more information.
+- Create a set of cards that expand to reveal descriptions and action links.
+- I want interactive flashcards with a question on the front and an answer on the back.
+- Add like buttons to each card and show the number of likes beside them.
+- Build a card grid where clicking one card opens its details in an overlay.
+- Make cards filterable by tags such as games, art, and websites.
+- Create a stack of cards that can be swiped left or right to choose an option.
+- Add a bookmark toggle so visitors can save selected cards.
+- Can each card reveal a second image when the pointer hovers over it?
+- Make a collection of expandable FAQ cards with only one open at a time.
+- Show a small badge on cards that have been marked as favorites.
+- Build a responsive dashboard of clickable cards that open separate content panels.
+- Add keyboard support so I can move between cards and open the selected one.
+- Create learning cards with a shuffle button and a mark-as-known control.
+
+=== TEMPLATE: js_animated_menu
+- Create a navigation menu that slides in from the side when the menu icon is clicked.
+- Make a hamburger menu that changes into a close icon when opened.
+- I want a dropdown navigation with smooth open and close transitions.
+- Add a mobile menu that covers the screen and closes after I select a link.
+- Build a menu where each submenu expands when its section title is pressed.
+- Make the active navigation item have a moving underline indicator.
+- Can the menu fade in while the page behind it becomes slightly dimmed?
+- Create a circular menu that reveals several navigation options around its center.
+- Add a compact sticky menu that hides while scrolling down and reappears upward.
+- Make a responsive menu with an animated arrow beside expandable categories.
+- I need the menu to close when I click outside the navigation panel.
+- Add keyboard navigation and Escape-to-close behavior to the animated menu.
+- Create a bottom navigation bar that highlights the currently selected tab.
+- Make the menu transition feel smooth without shifting the page content.
+
+=== TEMPLATE: js_modal_popup
+- Create a modal popup that opens when I click a button and closes from its close icon.
+- Make a confirmation dialog appear before a user deletes an item from a list.
+- I want an image preview to open in a centered popup with a dark backdrop.
+- Add a welcome popup that appears once and can be dismissed by the visitor.
+- Build a form modal with name and email fields and a submit button.
+- Can the popup close when I press Escape or click the area outside it?
+- Create a small notification dialog with success and error message styles.
+- Make a popup that asks the user to confirm before leaving an unfinished form.
+- Add a modal with next and previous controls for viewing several details.
+- I need a responsive popup that fits inside a phone screen.
+- Show a loading state inside the modal while a sample action is being processed.
+- Create a cookie notice popup with accept and settings buttons.
+- Make the background page stop scrolling while the modal is open.
+- Add a smooth fade and scale animation when the dialog appears and disappears.
+
+=== TEMPLATE: js_tabs_and_panels
+- Build a tabbed interface where each tab displays a different content panel.
+- Create settings tabs for account, appearance, and notifications.
+- I want clicking a category name to replace the content without reloading the page.
+- Add an active underline that moves to the selected tab.
+- Make a product information panel with tabs for description, details, and reviews.
+- Can I switch tabs using the left and right arrow keys?
+- Create a vertical tab menu with the selected panel shown beside it.
+- Add badges to tabs when a panel has unread updates.
+- Build a dashboard section where tabs switch between different sample charts.
+- Make the tab bar scroll horizontally when there are too many sections for a phone.
+- Show a small transition as one panel fades out and the next one appears.
+- Create a FAQ page where clicking a heading expands its answer panel.
+- Add a reset button that returns the selected tab to the overview panel.
+- Keep the tab content inside one page and preserve the current selection while I interact.
+
+=== TEMPLATE: js_todo_app
+- Make a to-do list where I can add tasks, mark them done, and delete them.
+- Create a task manager with separate views for all, active, and completed tasks.
+- I want each task to have an optional due date and a priority label.
+- Add a filter so I can see only tasks marked as important.
+- Build a simple daily checklist that saves items in the browser.
+- Can I edit a task title after it has been added to the list?
+- Create a to-do app with a progress bar showing how many tasks are finished.
+- Make completed tasks move to the bottom and appear with a crossed-out label.
+- Add a clear-completed button without removing tasks that are still active.
+- I need a phone-friendly task list with a large add-task field.
+- Show a small empty-state message when there are no tasks left.
+- Make tasks draggable so I can change their order manually.
+- Add categories such as school, personal, and projects to the task manager.
+- Build a weekly checklist with a separate completion status for each day.
+
+=== TEMPLATE: js_timer_app
+- Create a countdown timer where I can enter minutes and seconds before starting.
+- Make a stopwatch with start, pause, lap, and reset controls.
+- I want a Pomodoro timer with work and short-break intervals.
+- Add a visible progress ring that shrinks as the countdown approaches zero.
+- Build a kitchen timer that plays a simple alert when time is finished.
+- Can the timer continue accurately when I switch between its pause and resume states?
+- Create a study timer that records how many focus sessions I complete.
+- Make a simple digital clock with a toggle between twelve-hour and twenty-four-hour display.
+- Add preset buttons for one, five, and twenty-five minutes.
+- I need a timer that can run several named countdowns on the same page.
+- Show a warning color during the final ten seconds of the countdown.
+- Create a lap timer that stores each split time in a list.
+- Add a reset confirmation when a long-running stopwatch is active.
+- Make a responsive timer page with large controls for touch screens.
+
+=== TEMPLATE: js_color_picker
+- Build a color picker with red, green, and blue sliders and a live preview.
+- Create a webpage where I can choose a color and copy its HEX value.
+- I want a palette generator that creates matching colors from one selected shade.
+- Add controls for hue, saturation, and brightness to the color selection tool.
+- Make a background color editor with a preview panel and reset button.
+- Can the selected color values update while I drag the input sliders?
+- Create a gradient maker with two color inputs and an angle control.
+- Add a history strip showing the last ten colors I selected.
+- Build a contrast checker that compares text and background colors.
+- Make a random color button that suggests a new shade each time I click it.
+- I need a color picker that displays both RGB and HSL values.
+- Add preset swatches for common colors below the custom picker.
+- Let me save favorite colors into a small palette on the page.
+- Create a simple theme customizer that previews buttons, cards, and page backgrounds.
+
+=== CATEGORY: canvas_animations
+
+=== TEMPLATE: canvas_particle_effect
+- Create a Canvas particle effect with tiny dots that drift and fade over time.
+- Make particles follow the mouse pointer and slowly scatter when it moves.
+- I want a burst of colorful particles whenever I click the canvas.
+- Build a 2D particle field where nearby dots connect with thin lines.
+- Add hundreds of small particles that float around without slowing the page too much.
+- Can particles move away from the cursor when I bring it close to them?
+- Create a snowfall-like particle effect with different sizes and speeds.
+- Make glowing particles spawn from the bottom and fade before reaching the top.
+- Add a slider to control how many particles appear on the canvas.
+- I need a particle animation that resizes correctly when the browser window changes.
+- Create a colorful particle explosion around the point where the user taps.
+- Make particles bounce gently from the canvas edges instead of disappearing.
+- Add a toggle to pause the particle animation and resume it later.
+- Use Canvas to create a calm floating dust effect behind a title.
+
+=== TEMPLATE: canvas_bouncing_balls
+- Draw several balls on Canvas and make them bounce around the edges of the screen.
+- Create a 2D animation with colorful bouncing circles of different sizes.
+- I want each ball to move at a different speed and reverse direction when it hits a wall.
+- Add gravity so the balls fall, bounce, and gradually lose some energy.
+- Make a ball animation where I can add another circle by clicking the canvas.
+- Can the balls change color whenever they hit the bottom edge?
+- Build a bouncing-ball demo with a slider for gravity and a button to reset it.
+- Create a screen full of small circles that bounce inside a rectangular boundary.
+- Add a pause and resume button below the Canvas animation.
+- Make the balls have soft shadows and a simple trail behind their movement.
+- I need the bouncing circles to stay inside the visible canvas after resizing.
+- Show a counter for how many balls are currently moving on the screen.
+- Add one large ball that pushes smaller balls when they collide.
+- Create a physics-style ball animation that runs smoothly in a browser.
+
+=== TEMPLATE: canvas_rain_animation
+- Make a Canvas rain animation with thin drops falling at different speeds.
+- Create a rainy window effect with streaks moving down the screen.
+- I want heavy rain in the foreground and a few slower drops in the background.
+- Add a slider to change the rainfall intensity while the animation is running.
+- Build a night scene with animated rain and occasional bright lightning flashes.
+- Can the raindrops splash into tiny circles when they reach the bottom?
+- Make the rain lean slightly to one side as if wind is blowing across the scene.
+- Create a calm looping rain backdrop for a webpage heading.
+- Add puddle ripples at the bottom whenever a raindrop lands.
+- I need the rain animation to fill the canvas and adapt to screen rotation.
+- Make some drops blur as they pass close to the viewer.
+- Add a control that switches between drizzle, normal rain, and a storm.
+- Create a 2D rain scene with a dark sky and distant city silhouettes.
+- Pause the falling rain when the user presses the spacebar.
+
+=== TEMPLATE: canvas_fireworks_effect
+- Create a Canvas fireworks show with bright bursts that expand and fade.
+- Make fireworks launch from the bottom of the screen and explode at random heights.
+- I want to trigger a colorful firework burst whenever I click the canvas.
+- Add several launch colors and different particle shapes to the fireworks display.
+- Build a looping celebration animation with multiple bursts in the night sky.
+- Can each firework leave a short sparkling trail as its particles fall?
+- Make a New Year style background with a dark sky and a fireworks animation.
+- Add a button to start and stop the automatic fireworks show.
+- Create smaller and larger bursts so the display does not look repetitive.
+- I need the fireworks canvas to resize with the browser without stretching particles.
+- Make a single firework burst when I tap anywhere on a phone screen.
+- Add a simple message that fades in while the fireworks continue behind it.
+- Create a low-particle version of the fireworks effect for slower devices.
+- Let the user choose between a few preset colors before launching a burst.
+
+=== TEMPLATE: canvas_starfield
+- Create a moving starfield where tiny stars travel toward the viewer.
+- Make a 2D space background with stars drifting slowly across the canvas.
+- I want a warp-speed effect where stars stretch into lines as they approach the center.
+- Add a mouse-controlled direction so the starfield seems to move with the pointer.
+- Build a looping night-sky animation with stars that twinkle at different rates.
+- Can the starfield speed up when I hold the spacebar?
+- Make a parallax star background with three layers moving at different speeds.
+- Create a shooting star that occasionally crosses the canvas diagonally.
+- Add a slider to change the number of stars in the animation.
+- I need a starfield effect that fills the screen on both portrait and landscape devices.
+- Make the stars fade out near the edges and reappear on the opposite side.
+- Add a few larger glowing stars among the tiny background points.
+- Create a simple space travel background for a 2D browser experience.
+- Include pause and restart controls for the animated starfield.
+
+=== TEMPLATE: canvas_wave_animation
+- Draw several smooth waves that move horizontally across a Canvas element.
+- Create a liquid wave animation with layered curves in different shades.
+- I want a sine-wave visualizer whose height changes with a slider.
+- Make the wave respond to mouse movement by creating ripples near the pointer.
+- Build a calm ocean surface animation with multiple moving wave lines.
+- Can the waves slowly change their amplitude and speed over time?
+- Add a control panel for frequency, amplitude, and wave count.
+- Create a colorful abstract wave background that loops without a visible jump.
+- Make a ripple spread outward whenever I click the canvas.
+- I need a responsive waveform that stays centered when the canvas is resized.
+- Draw a sound-wave style animation that reacts to a sample playback signal.
+- Add layered transparent waves that move at slightly different speeds.
+- Make a simple water level animation that rises and falls inside a container.
+- Pause the wave motion when the user switches off the animation control.
+
+=== TEMPLATE: canvas_painting_app
+- Build a simple drawing app where I can sketch freely on a Canvas.
+- Make a paint page with a color selector, brush size slider, and eraser.
+- I want to draw with my finger on a phone screen as well as with a mouse.
+- Add undo and clear-canvas buttons to the browser painting tool.
+- Create a sketch pad that lets me change brush thickness while drawing.
+- Can the app save the finished drawing as an image file?
+- Make a painting canvas with a set of preset colors and a custom color picker.
+- Add a line tool, rectangle tool, and circle tool beside the freehand brush.
+- Build a simple whiteboard where several colored strokes can be drawn.
+- I need the drawing area to preserve its aspect ratio when the page changes size.
+- Add a fill bucket for coloring enclosed regions in a basic paint app.
+- Create a blackboard style sketch page with chalk-like strokes.
+- Show the selected brush color and size before I start drawing.
+- Make a blank canvas that can be cleared with one click after a confirmation.
+
+=== TEMPLATE: canvas_pixel_art
+- Create a pixel art editor with a square grid where each cell can be colored.
+- Make a tiny sprite editor with a palette and a zoomed pixel preview.
+- I want to draw an eight by eight pixel icon and export it as an image.
+- Add a fill tool that colors connected cells with the selected shade.
+- Build a pixel drawing app with undo, redo, and clear-grid controls.
+- Can I choose the grid size before starting a new pixel artwork?
+- Make a sprite sheet preview where each frame can be edited separately.
+- Add a grid toggle so I can hide the cell borders while viewing my art.
+- Create a simple pixel art page with a color palette along the left side.
+- I need touch support so I can paint individual pixels on a tablet.
+- Let me mirror a stroke horizontally to create symmetrical sprites.
+- Add a bucket tool and an eyedropper for selecting an existing pixel color.
+- Show a small thumbnail preview of the artwork at its normal size.
+- Make the pixel editor export the current grid as a crisp PNG image.
+
+=== TEMPLATE: canvas_collision_demo
+- Create a Canvas demo showing circles bouncing when they collide with each other.
+- Make two rectangles move around and stop when their edges overlap.
+- I want to see simple collision detection between a player circle and moving objects.
+- Add a visual outline around shapes when a collision is detected.
+- Build a 2D demo where multiple balls rebound after touching one another.
+- Can you show the collision point with a small marker for debugging?
+- Make a rectangle controlled by the arrow keys that cannot pass through obstacles.
+- Add a toggle to display each object's bounding box during the collision test.
+- Create a wall collision example with a moving square and four boundaries.
+- I need a simple Canvas playground for testing circle-to-circle overlap.
+- Show a counter for the number of collisions that happen during the animation.
+- Make overlapping shapes change color until they separate again.
+- Build a comparison between circle collision and rectangle collision using simple shapes.
+- Add a reset control that places all moving objects back at their starting positions.
+
+=== TEMPLATE: canvas_physics_demo
+- Make a 2D Canvas physics demo where a ball falls under gravity and bounces on a floor.
+- Create a simple pendulum animation that swings back and forth.
+- I want to drop boxes into a container and watch them settle on one another.
+- Add sliders for gravity, bounce strength, and friction to a small physics playground.
+- Build a spring demo where a circle moves back and forth around an anchor point.
+- Can I click and drag an object to give it a new starting position?
+- Make a stack of rectangles that tips over when one side becomes unbalanced.
+- Show velocity arrows next to moving objects in the physics demonstration.
+- Create a 2D rope-like chain using connected points that respond to gravity.
+- Add a button to release several balls from the top of the canvas.
+- Make an object lose speed gradually when it slides across the floor.
+- I need a simple simulation of elastic bouncing between two circles.
+- Display the current speed and height of the selected object.
+- Create a lightweight physics playground using only 2D Canvas shapes.
+
+=== CATEGORY: css_animations
+
+=== TEMPLATE: css_loading_animation
+- Create a circular loading spinner with a smooth continuous rotation.
+- Make a three-dot loader where the dots bounce one after another.
+- I want a skeleton loading placeholder that gently shimmers while content loads.
+- Build a progress indicator with a bar that fills from left to right.
+- Add a small animated ring loader that can sit beside a submit button.
+- Create a pulsing loading logo using only CSS keyframes.
+- Make a loading screen with several short bars that rise and fall in sequence.
+- Give the page a full-screen loader that fades away when I add a ready class.
+- Create a minimal bouncing square loader for a small dashboard panel.
+- I need a spinner that respects reduced-motion preferences.
+- Make a dotted circular loader with alternating dot opacity.
+- Add a loading animation that looks like a moving wave of colored blocks.
+- Create a thin animated line across the top of the page while a task is processing.
+- Make a soft pulse effect for a placeholder avatar and text lines.
+
+=== TEMPLATE: css_button_animation
+- Make a button that gently grows when I hover over it and returns when the pointer leaves.
+- Create a click button with a short press-down animation.
+- I want a gradient button whose background shifts smoothly on hover.
+- Add a ripple-style visual effect when a button is pressed.
+- Build a button with an animated arrow that moves slightly to the right on hover.
+- Make a glowing outline travel around the edge of a call-to-action button.
+- Create a toggle button that slides its circular indicator between two positions.
+- Give the submit button a loading state with a small spinner inside it.
+- Add a subtle bounce when a user successfully clicks the main action button.
+- Make a group of social buttons lift slightly when hovered.
+- I need an accessible focus animation that is visible when a button is reached by keyboard.
+- Create a button with a fill animation that moves from left to right.
+- Make the button icon rotate a little when its label is activated.
+- Add a disabled button style that removes hover movement and clearly changes its appearance.
+
+=== TEMPLATE: css_card_hover
+- Make product cards lift slightly and gain a soft shadow when hovered.
+- Create portfolio cards that reveal an extra description when the pointer moves over them.
+- I want an image card to zoom in gently without changing the size of its container.
+- Add a colored border animation around a card when it receives focus.
+- Build a row of cards that tilt a little toward the mouse pointer.
+- Make a card footer slide upward to reveal a view details link.
+- Create a hover effect where the card image darkens and its title becomes brighter.
+- Give each card a subtle lift while keeping the surrounding grid in place.
+- Add a small icon that appears in the corner of a card during hover.
+- Make the selected card stay highlighted after it has been clicked.
+- I need card interactions that also provide a visible keyboard focus state.
+- Create a layered card effect where the background panel moves a few pixels on hover.
+- Make team profile cards reveal social links when hovered or focused.
+- Add a smooth transition between the normal and highlighted card styles.
+
+=== TEMPLATE: css_text_animation
+- Create a heading where each word fades in one after another.
+- Make a title with a blinking cursor that suggests someone is typing.
+- I want a gradient text effect that slowly shifts across the letters.
+- Add a gentle typewriter animation to a short welcome message.
+- Build a heading where letters rise into place with a staggered delay.
+- Make an underline draw itself beneath a title when the page loads.
+- Create a looping text reveal that slides a phrase upward inside a small window.
+- Add a glowing text pulse for the main heading of my landing page.
+- Make a short subtitle fade in after the headline animation finishes.
+- Create a word-swapping heading that cycles through a few phrases.
+- I need a text animation that stops moving when reduced motion is enabled.
+- Give a large number a quick count-up visual effect when its section appears.
+- Make the letters in a button label spread apart slightly on hover.
+- Create an animated highlight that moves behind a selected word.
+
+=== TEMPLATE: css_transition_gallery
+- Build a gallery where image panels smoothly expand when selected.
+- Create a set of thumbnails that fade into a large preview when clicked.
+- I want a gallery with horizontal sliding transitions between each photo.
+- Add a crossfade effect when the active gallery image changes.
+- Make a row of image panels widen on hover and shrink back when the pointer leaves.
+- Create a before-and-after gallery with a draggable divider between two images.
+- Add animated captions that rise from the bottom of each gallery image.
+- Make the active thumbnail show a smooth border transition.
+- Build a simple carousel with next and previous controls and sliding cards.
+- I need gallery transitions that do not make the layout jump on mobile.
+- Create a fading transition when switching between gallery categories.
+- Add a zoom-and-fade opening effect to the image preview panel.
+- Make gallery cards enter with a small stagger when the page first loads.
+- Use smooth CSS transitions for a gallery that can switch between grid and list views.
+
+=== TEMPLATE: css_animated_background
+- Create a looping animated gradient background with two colors slowly blending together.
+- Make a CSS background with diagonal stripes that move gently across the page.
+- I want several blurred color circles to drift behind the website content.
+- Add a subtle animated checker pattern for the top section of a page.
+- Build a CSS-only background with floating bubbles that rise and fade out.
+- Make a soft aurora-style color effect behind the hero heading.
+- Create a repeating wave pattern that moves horizontally without using images.
+- Add slow moving diagonal light bands to a dark landing page.
+- Make the background colors shift based on a theme toggle.
+- Create a gentle pulsing radial gradient behind a centered login panel.
+- I need a background animation that remains behind all clickable content.
+- Make a dotted pattern drift slightly while the page remains readable.
+- Add a layered CSS background with different animation speeds for each section.
+- Respect reduced-motion settings by showing a still version of the animated background.
+
+=== TEMPLATE: css_scroll_animation
+- Make feature sections fade in as they enter the viewport while I scroll down.
+- Create a scroll-based reveal where each card rises into view one after another.
+- I want a progress line at the top that fills as the page is scrolled.
+- Add a sticky section title that remains visible while its content moves past.
+- Make images gently scale into place as their sections appear on screen.
+- Build a timeline where milestones animate as the visitor scrolls through the page.
+- Create a text reveal effect that follows the user's scroll position.
+- Add a back-to-top button that appears after the visitor scrolls down.
+- Make each section slide in from alternating sides when it first becomes visible.
+- I need a scroll animation that works on touch screens and does not trap scrolling.
+- Show a small navigation marker for the section currently visible.
+- Create a parallax-style movement for decorative shapes while scrolling through a page.
+- Animate the skill bars when the skills section enters the viewport.
+- Keep scroll effects subtle and disable motion when the visitor prefers reduced animation.
+
+=== TEMPLATE: css_menu_transition
+- Make a navigation dropdown open with a smooth fade and downward movement.
+- Create a hamburger icon whose three lines animate into a close symbol.
+- I want the mobile navigation panel to slide in from the right side.
+- Add an animated underline that moves between navigation links.
+- Build a menu where submenu arrows rotate when their sections expand.
+- Make a full-screen navigation overlay fade in when the menu button is clicked.
+- Create a bottom menu whose active item smoothly changes its highlight.
+- Add a slight scale transition when a dropdown menu appears.
+- Make the navigation links reveal one by one when the menu opens.
+- I need the menu animation to remain smooth when the viewport changes size.
+- Create a compact menu that expands downward beneath the header.
+- Add a sliding indicator behind the currently selected navigation item.
+- Make the menu close with the reverse transition when a link is selected.
+- Respect reduced-motion preferences while keeping the menu fully usable.
+
+=== CATEGORY: routing_edge_cases
+
+=== CLARIFY: game_type_unknown
+- Make me a JavaScript game but I have not decided what kind yet.
+- I want a browser game with some fun mechanics.
+- Create a game that I can play in a webpage.
+- Can you build a small game for my website?
+- I need a simple HTML game for a school project.
+- Make an arcade game with a character and some challenges.
+- I want something playable in the browser, not sure what genre.
+- Build a game with a score and a few levels.
+- Can we make a fun 2D game in JavaScript?
+- I want a game with moving things and a player.
+- Create a browser game idea and start building it.
+- Make a game that people can play on their phones.
+
+=== CLARIFY: feature_target_unknown
+- Make it faster.
+- Add more things to the game.
+- Improve the animation a little.
+- Can you make the controls better?
+- Put another feature in there.
+- Make everything smoother.
+- Add more effects to it.
+- Make the screen look more interesting.
+- Change the way it moves.
+- Can you add a better system for that?
+
+=== CLARIFY: website_type_unknown
+- Make me a website in HTML and CSS.
+- I need a nice webpage for my idea.
+- Create a modern site with some sections.
+- Can you design a website that looks professional?
+- Build a responsive page but I have not planned its layout.
+- I want a website with buttons and images.
+- Make a simple homepage for me.
+- Create a website for my project with whatever sections are needed.
+- I need a personal site but I am not sure what should go on it.
+- Build something web-based with HTML, CSS, and JavaScript.
+
+=== CLARIFY: interaction_goal_unknown
+- Make the cards interactive.
+- I want the page to respond when people use it.
+- Add some clicking actions to the interface.
+- Make the objects movable somehow.
+- Can you animate the things on the page?
+- Add a popup or something when I press a button.
+- Let users change the content on the screen.
+- I want some controls, but I am not sure which ones.
+- Make the page react to the mouse.
+- Add an interactive part below the heading.
+
+=== CLARIFY: input_material_unknown
+- Use the pictures I mentioned and arrange them nicely.
+- Make the page look like my reference, but I have not attached it here.
+- Put my logo in the right place on the website.
+- Use the text from my document for the page content.
+- Add the audio file I want to use as the background track.
+- Animate this character from my project files.
+- Build the gallery from the photos I have, but I have not shared them yet.
+- Copy the layout from the screenshot I meant to send.
+
+=== CLARIFY: task_not_specified
+- hi
+- hello bro
+- hey there
+- what can you make
+- what kind of things can Boxz create?
+- can you help me with coding?
+- i want to make something cool
+- lets build something fun
+- are you able to create websites?
+- can you code something for me?
+- good morning
+- yo boxz
+- how are you?
+- I am new here, what can we do?
+- show me what you can create
+- can we start a project?
+- I have an idea but need help shaping it.
+- what languages do you support?
+- thanks for helping me
+- okay lets start
+
+=== NO_TEMPLATE: language_not_supported
+- Write a small Python game with keyboard controls.
+- Create a Java program that manages a student list.
+- Make a C++ console game with moving enemies.
+- Build a Rust command-line application for tracking tasks.
+- Can you write a Python script to organize my files?
+- Create a Java desktop calculator.
+- Make a C program that simulates a simple queue.
+- Write a CUDA program for GPU-based image processing.
+- Build a PHP application that stores user accounts.
+- Create a Python chatbot that runs in the terminal.
+
+=== NO_TEMPLATE: technology_not_supported
+- Make a 3D scene with Three.js and a rotating camera.
+- Build a 3D browser game using WebGL directly.
+- Create a Unity platform game for mobile.
+- Make an Unreal Engine environment with animated characters.
+- Build a native Android application with Kotlin.
+- Create an iPhone app using Swift and native views.
+- Make a Windows desktop application with a native interface.
+- Create a 3D model viewer with orbit controls.
+- Build a multiplayer 3D racing game with a game engine.
+- Make a virtual reality scene with interactive 3D objects.
+
+=== NO_TEMPLATE: framework_not_supported
+- Create a React dashboard with reusable components.
+- Build a Vue application with several routed pages.
+- Make an Angular admin panel with data tables.
+- Create a Svelte website with reactive components.
+- Build a Next.js app with server-rendered pages.
+- Make a React Native mobile application.
+- Create a Laravel website with a database backend.
+- Build a Django web application with user login.
+- Make a Node.js server with an Express API.
+- Create a Flutter app for Android and iOS.

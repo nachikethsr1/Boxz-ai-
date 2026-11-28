@@ -1,0 +1,12 @@
+{
+  "title": "Tiny Shakespeare",
+  "licence": "Public Domain",
+  "url": "https://codeload.github.com/karpathy/char-rnn/tar.gz/refs/heads/master",
+  "filename": "tinyshakespeare.txt",
+  "fmt": "text",
+  "text_field": "text",
+  "sha256": "86c4e6aa9db7c042ec79f339dcb96d42b0075e16b8fc2e86bf0ca57e2dc565ed",
+  "extract_member": "char-rnn-master/data/tinyshakespeare/input.txt",
+  "notes": "~1.1MB of Shakespeare's plays, extracted from the karpathy/char-rnn repository (MIT-licensed repo; the text itself is public domain). Used as the first corpus for the small language model because it is small, clean and trains quickly on a laptop CPU.",
+  "allowed_use": "Public domain text; redistribution permitted."
+}

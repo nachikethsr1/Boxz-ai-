@@ -1,0 +1,10 @@
+# Boxz runtime dependencies.
+# The project deliberately has almost no dependencies: the model, tokenizer,
+# autograd engine, optimiser and training loop are all implemented here.
+numpy>=1.24,<3
+
+# Development / testing
+pytest>=7.0
+
+# Optional: Rust extension tooling (see rust/boxz_rust/README.md)
+# maturin>=1.4

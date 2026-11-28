@@ -1,0 +1,42 @@
+{
+  "run_name": "boxz-26m",
+  "model": {
+    "vocab_size": 4096,
+    "n_layer": 10,
+    "n_head": 7,
+    "d_model": 448,
+    "d_ff": 1792,
+    "context_length": 512,
+    "dropout": 0.0,
+    "norm": "layernorm",
+    "activation": "gelu",
+    "pos_embeddings": "learned",
+    "tied_embeddings": true
+  },
+  "data": {
+    "dataset": ["data/processed/v3/pretrain.txt"],
+    "vocab_size": 4096,
+    "tokenizer_path": "data/processed/v3/tokenizer.json",
+    "val_fraction": 0.05,
+    "cache_dir": "data/processed/v3",
+    "sft_holdout": 0,
+    "exclude_sft_holdout": false,
+    "dedupe": false
+  },
+  "batch_size": 1,
+  "grad_accum_steps": 8,
+  "max_steps": 6000,
+  "lr": 0.0006,
+  "min_lr": 0.00006,
+  "warmup_steps": 200,
+  "schedule": "cosine",
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "eval_interval": 250,
+  "eval_batches": 6,
+  "log_interval": 25,
+  "checkpoint_interval": 500,
+  "checkpoint_dir": "checkpoints/boxz-26m",
+  "seed": 1337,
+  "max_minutes": 170
+}
