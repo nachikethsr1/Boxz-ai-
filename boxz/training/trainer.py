@@ -95,6 +95,15 @@ class Trainer:
         self.model = model or build_model(cfg.model, seed=cfg.seed)
         if model is not None and model.cfg.vocab_size != tokenizer.vocab_size:
             raise ValueError("model and tokenizer vocabularies differ")
+        if cfg.init_from and model is None:
+            # Warm start: weights only.  Step, optimizer moments and the LR
+            # schedule all begin fresh -- this is a new run that happens to
+            # start from trained weights, not a continuation of the old one.
+            ck = load_checkpoint(cfg.init_from)
+            self.model.load_state_dict(ck.model.state_dict())
+            if verbose:
+                print(f"[train] warm start from {cfg.init_from} "
+                      f"(weights only; step 0, fresh optimizer and schedule)")
         self.optimizer = AdamW(
             self.model.parameters(),
             lr=cfg.lr, betas=(cfg.beta1, cfg.beta2),

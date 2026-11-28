@@ -159,6 +159,11 @@ class TrainConfig:
     device: str = "cpu"
     backend: str = "numpy"               # "numpy" | "rust" (falls back to numpy)
     resume: Optional[str] = None
+    #: Warm-start: load *weights only* from this checkpoint and begin a new run
+    #: (step 0, fresh AdamW moments, fresh LR schedule).  Use this to continue
+    #: pretraining on new data.  ``resume`` is different -- it restores step,
+    #: optimizer moments and the data stream to continue an interrupted run.
+    init_from: Optional[str] = None
     max_minutes: Optional[float] = None  # wall-clock guard for CI / demos
 
     def to_dict(self) -> dict:

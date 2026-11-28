@@ -261,27 +261,47 @@ token, no new capability.** It would only matter once whole-file generation is a
 
 ### The dominant constraint is data, not vocab or context
 
-| Quantity | Value |
-|---|---|
-| SFT tokens available | 0.21 M |
-| Model parameters | 26.2 M |
-| **Tokens per parameter** | **0.008** |
-| Compute-optimal (Chinchilla) | ~20 |
-| Shortfall | **~2,500×** |
-| Pretrain corpus available | ~31.1 M tokens |
-| Pretrain tokens actually used | 1.23 M = **4.0% of what is on disk** |
+> **CORRECTED 2026-11-27 (Phase 2A prep).** The first version of this table was
+> wrong. It divided *SFT* tokens (0.21 M) by parameters and reported 0.008
+> tok/param and a "2,500× shortfall". SFT tokens are not the pretraining budget,
+> so that was the wrong basis. It also used an extrapolated 31.1 M corpus figure.
+> Both are replaced below with measured values.
 
-Raising vocab 4096→8192 adds 7% parameters to a model that already has 2,500× too
-little data per parameter. That makes the existing imbalance **worse**, and it buys
+| Quantity | Value | How measured |
+|---|---|---|
+| Model parameters | 26,208,000 | `checkpoints/v3-sft/best/train_state.json` |
+| Pretrain tokens **actually trained** | 1,228,800 | `train_state.json` (1200 steps × 1024) |
+| **Tokens per parameter (trained)** | **0.0469** | 1,228,800 / 26,208,000 |
+| Pretrain corpus on disk | 27,681,895 tokens | tokenized with the shipping tokenizer |
+| Tokens per parameter (full corpus) | 1.0562 | 27,681,895 / 26,208,000 |
+
+**On the "compute-optimal" reference:** Chinchilla's ~20 tokens/parameter was fitted
+on models of 70 M–16 B parameters. Extrapolating it down to a 26 M-parameter model
+trained on web-code is **not an established result**, and this report does not
+treat it as a target. What *is* solidly measured is far simpler: **0.0469 tok/param
+was trained on**, i.e. the model saw less than 5% of one token per weight — barely
+0.047 passes over a parameter count's worth of text. Whatever the "right" number
+is, that is clearly too few, and the corpus on disk (1.06 tok/param) is ~22× more
+than was used.
+
+> **CORRECTION (Phase 2A corpus audit):** the 27.68 M figure is itself inflated.
+> 98.4% of `pretrain.txt` is the same npm block written **twice**, so the unique
+> corpus is **13,967,647 tokens** (0.533 tok/param). See
+> `reports/PHASE2A_PLAN.md`. The conclusion below is unaffected — it is
+> strengthened.
+
+Raising vocab 4096→8192 adds 7% parameters to a model that has seen under 0.05
+tokens per parameter. That makes the existing imbalance **worse**, and it buys
 8% compression.
 
 ### RECOMMENDATION: **preserve vocab 4096 and ctx 512.**
 
-Do **not** spend the next major run on a tokenizer change. Spend it on tokens — the
-31.1 M pretrain tokens already on disk are 96% unused, and a full epoch at the
-measured rate costs only ~21 h. Vocab 8192, if ever wanted, should follow a data
-investment, and it must be trained on a corpus that actually contains the target
-languages (Python is currently absent from the tokenizer's diet — see below).
+Do **not** spend the next major run on a tokenizer change. Spend it on tokens: of
+the 13.97 M **unique** pretraining tokens on disk, v3 consumed 1.23 M — **8.8%** —
+and one full pass costs ~9.6 h at the measured rate. Vocab 8192, if ever wanted,
+should follow a data investment, and it must be trained on a corpus that actually
+contains the target languages (Python is currently absent from the tokenizer's
+diet — see below).
 
 ### Coding-token gaps found (evidence, not speculation)
 The model **refuses Python outright**:
@@ -299,16 +319,17 @@ tokens) but nothing beyond them. **This is a data gap that a vocab change cannot
 
 **`Phase 2A — Data before capacity: spend the pretrain budget already on disk.`**
 
-Rationale: every measurement above points at the same bottleneck. Only 4.0% of the
-available corpus was used, tokens/parameter is 2,500× below compute-optimal, and both
-the vocab and the context length score *below* a simple data increase on
-evidence-per-hour. The accelerations I could measure are noise (threads) or already
-in place (KV cache, 4.2×). GPU support is a rewrite that this hardware cannot validate.
+Rationale: every measurement above points at the same bottleneck. v3 consumed 8.8%
+of the unique pretraining tokens on disk (1.23 M of 13.97 M), both the vocab and the
+context length score *below* a simple data increase on evidence-per-hour, and the
+accelerations I could measure are noise (threads) or already in place (KV cache,
+4.2×). GPU support is a rewrite that this hardware cannot validate.
 
 Concretely:
-1. Run a controlled pretrain at 10–20× the current token count (~12–25 M tokens,
-   8–17 h) on the existing corpus, keeping **vocab 4096 / ctx 512 / 26.2M params**
-   so results are directly comparable to v3.
+1. Run a controlled pretrain on the existing corpus, keeping **vocab 4096 / ctx 512 /
+   26.2M params** so results are directly comparable to v3. Sizing must respect the
+   measured memory ceiling (3.0 GB peak at batch 2 × 512 against 3.94 GB total RAM),
+   so this is a graded sequence, not one long run — see `reports/PHASE2A_PLAN.md`.
 2. Fix the model's data diet to include Python and multi-file project structure —
    without that, no amount of capacity will produce Python or novel projects.
 3. Re-benchmark with `boxz.eval.neural_bench` against the frozen v3 baseline

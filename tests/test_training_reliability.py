@@ -263,3 +263,26 @@ def test_load_checkpoint_allows_deliberate_forensics(tmp_path):
         pytest.skip("v4-sft/best not present")
     ck = load_checkpoint(p, allow_unusable=True)
     assert ck.train_state.get("step") == 100
+
+
+# ---------------------------------------------------------------- warm start
+def test_init_from_loads_weights_but_resets_progress(tmp_path):
+    """Warm start continues from trained weights without inheriting the old
+    run's step, optimizer moments or LR schedule.  `resume` does the opposite,
+    so the two must not be confused."""
+    from boxz.training.trainer import Trainer
+
+    cfg, corpus, tok = _setup(tmp_path, max_steps=4, eval_interval=100, seed=5)
+    Trainer(cfg, corpus=corpus, tokenizer=tok, verbose=False).fit()
+    base = Path(cfg.checkpoint_dir) / cfg.run_name / "final"
+
+    cfg2, corpus2, tok2 = _setup(tmp_path, max_steps=6, eval_interval=100,
+                                 seed=5, run_name="warm")
+    cfg2.init_from = str(base)
+    t = Trainer(cfg2, corpus=corpus2, tokenizer=tok2, verbose=False)
+
+    assert t.step == 0
+    assert t.tokens_seen == 0
+    assert float(np.abs(t.optimizer.m[0]).max()) == 0.0   # moments are fresh
+    warm = load_checkpoint(str(base)).model.parameters()[0].data
+    np.testing.assert_array_equal(t.model.parameters()[0].data, warm)
