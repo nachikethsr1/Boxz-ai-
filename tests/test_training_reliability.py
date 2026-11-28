@@ -286,3 +286,39 @@ def test_init_from_loads_weights_but_resets_progress(tmp_path):
     assert float(np.abs(t.optimizer.m[0]).max()) == 0.0   # moments are fresh
     warm = load_checkpoint(str(base)).model.parameters()[0].data
     np.testing.assert_array_equal(t.model.parameters()[0].data, warm)
+
+
+# ------------------------------------------------------------ atomic checkpoint
+def test_checkpoint_save_is_atomic(tmp_path):
+    """A save interrupted *mid-write* must not corrupt an existing checkpoint.
+
+    The OOM killer can SIGKILL during a save.  Writes go to a sibling temp file
+    and are renamed into place, so a crash part-way through leaves the previous
+    good model.npz intact instead of a truncated file.  This patches savez to
+    write some bytes and then explode, which is what a kill mid-save looks like.
+    """
+    import boxz.training.checkpoint as ck
+    from boxz.training.checkpoint import save_checkpoint
+    from boxz.training.trainer import Trainer
+
+    cfg, corpus, tok = _setup(tmp_path, max_steps=2)
+    t = Trainer(cfg, corpus=corpus, tokenizer=tok, verbose=False)
+    d = tmp_path / "atomic"
+    save_checkpoint(d, t.model, tok, train_state={"step": 1})
+    good = (d / "model.npz").read_bytes()
+
+    def exploding_savez(file, **arrays):
+        file.write(b"PK\x03\x04 partial garbage")   # start writing, then die
+        file.flush()
+        raise MemoryError("killed mid-save")
+
+    real = ck.np.savez
+    ck.np.savez = exploding_savez
+    try:
+        with pytest.raises(MemoryError):
+            save_checkpoint(d, t.model, tok, train_state={"step": 2})
+    finally:
+        ck.np.savez = real
+
+    assert (d / "model.npz").read_bytes() == good, "existing checkpoint was corrupted"
+    assert not (d / "model.npz.tmp").exists(), "temp file leaked"

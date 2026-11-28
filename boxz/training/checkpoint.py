@@ -17,6 +17,7 @@ experiments: ``load_checkpoint`` accepts either.
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import time
 from dataclasses import dataclass
@@ -43,6 +44,25 @@ class Checkpoint:
     path: Path
 
 
+def _atomic_savez(path: Path, arrays: Dict[str, Any]) -> None:
+    """``np.savez`` to a sibling temp file, then atomically rename over ``path``.
+
+    A save can be interrupted by the OOM killer at any point.  Writing in place
+    would leave a half-written ``.npz``; writing to a temp file and calling
+    ``os.replace`` means the destination is either the complete new file or the
+    untouched old one.
+    """
+    tmp = path.with_name(path.name + ".tmp")
+    try:
+        with tmp.open("wb") as fh:
+            np.savez(fh, **arrays)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 def save_checkpoint(
     directory: Union[str, Path],
     model: BoxzLM,
@@ -58,7 +78,13 @@ def save_checkpoint(
     state.setdefault("saved_at", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
     state.setdefault("parameters", model.num_parameters())
 
-    np.savez(d / "model.npz", **model.state_dict())
+    # Write each array file to a temporary name and rename into place.  The
+    # process can be SIGKILLed by the OOM killer at any moment during a save;
+    # without this a kill mid-write leaves a truncated ``model.npz`` that looks
+    # like a valid checkpoint and fails later, or destroys the previous good
+    # one.  ``os.replace`` is atomic within a filesystem, so a checkpoint is
+    # either fully written or not updated at all.
+    _atomic_savez(d / "model.npz", model.state_dict())
     if optimizer_state is not None:
         arrays: Dict[str, np.ndarray] = {}
         meta: Dict[str, Any] = {}
@@ -72,7 +98,7 @@ def save_checkpoint(
                 arrays[k] = v
             else:
                 meta[k] = v
-        np.savez(d / "optimizer.npz", **arrays)
+        _atomic_savez(d / "optimizer.npz", arrays)
         (d / "optimizer_meta.json").write_text(json.dumps(meta, indent=2, default=str), encoding="utf-8")
 
     cfg = {
