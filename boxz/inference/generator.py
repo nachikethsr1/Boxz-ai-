@@ -111,6 +111,11 @@ def generate_ids(
                 break
     elapsed = time.time() - t0
     new_ids = ids[len(prompt_ids):]
+    # The token that triggered a stop is a control token, not content: it ended
+    # the turn.  Keeping it made raw generate_ids() output leak a literal
+    # "<|end|>" into every reply (the chat layer stripped it, callers did not).
+    if finish == "stop" and new_ids and new_ids[-1] in stops:
+        new_ids = new_ids[:-1]
     text = tokenizer.decode(new_ids, skip_special_tokens=False) if tokenizer else ""
     return GenerationResult(text=text, ids=new_ids, prompt_ids=list(prompt_ids),
                             tokens_generated=produced, seconds=elapsed, finish_reason=finish,

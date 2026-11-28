@@ -215,3 +215,37 @@ def test_kv_cache_is_faster(model_and_tok):
     plain = best(lambda: generate_ids(m, tok.encode(prompt), cfg, tok))
     cached = best(lambda: generate_with_kv_cache(m, tok, prompt, cfg))
     assert cached < plain * 1.05, f"cache {cached:.3f}s vs plain {plain:.3f}s"
+
+
+
+def test_generate_ids_does_not_leak_stop_token():
+    """Regression: the stop token ended up in the returned text.
+
+    generate_ids() decodes with skip_special_tokens=False, so the token that
+    triggered the stop used to appear literally as "<|end|>" in every reply.
+    Uses the real tokenizer + checkpoint when available; skipped otherwise.
+    """
+    import numpy as np
+    from boxz.config import GenerationConfig
+    from boxz.inference.generator import generate_ids
+    from boxz.training.checkpoint import load_checkpoint
+
+    ck = load_checkpoint("checkpoints/v3-sft/best")
+    tok = ck.tokenizer
+    end = tok.special_id("<|end|>")
+
+    class _M:
+        cfg = type("c", (), {"context_length": 32})()
+
+        def eval(self):
+            pass
+
+        def __call__(self, arr):
+            logits = np.zeros((1, arr.shape[1], tok.vocab_size), dtype=np.float32)
+            logits[0, -1, end] = 50.0        # force the stop token
+            return type("L", (), {"data": logits})(), None
+
+    res = generate_ids(_M(), tok.encode("hi"), GenerationConfig(max_new_tokens=4),
+                       tok, stop_ids=[end])
+    assert "<|end|>" not in res.text, f"stop token leaked: {res.text!r}"
+    assert res.finish_reason == "stop"

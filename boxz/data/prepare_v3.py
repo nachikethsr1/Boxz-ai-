@@ -261,6 +261,7 @@ def build_v3(
     general: Optional[Path],
     out_dir: Path,
     val_fraction: float = 0.05,
+    curated: Optional[Sequence[Path]] = None,
     tokenizer_path: Optional[Path] = None,
     max_tokens: Optional[int] = None,
     seed: int = 1234,
@@ -274,6 +275,18 @@ def build_v3(
             continue
         exs = parse_any(path, cat)
         report["sources"][path.name] = {"parsed": len(exs), "category": cat}
+        pools.extend(exs)
+
+    # Curated supplements: hand-written, correct-by-construction rows for
+    # capabilities the scraped sources simply do not contain (code generation,
+    # beginner explanations, debugging).  They pass through the same dedupe,
+    # length, and split logic as everything else -- no special casing.
+    for path in curated or ():
+        if not path.exists():
+            continue
+        exs = parse_any(path, "coding")
+        report["sources"][path.name] = {"parsed": len(exs), "category": "coding",
+                                        "curated": True}
         pools.extend(exs)
 
     pool_stats = {"total_parsed": len(pools)}
@@ -337,10 +350,17 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--val-fraction", type=float, default=0.05)
     ap.add_argument("--tokenizer", type=Path, default=None)
     ap.add_argument("--max-tokens", type=int, default=None)
+    ap.add_argument("--curated", type=Path, action="append", default=None,
+                    help="extra hand-written JSONL rows (repeatable)")
     args = ap.parse_args(argv)
 
+    curated = args.curated
+    if curated is None:
+        default = Path("data/sources/curated_code.jsonl")
+        curated = [default] if default.exists() else []
     rep = build_v3(args.maths, args.coding, args.general, args.out,
-                   args.val_fraction, args.tokenizer, args.max_tokens)
+                   args.val_fraction, curated=curated,
+                   tokenizer_path=args.tokenizer, max_tokens=args.max_tokens)
     print(json.dumps(rep, indent=2))
     return 0
 
