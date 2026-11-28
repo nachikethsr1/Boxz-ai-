@@ -89,6 +89,59 @@ _UNSUPPORTED_TECH = {
     "orbit controls": "technology_not_supported",
 }
 
+#: Words that are also ordinary English or are too short to be safe on their
+#: own.  "react" must not fire on "make the page react to the mouse"; "c" must
+#: not fire inside "canvas".  These need a programming context nearby.
+_CONTEXT_TECH = {
+    "react": "framework_not_supported",
+    "express": "framework_not_supported",
+    "c": "language_not_supported",
+    "go": "language_not_supported",
+    "r": "language_not_supported",
+    "windows": "technology_not_supported",
+    "macos": "technology_not_supported",
+    "linux": "technology_not_supported",
+    "desktop": "technology_not_supported",
+    "mobile app": "technology_not_supported",
+}
+
+#: "make the page react to the mouse" is a verb, not a framework.
+_VERB_REACT = re.compile(r"\breact(s|ed|ing)?\s+(to|when|on)\b", re.I)
+
+#: Nouns that put an ambiguous word in a programming context ("a C *program*",
+#: "a React *dashboard*").  Deliberately excludes "on"/"in"/"with": "make
+#: windows pop up on click" is a DOM request, not an operating system.
+_TECH_CONTEXT = re.compile(
+    r"\b(app|apps|application|applications|program|programs|script|scripts|"
+    r"project|projects|website|websites|page|pages|site|server|backend|"
+    r"frontend|code|coding|console|cli|component|components|dashboard|api|"
+    r"native|development|develop|framework|library|stack|package|module)\b",
+    re.I)
+
+#: "written in C", "built using React" -- a preposition directly before the name.
+_TECH_PREP = re.compile(r"\b(in|using|via|with)\s+(the\s+)?$", re.I)
+
+
+def _mentions_tech(low: str, word: str) -> bool:
+    """Is ``word`` used as a technology, rather than as plain English?"""
+    pattern = r"(?<![a-z0-9+#])" + re.escape(word) + r"(?![a-z0-9+#])"
+    if not re.search(pattern, low):
+        return False
+    if word not in _CONTEXT_TECH:
+        return True
+    if word == "react" and _VERB_REACT.search(low):
+        return False
+    # "React dashboard" / "a C program" / "Windows desktop application": the
+    # context noun must be *next to* the name, not merely somewhere in the
+    # sentence.  "I need a personal site but ... what should go on it" has
+    # "site" in it, and used to turn "go" into the Go language.
+    nearby = re.search(pattern + r"(\s+\w+){0,2}\s+" + _TECH_CONTEXT.pattern, low)
+    if nearby:
+        return True
+    match = re.search(pattern, low)
+    return bool(match and _TECH_PREP.search(low[:match.start()]))
+
+
 #: A bare "python" must not fire on "python snake game" if a Python template
 #: ever exists; today there is none, so any Python request is unsupported.
 
@@ -218,6 +271,21 @@ class TemplateSelector:
         scored.sort(key=lambda t: (-t[1], t[0]))
         return scored
 
+    def _keyword_scores(self, low: str) -> List[Tuple[str, int]]:
+        """How many of each template's own keywords appear in the request."""
+        hits: List[Tuple[str, int]] = []
+        for tid, tpl in self.templates.items():
+            if not tpl.keywords:
+                hits.append((tid, 0))
+                continue
+            n = 0
+            for word in tpl.keywords:
+                if re.search(r"(?<![a-z])" + re.escape(word) + r"(?![a-z])", low):
+                    n += 1
+            hits.append((tid, n))
+        hits.sort(key=lambda t: (-t[1], t[0]))
+        return hits
+
     # -- decisions -------------------------------------------------------
     def classify(self, text: str) -> Selection:
         """Full decision: unsupported / match / clarify / none."""
@@ -230,16 +298,24 @@ class TemplateSelector:
         # 1. an explicit technology we cannot serve wins over everything:
         #    the user named something concrete that is out of scope.
         low = raw.lower()
-        for word, reason in _UNSUPPORTED_TECH.items():
-            if re.search(r"(?<![a-z])" + re.escape(word) + r"(?![a-z])", low):
-                if _UNSUPPORTED_TECH.get(word) is not None:
-                    return Selection("unsupported", reason=reason,
-                                     template_id=None,
-                                     score=0.0)
+        table = {**_UNSUPPORTED_TECH, **_CONTEXT_TECH}
+        for word, reason in table.items():
+            if _mentions_tech(low, word):
+                return Selection("unsupported", reason=reason,
+                                 template_id=None,
+                                 score=0.0)
 
         # 2. pure conversation is not a coding request
         if _CONVERSATIONAL.match(raw):
             return Selection("none", reason="conversational")
+
+        # "make something cool", "build something fun" -- there is a wish to
+        # build, but nothing to build.  Asking is the honest answer.
+        if (_VAGUE_WISH.search(raw)
+                and not re.search(r"\b(game|website|page|site|app|animation|"
+                                  r"button|counter|timer|effect|pong|snake|"
+                                  r"puzzle|platformer)\b", low)):
+            return Selection("clarify", reason="task_not_specified")
 
         scored = self.score_all(raw)
         if not scored:
@@ -261,6 +337,22 @@ class TemplateSelector:
         # One distinctive word ("snake", "pong", "stopwatch") is strong enough
         # to act on; one *generic* word ("first", "second") is not.  The test is
         # whether the single token is truly characteristic of its template, so
+        # A distinctive template keyword is direct evidence, and TF-IDF alone
+        # punishes it for being in a longer sentence: "Make a 30x30 snake game"
+        # averages to 0.13 while "Make a snake game" scores 0.18.  A keyword hit
+        # is the user naming the thing, so it short-circuits the threshold --
+        # but only when it is not a dead heat with another template.
+        kw = self._keyword_scores(low)
+        if kw and kw[0][1] >= 1:
+            best = kw[0][0]
+            # Another template matching just as many keywords means the request
+            # is genuinely ambiguous ("a game with a ball and a paddle": pong or
+            # snake?), so let the normal margin rules handle it.
+            runner = kw[1][1] if len(kw) > 1 else 0
+            if kw[0][1] > runner:
+                return Selection("match", template_id=best, score=top_score,
+                                 candidates=scored)
+
         # require it to clear the normal threshold on its own.
         informative = [w for w in toks if w in self._known]
         if len(informative) < 2 and top_score < self.min_score:
@@ -308,6 +400,11 @@ class TemplateSelector:
     def template_ids(self) -> List[str]:
         return sorted(self._tokens)
 
+
+#: "make me something", "build something nice" -- a wish with no object.
+_VAGUE_WISH = re.compile(
+    r"\b(make|create|build|do|code|write|start)\b[^.?!]{0,18}"
+    r"\b(something|anything|stuff|things)\b", re.I)
 
 #: Nouns for things this system genuinely builds.  A request containing one is
 #: a coding wish even when no template scores high enough to claim it.

@@ -199,6 +199,59 @@ def cmd_check_code(args: argparse.Namespace) -> int:
     return 0 if all(b.validation.ok for b in blocks) else 1
 
 
+def cmd_router(args: argparse.Namespace) -> int:
+    """Score the router against coding_requests.txt (router test data)."""
+    from boxz.coding.requests import (parse_coding_requests,
+                                      write_router_jsonl)
+    from boxz.coding.system import build_default_system
+
+    system = build_default_system()
+    if system is None:
+        print("coding system unavailable")
+        return 1
+
+    if args.export:
+        info = write_router_jsonl(args.export, implemented=list(system.templates))
+        print(f"wrote {info['records']} records to {info['path']}")
+        for outcome, n in sorted(info["by_outcome"].items()):
+            print(f"  {outcome:12s} {n}")
+        return 0
+
+    corpus = parse_coding_requests(args.corpus)
+    rows = []
+    for block in corpus.blocks:
+        want = ("match" if block.kind == "TEMPLATE"
+                else "clarify" if block.kind == "CLARIFY" else "unsupported")
+        for req in block.requests:
+            got = system.selector.classify(req)
+            ok = got.outcome == want and (
+                block.kind != "TEMPLATE" or got.template_id == block.id)
+            rows.append((ok, block, want, req, got))
+
+    # recall is only meaningful for templates that actually exist
+    shipped = [r for r in rows if r[1].kind == "TEMPLATE" and r[1].id in system.templates]
+    edge = [r for r in rows if r[1].kind != "TEMPLATE"]
+    other = [r for r in rows if r[1].kind == "TEMPLATE" and r[1].id not in system.templates]
+
+    def rate(rs):
+        return (sum(r[0] for r in rs) / len(rs)) if rs else 0.0
+
+    print(f"implemented templates : {sum(r[0] for r in shipped)}/{len(shipped)}"
+          f" = {rate(shipped):.1%}")
+    print(f"clarify/unsupported   : {sum(r[0] for r in edge)}/{len(edge)}"
+          f" = {rate(edge):.1%}")
+    print(f"not-yet-built (info)  : {sum(r[0] for r in other)}/{len(other)}"
+          f" = {rate(other):.1%}")
+
+    misses = [r for r in shipped if not r[0]]
+    if misses:
+        print("\nmisses:")
+        for _ok, block, want, req, got in misses[:10]:
+            print(f"  want {block.id:24s} got {got.outcome}/{got.template_id}")
+            print(f"       {req}")
+    return 0 if rate(shipped) >= 0.90 and rate(edge) >= 0.90 else 1
+
+
 def cmd_code(args: argparse.Namespace) -> int:
     """Build a project from a coding request, or list the template library."""
     import json
@@ -374,6 +427,12 @@ def build_parser() -> argparse.ArgumentParser:
     cc.add_argument("--file")
     cc.add_argument("--capabilities", action="store_true")
     cc.set_defaults(func=cmd_check_code)
+
+    rt = sub.add_parser("router", help="score the coding router")
+    rt.add_argument("--corpus", default="coding_requests.txt")
+    rt.add_argument("--export", default=None,
+                    help="write router JSONL here instead of scoring")
+    rt.set_defaults(func=cmd_router)
 
     cd = sub.add_parser("code", help="build a project from a coding request")
     cd.add_argument("request", nargs="?", default="")

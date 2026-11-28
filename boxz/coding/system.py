@@ -28,7 +28,7 @@ from .customize import CustomizationError, apply_values
 from .library import ProjectValidation, validate_project
 from .requests import RequestCorpus, parse_coding_requests
 from .selection import Selection, TemplateSelector
-from .session import CodingSession, FollowUp, parse_followup
+from .session import parse_initial_values, CodingSession, FollowUp, parse_followup
 from .templates import Template, load_library
 
 __all__ = ["CodingResult", "CodingSystem", "build_default_system"]
@@ -225,7 +225,11 @@ class CodingSystem:
             return CodingResult(handled=False, outcome="none",
                                 session=session, selection=selection)
 
-        return self._build(selection.template_id, {}, session, selection,
+        # Values stated in the first request ("20 by 20 grid", "a fast speed")
+        # must survive into the project; they are proposed here and still go
+        # through the usual range checks.
+        stated = parse_initial_values(text, self.templates[selection.template_id])
+        return self._build(selection.template_id, stated, session, selection,
                            source="template")
 
     # -- internals -------------------------------------------------------

@@ -202,3 +202,49 @@ def test_available_lists_the_library(system):
     for item in listing:
         assert item["id"] and item["title"]
         assert isinstance(item["parameters"], list)
+
+
+# --------------------------------------------------- values in first request
+def test_grid_size_stated_in_first_request_is_used(system, session):
+    r = system.handle("Make a snake game with a 20 by 20 grid", session)
+    assert r.template_id == "js_snake"
+    assert session.values["grid_size"] == 20
+    assert "var CELLS = 20;" in r.project.files["game.js"]
+
+
+def test_30x30_form_is_understood(system, session):
+    system.handle("Make a 30x30 snake game", session)
+    assert session.values["grid_size"] == 30
+
+
+def test_speed_adjective_maps_to_the_right_parameter(system, session):
+    system.handle("Make a snake game with a fast speed", session)
+    assert session.values["step_ms"] == 90
+
+
+def test_colour_stated_up_front(system, session):
+    system.handle("Make a blue snake game", session)
+    assert session.values["snake_color"] == "#0074d9"
+
+
+def test_duration_stated_up_front(system, session):
+    system.handle("Create a timer for 90 seconds", session)
+    assert session.values["countdown_s"] == 90
+
+
+def test_speed_maps_to_ball_speed_for_pong(system, session):
+    system.handle("Make a pong game that is fast", session)
+    assert session.values["ball_speed"] < 4.2
+
+
+def test_stated_value_is_still_range_checked(system, session):
+    """A wild value must be clamped by the normal validation, not trusted."""
+    r = system.handle("Make a snake game with a 500 by 500 grid", session)
+    assert session.values["grid_size"] <= 30
+    assert "did not fit" in r.text or "clamped" in r.text.lower()
+
+
+def test_defaults_are_kept_when_nothing_is_stated(system, session):
+    system.handle("Make a snake game", session)
+    assert session.values["grid_size"] == 15
+    assert session.values["step_ms"] == 120

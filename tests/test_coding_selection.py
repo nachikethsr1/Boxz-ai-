@@ -165,3 +165,43 @@ def test_unimplemented_template_requests_do_not_crash(setup):
             assert r.outcome in ("match", "clarify", "unsupported", "none")
             if r.template_id is not None:
                 assert r.template_id in lib
+
+
+# ------------------------------------------------- English vs technology
+@pytest.mark.parametrize("phrase", [
+    # "react" as a verb, "go"/"on" as English, Windows as a UI element
+    "Make the page react to the mouse.",
+    "I need a personal site but I am not sure what should go on it.",
+    "Make windows pop up on click",
+    "Add some clicking actions to the interface.",
+])
+def test_english_words_are_not_tech_names(setup, phrase):
+    _corpus, _lib, selector = setup
+    r = selector.classify(phrase)
+    assert r.outcome != "unsupported", (phrase, r.reason)
+
+
+@pytest.mark.parametrize("phrase", [
+    "Make a C program that simulates a simple queue.",
+    "Write the app in Go",
+    "Create a React dashboard with reusable components.",
+    "Build a website with React",
+    "Make a Windows desktop application with a native interface.",
+])
+def test_real_tech_mentions_are_still_refused(setup, phrase):
+    _corpus, _lib, selector = setup
+    assert selector.classify(phrase).outcome == "unsupported", phrase
+
+
+def test_wish_with_no_object_asks_a_question(setup):
+    _corpus, _lib, selector = setup
+    r = selector.classify("i want to make something cool")
+    assert r.outcome == "clarify"
+    assert r.reason == "task_not_specified"
+
+
+def test_greeting_is_not_a_clarification(setup):
+    """Greetings must reach the model; answering with a template menu is wrong."""
+    _corpus, _lib, selector = setup
+    assert selector.classify("hi").outcome == "none"
+    assert selector.classify("good morning").outcome == "none"

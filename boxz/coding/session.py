@@ -148,9 +148,12 @@ def _resolve_param(template: Template, word: str) -> Optional[str]:
                 return cand
         return None
     if word in ("faster", "quicker", "slower", "speed"):
+        # "speed" is an alias on some templates, not a parameter name, so the
+        # hit is resolved back to whatever the template really declares.
         for cand in ("step_ms", "speed", "ball_speed", "duration_ms", "rotation_speed"):
-            if template.param(cand):
-                return cand
+            hit = template.param(cand)
+            if hit:
+                return hit.name
         return None
     if word in ("more", "fewer", "less", "many", "amount", "count"):
         for cand in ("particle_count", "count", "start_length", "win_score"):
@@ -233,3 +236,109 @@ def parse_followup(text: str, template: Template) -> FollowUp:
 
     return FollowUp(ambiguous=True, text=raw,
                     note="I could not map that to a supported parameter")
+
+
+def parse_initial_values(text: str, template: Template) -> Dict[str, Any]:
+    """Read parameters stated in the *first* request.
+
+    "Make a snake game with a 20 by 20 grid and a fast speed" already tells us
+    two parameter values.  Ignoring them and building the default project makes
+    the system look deaf, so they are applied before the project is rendered.
+
+    Only values the template actually declares are returned, and every value
+    still goes through the normal range/type validation in ``apply_values`` --
+    this function only *proposes*, it never forces a value through.
+    """
+    raw = (text or "").strip()
+    low = raw.lower()
+    out: Dict[str, Any] = {}
+    if not raw or not template:
+        return out
+
+    names = set(template.param_names())
+
+    # --- explicit "grid_size 20" / "step_ms=60" -------------------------
+    for name in names:
+        m = re.search(r"\b" + re.escape(name) + r"\s*(?:=|:|to|of)?\s*"
+                      r"(-?\d+(?:\.\d+)?)", low)
+        if m:
+            out[name] = m.group(1)
+
+    # --- "<a> by <b>" grid, for templates with a square grid ------------
+    if "grid_size" in names and "grid_size" not in out:
+        m = re.search(r"\b(\d{1,3})\s*(?:by|x|×)\s*(\d{1,3})\b", low)
+        if m and m.group(1) == m.group(2):
+            out["grid_size"] = m.group(1)
+
+    # --- "20x20" without spaces ----------------------------------------
+    if "grid_size" in names and "grid_size" not in out:
+        m = re.search(r"\b(\d{1,3})x(\d{1,3})\b", low)
+        if m and m.group(1) == m.group(2):
+            out["grid_size"] = m.group(1)
+
+    # --- a duration: "60 second timer" / "a 30s countdown" --------------
+    if "countdown_s" in names and "countdown_s" not in out:
+        m = re.search(r"\b(\d{1,4})\s*(?:second|seconds|sec|secs|s)\b", low)
+        if m:
+            out["countdown_s"] = m.group(1)
+
+    # --- speed / size adjectives map onto the template's own parameter --
+    # "fast" is the adjective; _RELATIVE_WORDS stores the comparative "faster".
+    stem = {"fast": "faster", "quick": "quicker", "slow": "slower",
+            "big": "bigger", "large": "larger", "small": "smaller"}
+    for word, (hint, op, factor) in _RELATIVE_WORDS.items():
+        pattern = r"(?<![a-z])" + word + r"(?![a-z])"
+        if not re.search(pattern, low):
+            for adj, mapped in stem.items():
+                if mapped == word and re.search(
+                        r"(?<![a-z])" + adj + r"(?![a-z])", low):
+                    break
+            else:
+                continue
+        target = _resolve_param(template, hint)
+        if not target or target in out:
+            continue
+        param = template.param(target)
+        if param is None or param.type not in ("int", "float"):
+            continue
+        # _resolve_param can fall back to a bare hint word; only a name the
+        # template really declares may be written into the session.
+        if target not in names:
+            continue
+        # "fast" is a starting point, not a delta: take a step from the default.
+        base = param.default
+        try:
+            value = base * factor if op == "scale" else base
+        except TypeError:
+            continue
+        if param.type == "int":
+            value = int(round(value))
+        else:
+            value = float(f"{value:.4g}")
+        out[target] = value
+
+    # --- colours ---------------------------------------------------------
+    for colour, hexcode in _COLOR_WORDS.items():
+        if not re.search(r"(?<![a-z])" + colour + r"(?![a-z])", low):
+            continue
+        target = None
+        for word in ("background", "bg", "accent", "text", "border"):
+            if word in low:
+                named = template.param(word)
+                if named:
+                    target = named.name
+                    break
+        if target is None:
+            # "a blue snake game" wants the *thing* blue, not the page.
+            head = low.split(colour)[0].strip().split()[-1:] or []
+            for hint in head:
+                named = template.param(hint)
+                if named and named.type == "color":
+                    target = named.name
+                    break
+        if target is None:
+            target = _resolve_param(template, "color")
+        if target and target not in out:
+            out[target] = hexcode
+        break
+    return out

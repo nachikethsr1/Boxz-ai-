@@ -126,6 +126,40 @@ class RequestCorpus:
                 })
         return out
 
+    def router_records(self, implemented: Optional[List[str]] = None) -> List[dict]:
+        """One record per request, carrying the outcome the router *should* give.
+
+        This is test data for the matcher, not training data for the model.
+        ``implemented`` marks which template ids actually exist, so a harness
+        can separately measure recall on shipped templates and check that we
+        never invent one we do not have.
+        """
+        have = set(implemented or [])
+        out: List[dict] = []
+        for b in self.blocks:
+            if b.kind == "TEMPLATE":
+                expected_outcome = "match"
+                expected_template = b.id
+            elif b.kind == "CLARIFY":
+                expected_outcome = "clarify"
+                expected_template = None
+            else:
+                expected_outcome = "unsupported"
+                expected_template = None
+            for req in b.requests:
+                out.append({
+                    "utterance": req,
+                    "expected_outcome": expected_outcome,
+                    "expected_template": expected_template,
+                    "expected_reason": b.reason,
+                    "intent": b.intent,
+                    "category": b.category,
+                    "template_block": b.id,
+                    "implemented": b.id in have if b.kind == "TEMPLATE" else None,
+                    "source": "coding_requests.txt",
+                })
+        return out
+
     def summary(self) -> dict:
         return {
             "categories": len(self.categories),
@@ -218,3 +252,47 @@ def parse_coding_requests(
         raise ValueError(f"{p}: block(s) with no requests: {empty}")
 
     return corpus
+
+
+def write_router_jsonl(
+    path: str | Path = "data/coding/requests.jsonl",
+    *,
+    corpus_path: str | Path = DEFAULT_REQUEST_FILE,
+    implemented: Optional[List[str]] = None,
+    corpus: Optional[RequestCorpus] = None,
+) -> dict:
+    """Write every request as one JSON object per line.
+
+    Returns a small summary so callers can print what happened.  Deduplicated
+    on ``utterance``: the same sentence under two headers would be ambiguous
+    test data.
+    """
+    import json
+
+    corpus = corpus or parse_coding_requests(corpus_path)
+    records = corpus.router_records(implemented)
+
+    seen: set[str] = set()
+    unique: List[dict] = []
+    for rec in records:
+        key = rec["utterance"].strip().lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(rec)
+
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with target.open("w", encoding="utf-8") as fh:
+        for rec in unique:
+            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+
+    by_outcome: dict[str, int] = {}
+    for rec in unique:
+        by_outcome[rec["expected_outcome"]] = by_outcome.get(rec["expected_outcome"], 0) + 1
+    return {
+        "path": str(target),
+        "records": len(unique),
+        "dropped_duplicates": len(records) - len(unique),
+        "by_outcome": by_outcome,
+    }
