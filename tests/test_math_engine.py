@@ -171,3 +171,24 @@ def test_does_not_guess_on_unsupported_input():
 def test_negative_sqrt_is_rejected():
     a = solve("sqrt(-9)")
     assert not a.ok
+
+
+@pytest.mark.parametrize("q,expected", [
+    ("subtract 293847 from 847362", "553515"),
+    ("subtract 4.5 from 19.75", "15.25"),
+    ("add 14.6 and 3.85", "18.45"),
+    ("multiply 12 by 15", "180"),
+    ("divide 144 by 12", "12"),
+    ("what is the difference between 1500 and 675", "825"),
+    ("subtract 1/8 from 5/8", "0.5"),
+])
+def test_verbal_arithmetic(q, expected):
+    """Phrasings with no operator symbol: 'subtract A from B' is B - A."""
+    a = solve(q)
+    assert a.ok, a.error
+    assert a.value == expected, (q, a.value)
+
+
+def test_verbal_subtract_order_is_not_reversed():
+    """'subtract 3 from 10' is 7, never -7."""
+    assert solve("subtract 3 from 10").value == "7"

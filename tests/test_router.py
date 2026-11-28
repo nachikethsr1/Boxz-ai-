@@ -54,3 +54,23 @@ def test_topic_switching_is_stateless():
            ("3x + 6 = 18", True)]
     for q, expect_math in seq:
         assert bool(route(q).used_math) is expect_math, q
+
+
+def test_conversational_leadin_still_routes_to_math():
+    """A follow-up turn ("now do 77 * 33") is still a maths turn."""
+    cases = {
+        "now do 77 * 33": "2541",
+        "and 998 * 12": "11976",
+        "then 5 + 5": "10",
+        "ok 12 * 12": "144",
+        "please compute 99 * 11": "1089",
+    }
+    for q, expected in cases.items():
+        r = route(q)
+        assert r.used_math, q
+        assert r.math.value == expected, (q, r.math.value)
+
+
+def test_leadin_stripping_does_not_create_false_positives():
+    for q in ["What is HTML?", "Explain what CSS does", "now add classes to my div"]:
+        assert not route(q).used_math, q

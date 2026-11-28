@@ -63,7 +63,8 @@ td:first-child{color:var(--dim);width:150px}
   <div class="card">
     <h2>chat — routed automatically</h2>
     <div class="row"><input id="msg" placeholder="482736 + 918264  ·  or: write javascript for a button click" autofocus>
-    <button id="send">send</button></div>
+    <button id="send">send</button>
+    <button id="clear" title="start a new conversation">clear</button></div>
     <div class="out mono" id="reply"></div>
     <div id="trace"></div>
   </div>
@@ -84,6 +85,13 @@ td:first-child{color:var(--dim);width:150px}
 </main>
 <script>
 const $ = s => document.querySelector(s);
+// One session per browser tab, so two tabs (or two people) never share history.
+const SESSION = (() => {
+  let k = sessionStorage.getItem('boxz_sid');
+  if (!k) { k = 'sid-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+            sessionStorage.setItem('boxz_sid', k); }
+  return k;
+})();
 async function j(url, opts){ const r = await fetch(url, opts); return r.json(); }
 (async () => {
   const h = await j('/api/health');
@@ -94,8 +102,9 @@ $('#send').onclick = async () => {
   $('#send').disabled = true; $('#reply').textContent = '…';
   try {
     const r = await j('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'},
-                                   body: JSON.stringify({message})});
-    $('#reply').textContent = r.text;
+                                   body: JSON.stringify({message, session: SESSION})});
+    $('#reply').textContent = (window.__hist = window.__hist || []). 
+      concat([`> ${message}`, r.text]).join('\n\n');
     let rows = `<table><tr><td>routed to</td><td>${r.tools.used_math ? 'MATH ENGINE (model generated 0 tokens)' : (r.tools.used_coding ? 'model + CODING ENGINE' : 'model')}</td></tr>`;
     if(r.tools.math) rows += `<tr><td>exact value</td><td class="hit">${r.tools.math.value}</td></tr><tr><td>expression</td><td>${r.tools.math.expression || '—'}</td></tr>`;
     if(r.tools.code_blocks && r.tools.code_blocks.length)
@@ -105,6 +114,7 @@ $('#send').onclick = async () => {
   } finally { $('#send').disabled = false; }
 };
 $('#msg').onkeydown = e => { if(e.key === 'Enter') $('#send').click(); };
+$('#clear').onclick = () => { window.__hist = []; $('#reply').textContent = ''; $('#trace').innerHTML = ''; };
 $('#mbtn').onclick = async () => {
   const q = $('#mq').value.trim(); if(!q) return;
   const r = await j('/api/math?q=' + encodeURIComponent(q));
@@ -126,6 +136,11 @@ class _State:
     model: Any = None
     lock = threading.Lock()
     info: Dict[str, Any] = {}
+    #: One ChatEngine per browser tab.  A shared engine means every visitor
+    #: appends to the same transcript, which made the fifth request carry 500
+    #: tokens of strangers' turns.
+    sessions: Dict[str, Any] = {}
+    max_sessions: int = 32
 
 
 def _json(handler: BaseHTTPRequestHandler, obj: Any, status: int = 200) -> None:
@@ -197,8 +212,23 @@ def make_handler():
                                    temperature=float(payload.get("temperature", 0.4)),
                                    top_k=20, top_p=0.95)
             try:
+                # Each /api/chat call is a *new* conversation unless the client
+                # explicitly asks to continue one.  Without this reset the
+                # engine accumulated every message ever sent to the server, so
+                # by the fifth request the prompt was 500+ tokens of other
+                # people's (and its own) turns and the answer was garbage.
+                sid = str(payload.get("session") or "default")[:64]
                 with _State.lock:
-                    reply = _State.engine.reply(message, cfg)
+                    eng = _State.sessions.get(sid)
+                    if eng is None:
+                        from ..chat.engine import ChatEngine
+                        eng = ChatEngine(_State.model, _State.tokenizer, use_tools=True)
+                        if len(_State.sessions) >= _State.max_sessions:
+                            _State.sessions.pop(next(iter(_State.sessions)))
+                        _State.sessions[sid] = eng
+                    if not payload.get("continue"):
+                        eng.reset()
+                    reply = eng.reply(message, cfg)
             except Exception as exc:              # noqa: BLE001
                 return _json(self, {"error": f"{type(exc).__name__}: {exc}"}, 500)
             d = reply.to_dict()

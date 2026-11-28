@@ -349,11 +349,50 @@ def _algebra(q: str) -> Optional[MathAnswer]:
 # entry point
 # --------------------------------------------------------------------------
 
+def _verbal_ops(q: str) -> Optional[MathAnswer]:
+    """'subtract A from B', 'add A and B', 'multiply A by B', 'divide A by B'.
+
+    These are the exact phrasings in the training data ("subtract 1/8 from 5/8")
+    but they have no operator symbol, so the expression path never sees them.
+    """
+    m = re.search(rf"subtract\s+({_NUM}(?:/\d+)?)\s+from\s+({_NUM}(?:/\d+)?)", q, re.I)
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        return MathAnswer(True, _fmt(b - a), f"{_fmt(b)} - {_fmt(a)}", "arithmetic")
+    m = re.search(rf"(?:add|sum of)\s+({_NUM}(?:/\d+)?)\s+(?:and|to|plus)\s+({_NUM}(?:/\d+)?)", q, re.I)
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        return MathAnswer(True, _fmt(a + b), f"{_fmt(a)} + {_fmt(b)}", "arithmetic")
+    m = re.search(rf"multiply\s+({_NUM}(?:/\d+)?)\s+by\s+({_NUM}(?:/\d+)?)", q, re.I)
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        return MathAnswer(True, _fmt(a * b), f"{_fmt(a)} * {_fmt(b)}", "arithmetic")
+    m = re.search(rf"divide\s+({_NUM}(?:/\d+)?)\s+by\s+({_NUM}(?:/\d+)?)", q, re.I)
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        if b == 0:
+            return MathAnswer(False, error="division by zero is undefined (division_by_zero)")
+        return MathAnswer(True, _fmt(a / b), f"{_fmt(a)} / {_fmt(b)}", "arithmetic")
+    m = re.search(rf"what\s+is\s+the\s+difference\s+between\s+({_NUM})\s+and\s+({_NUM})", q, re.I)
+    if m:
+        a, b = _num(m.group(1)), _num(m.group(2))
+        return MathAnswer(True, _fmt(abs(a - b)), f"|{_fmt(a)} - {_fmt(b)}|", "arithmetic",
+                          detail=f"difference is {_fmt(abs(a-b))}")
+    return None
+
+
 def _arithmetic(q: str) -> Optional[MathAnswer]:
     """Last resort: is the question basically one expression?"""
     cleaned = q.strip().rstrip("?.=")
+    # Conversational lead-ins ("now do 77 * 33", "and 998 * 12") must not stop
+    # the expression from being found -- a follow-up turn is still a maths turn.
+    cleaned = re.sub(r"^(?:and|now|then|next|ok(?:ay)?|so|also|bro|hey|please|"
+                     r"can\s+you|could\s+you|would\s+you|let's|lets|try|do)\b[\s,]*",
+                     "", cleaned, flags=re.I)
     cleaned = re.sub(r"^(?:what\s+is|calculate|compute|evaluate|find|solve|how\s+much\s+is|"
                      r"what's|whats)\s+", "", cleaned, flags=re.I)
+    # "now do X" style: strip any remaining imperative lead-in before an expression
+    cleaned = re.sub(r"^(?:please\s+)?(?:do|run|work\s+out)\s+", "", cleaned, flags=re.I)
     if not re.search(r"\d", cleaned):
         return None
     if not re.search(r"[+\-*/^%]|\bplus\b|\bminus\b|\btimes\b|\bdivided\b", cleaned, re.I):
@@ -416,7 +455,8 @@ def _powers(q: str) -> Optional[MathAnswer]:
     return None
 
 
-_PIPELINE = [_convert, _percent, _powers, _geo, _ratio, _average, _algebra, _arithmetic]
+_PIPELINE = [_convert, _percent, _powers, _geo, _ratio, _average, _algebra,
+             _verbal_ops, _arithmetic]
 
 
 def solve(question: str) -> MathAnswer:
