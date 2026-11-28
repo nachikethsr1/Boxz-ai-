@@ -12,6 +12,8 @@ Endpoints
 ``POST /api/chat``      {"message": ...} -> routed reply + tool trace
 ``GET  /api/math?q=``   Math Engine only
 ``GET  /api/check?q=``  Coding Engine only
+``GET  /api/templates`` the template library
+``GET  /api/build?q=``  template project as JSON (no model involved)
 
 Run::
 
@@ -182,6 +184,21 @@ def make_handler():
                 return _json(self, {"ok": a.ok, "value": a.value,
                                     "expression": a.expression, "kind": a.kind,
                                     "error": a.error})
+            if u.path == "/api/templates":
+                from ..coding.system import build_default_system
+
+                system = build_default_system()
+                return _json(self, {"templates": system.available()
+                                    if system else []})
+            if u.path == "/api/build":
+                from ..coding.session import CodingSession
+                from ..coding.system import build_default_system
+
+                system = build_default_system()
+                if system is None:
+                    return _json(self, {"error": "coding system unavailable"}, 503)
+                result = system.handle((qs.get("q") or [""])[0], CodingSession())
+                return _json(self, result.to_dict())
             if u.path == "/api/check":
                 from ..coding.engine import validate_reply
 
@@ -226,8 +243,15 @@ def make_handler():
                         if len(_State.sessions) >= _State.max_sessions:
                             _State.sessions.pop(next(iter(_State.sessions)))
                         _State.sessions[sid] = eng
+                    # Text history resets every turn unless the client asks to
+                    # continue (that was the fix for the 500-token context
+                    # pollution).  The *coding* session is separate state and
+                    # must survive, otherwise "make it faster" has no project
+                    # to act on.  Only an explicit reset drops it.
                     if not payload.get("continue"):
-                        eng.reset()
+                        eng.conversation.reset()
+                    if payload.get("reset_coding"):
+                        eng.coding_session.clear()
                     reply = eng.reply(message, cfg)
             except Exception as exc:              # noqa: BLE001
                 return _json(self, {"error": f"{type(exc).__name__}: {exc}"}, 500)

@@ -1,0 +1,111 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: __BG_COLOR__;
+  color: #e6edf3;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  padding: 16px;
+}
+
+.stage { text-align: center; }
+
+h1 {
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8b9bab;
+  margin: 0 0 28px;
+}
+
+.row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  font: inherit;
+  font-weight: 700;
+  font-size: __FONT_PX__px;
+  padding: 14px 28px;
+  border-radius: __RADIUS_PX__px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    transform __DURATION_MS__ms cubic-bezier(.2, .8, .2, 1),
+    box-shadow __DURATION_MS__ms ease,
+    background-color __DURATION_MS__ms ease,
+    border-color __DURATION_MS__ms ease;
+}
+
+/* primary: solid accent that lifts and glows on hover */
+.btn-primary {
+  background: __ACCENT_COLOR__;
+  color: #0b0f14;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  transform: translateY(-__LIFT_PX__px) scale(__HOVER_SCALE__);
+  box-shadow: 0 __GLOW_PX__px __GLOW_PX__px rgba(0, 0, 0, 0.45);
+  background-color: __ACCENT_HOVER__;
+  outline: none;
+}
+
+/* the press state is shorter than the release so a tap feels instant */
+.btn:active { transform: translateY(0) scale(0.97); transition-duration: 60ms; }
+
+.btn-ghost {
+  background: transparent;
+  color: __ACCENT_COLOR__;
+  border-color: __ACCENT_COLOR__;
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-__LIFT_PX__px) scale(__HOVER_SCALE__);
+  outline: none;
+}
+
+/* arrow that slides on hover, drawn with a pseudo-element so no icon file is needed */
+.btn-primary::after {
+  content: "\2192";
+  display: inline-block;
+  margin-left: 0.5em;
+  transition: transform __DURATION_MS__ms ease;
+}
+
+.btn-primary:hover::after,
+.btn-primary:focus-visible::after {
+  transform: translateX(__ARROW_PX__px);
+}
+
+/* a ripple that is spawned by ripple.js and removed when it finishes */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+  animation: ripple-out 600ms ease-out forwards;
+  z-index: -1;
+}
+
+@keyframes ripple-out {
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+.hint {
+  margin: 26px 0 0;
+  font-size: 12px;
+  color: #8b9bab;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn::after, .ripple { transition: none; animation: none; }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "js_timer_app",
+  "title": "Timer and stopwatch",
+  "language": "javascript",
+  "category": "dom_interactions",
+  "task": "timer",
+  "summary": "A stopwatch that counts up with start, pause, lap and reset, plus a countdown with a progress ring and an end-of-time flash. Both share one display.",
+  "files": [
+    { "path": "index.html", "language": "html", "role": "page" },
+    { "path": "timer.js", "language": "javascript", "role": "script" },
+    { "path": "style.css", "language": "css", "role": "style" }
+  ],
+  "parameters": [
+    { "name": "title", "placeholder": "__TITLE__", "type": "string", "default": "Timer",
+      "aliases": ["name", "heading"], "description": "Heading above the display." },
+    { "name": "countdown_s", "placeholder": "__COUNTDOWN_S__", "type": "int", "default": 60,
+      "min": 1, "max": 9999, "aliases": ["seconds", "duration", "countdown"],
+      "description": "Pre-filled value in the countdown box." },
+    { "name": "tick_ms", "placeholder": "__TICK_MS__", "type": "int", "default": 100,
+      "min": 30, "max": 1000, "aliases": ["tick", "resolution", "update"],
+      "description": "How often the display updates, in milliseconds." },
+    { "name": "display_font_px", "placeholder": "__DISPLAY_FONT_PX__", "type": "int",
+      "default": 52, "min": 28, "max": 120, "aliases": ["font_size", "size"],
+      "description": "Size of the time display." },
+    { "name": "accent_color", "placeholder": "__ACCENT_COLOR__", "type": "color",
+      "default": "#58a6ff", "aliases": ["color", "accent"], "description": "Accent colour." },
+    { "name": "bg_color", "placeholder": "__BG_COLOR__", "type": "color",
+      "default": "#0b0f14", "aliases": ["background", "bg"], "description": "Page background." }
+  ],
+  "keywords": ["timer", "stopwatch", "countdown", "clock", "pomodoro", "kitchen timer", "lap"],
+  "when_to_select": [
+    "the user wants a stopwatch, countdown or Pomodoro timer",
+    "start / pause / reset controls around a time display"
+  ],
+  "when_not_to_select": [
+    "a counter that goes up on click (that is js_click_counter)",
+    "a game clock inside a game"
+  ],
+  "known_limitations": [
+    "countdown stops at zero with a visual flash; it does not play a sound file (no audio asset is generated)",
+    "lap times are session-only and are not persisted"
+  ],
+  "licence": "CC0-1.0 (project original)",
+  "version": "1.0.0",
+  "status": "tested"
+}

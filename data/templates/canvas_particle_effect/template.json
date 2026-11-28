@@ -1,0 +1,58 @@
+{
+  "id": "canvas_particle_effect",
+  "title": "Canvas particle effect",
+  "language": "javascript",
+  "category": "canvas_animations",
+  "task": "particle_effect",
+  "summary": "A full-window particle field that drifts, bounces off the edges, links to nearby neighbours and bursts on click. The pointer repels nearby particles.",
+  "files": [
+    { "path": "index.html", "language": "html", "role": "page" },
+    { "path": "particles.js", "language": "javascript", "role": "script" },
+    { "path": "style.css", "language": "css", "role": "style" }
+  ],
+  "parameters": [
+    { "name": "title", "placeholder": "__TITLE__", "type": "string", "default": "Particles",
+      "aliases": ["name", "heading"], "description": "Caption over the canvas." },
+    { "name": "particle_count", "placeholder": "__PARTICLE_COUNT__", "type": "int",
+      "default": 90, "min": 10, "max": 400, "aliases": ["count", "particles", "amount", "many"],
+      "nl_values": { "few": 40, "some": 90, "many": 200, "lots": 320 },
+      "description": "Particles on screen at start." },
+    { "name": "speed", "placeholder": "__SPEED__", "type": "float", "default": 0.6,
+      "min": 0.05, "max": 4.0, "aliases": ["velocity", "faster", "slower"],
+      "nl_values": { "slow": 0.25, "medium": 0.6, "fast": 1.6 },
+      "description": "Base drift speed in pixels per frame." },
+    { "name": "particle_radius", "placeholder": "__PARTICLE_RADIUS__", "type": "float",
+      "default": 2.2, "min": 0.5, "max": 8.0, "aliases": ["radius", "size", "dot_size"],
+      "description": "Base radius; each particle varies by 0.6x to 1.4x." },
+    { "name": "link_distance", "placeholder": "__LINK_DISTANCE__", "type": "int",
+      "default": 110, "min": 0, "max": 260, "aliases": ["distance", "link_range"],
+      "description": "Maximum distance for a connector line." },
+    { "name": "link_lines", "placeholder": "__LINK_LINES__", "type": "bool", "default": true,
+      "aliases": ["lines", "connections", "network"],
+      "description": "Draw lines between nearby particles." },
+    { "name": "particle_color", "placeholder": "__PARTICLE_COLOR__", "type": "color",
+      "default": "#58a6ff", "aliases": ["color", "dot_color"],
+      "description": "Particle colour." },
+    { "name": "link_color", "placeholder": "__LINK_COLOR__", "type": "color",
+      "default": "#8b9bab", "aliases": ["line_color", "link"],
+      "description": "Connector line colour." },
+    { "name": "bg_color", "placeholder": "__BG_COLOR__", "type": "color",
+      "default": "#0b0f14", "aliases": ["background", "bg"], "description": "Page background." }
+  ],
+  "keywords": ["particle", "particles", "confetti", "dots", "network", "starfield", "effect", "animation"],
+  "when_to_select": [
+    "the user asks for floating dots, particles or a network effect",
+    "a decorative canvas animation with no win condition"
+  ],
+  "when_not_to_select": [
+    "a playable game with a player and score",
+    "a CSS-only hover animation (that is css_* templates)"
+  ],
+  "known_limitations": [
+    "connector lines are O(n^2); at 400 particles the frame rate drops",
+    "no image sprites, only filled circles"
+  ],
+  "licence": "CC0-1.0 (project original)",
+  "version": "1.0.0",
+  "status": "tested"
+}

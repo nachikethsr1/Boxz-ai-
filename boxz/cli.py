@@ -199,6 +199,51 @@ def cmd_check_code(args: argparse.Namespace) -> int:
     return 0 if all(b.validation.ok for b in blocks) else 1
 
 
+def cmd_code(args: argparse.Namespace) -> int:
+    """Build a project from a coding request, or list the template library."""
+    import json
+
+    from boxz.coding.system import build_default_system
+
+    system = build_default_system()
+    if system is None:
+        print("coding system unavailable: coding_requests.txt or "
+              "data/templates is missing")
+        return 1
+
+    if args.list:
+        for item in system.available():
+            print(f"{item['id']:26s} {item['title']:24s} "
+                  f"{item['category']:20s} {item['status']}")
+        return 0
+
+    if not args.request:
+        print("give a request, or use --list")
+        return 2
+
+    result = system.handle(args.request)
+    print(f"outcome : {result.outcome}")
+    print(f"source  : {result.source or '(model)'}")
+    if result.template_id:
+        print(f"template: {result.template_id}")
+    print()
+    print(result.text)
+
+    if args.out and result.project is not None:
+        import pathlib
+        root = pathlib.Path(args.out)
+        for path, _lang, body in result.project.items():
+            target = root / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(body, encoding="utf-8")
+            print(f"wrote {target}")
+
+    if args.json:
+        print()
+        print(json.dumps(result.to_dict(), indent=2))
+    return 0 if result.outcome in ("match", "clarify") else 3
+
+
 def cmd_sft_v3(args: argparse.Namespace) -> int:
     from boxz.training.sft_v3 import SFTV3Config, tune_v3
     cfg = SFTV3Config(train=args.train, val=args.val, steps=args.steps,
@@ -329,6 +374,13 @@ def build_parser() -> argparse.ArgumentParser:
     cc.add_argument("--file")
     cc.add_argument("--capabilities", action="store_true")
     cc.set_defaults(func=cmd_check_code)
+
+    cd = sub.add_parser("code", help="build a project from a coding request")
+    cd.add_argument("request", nargs="?", default="")
+    cd.add_argument("--list", action="store_true", help="list templates")
+    cd.add_argument("--out", default=None, help="write the generated files here")
+    cd.add_argument("--json", action="store_true", help="print the full result")
+    cd.set_defaults(func=cmd_code)
 
     sv = sub.add_parser("sft-v3", help="instruction-tune on the V3 splits")
     sv.add_argument("--checkpoint", required=True)

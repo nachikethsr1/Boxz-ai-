@@ -1,0 +1,60 @@
+{
+  "id": "js_click_counter",
+  "title": "Click counter",
+  "language": "javascript",
+  "category": "dom_interactions",
+  "task": "counter",
+  "summary": "A large tap counter with increment, decrement and reset, optional persistence across refreshes, and explicit min/max limits that tell the user when they are hit.",
+  "files": [
+    { "path": "index.html", "language": "html", "role": "page" },
+    { "path": "counter.js", "language": "javascript", "role": "script" },
+    { "path": "style.css", "language": "css", "role": "style" }
+  ],
+  "parameters": [
+    { "name": "title", "placeholder": "__TITLE__", "type": "string", "default": "Click Counter",
+      "aliases": ["name", "heading"], "description": "Page heading." },
+    { "name": "button_label", "placeholder": "__BUTTON_LABEL__", "type": "string", "default": "Click me",
+      "aliases": ["label", "text", "button_text"], "description": "Text on the main button." },
+    { "name": "click_message", "placeholder": "__CLICK_MESSAGE__", "type": "string", "default": "",
+      "aliases": ["message", "hint"], "description": "Optional line under the number." },
+    { "name": "start_value", "placeholder": "__START_VALUE__", "type": "int", "default": 0,
+      "min": -1000000, "max": 1000000, "aliases": ["start", "initial"],
+      "description": "Value shown on load." },
+    { "name": "step", "placeholder": "__STEP__", "type": "int", "default": 1, "min": 1, "max": 100,
+      "aliases": ["increment", "amount"], "description": "How much each click adds." },
+    { "name": "min_value", "placeholder": "__MIN_VALUE__", "type": "int", "default": 0,
+      "min": -1000000, "max": 1000000, "aliases": ["min", "minimum", "floor"],
+      "description": "Lower limit." },
+    { "name": "max_value", "placeholder": "__MAX_VALUE__", "type": "int", "default": 999,
+      "min": -1000000, "max": 1000000, "aliases": ["max", "maximum", "ceiling", "target"],
+      "description": "Upper limit; the counter stops there." },
+    { "name": "persist", "placeholder": "__PERSIST__", "type": "bool", "default": true,
+      "aliases": ["save", "remember", "localstorage"],
+      "description": "Keep the value across refreshes." },
+    { "name": "count_font_px", "placeholder": "__COUNT_FONT_PX__", "type": "int", "default": 96,
+      "min": 32, "max": 200, "aliases": ["font_size", "size"],
+      "description": "Font size of the big number." },
+    { "name": "count_color", "placeholder": "__COUNT_COLOR__", "type": "color",
+      "default": "#58a6ff", "aliases": ["color", "accent"], "description": "Accent colour." },
+    { "name": "bg_color", "placeholder": "__BG_COLOR__", "type": "color",
+      "default": "#0b0f14", "aliases": ["background", "bg"], "description": "Page background." },
+    { "name": "card_color", "placeholder": "__CARD_COLOR__", "type": "color",
+      "default": "#131a22", "aliases": ["panel", "card"], "description": "Card background." }
+  ],
+  "keywords": ["counter", "click", "counter app", "tap", "tally", "increment", "score keeper"],
+  "when_to_select": [
+    "the user wants to count clicks, taps or presses",
+    "a single number that goes up and down"
+  ],
+  "when_not_to_select": [
+    "a countdown or stopwatch (that is js_timer_app)",
+    "a game with obstacles"
+  ],
+  "known_limitations": [
+    "one counter only; no per-button tallies",
+    "persistence uses localStorage, so it is per browser"
+  ],
+  "licence": "CC0-1.0 (project original)",
+  "version": "1.0.0",
+  "status": "tested"
+}

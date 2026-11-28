@@ -19,6 +19,8 @@ from ..inference.generator import (GenerationResult, _params_from_config,
                                    generate_ids, generate_with_kv_cache)
 from ..inference.sampler import sample_token
 from ..model.transformer import BoxzLM
+from ..coding.session import CodingSession
+from ..coding.system import CodingSystem, build_default_system
 from ..router import Route, postprocess, route as route_question
 from ..tokenizer.bpe import BPETokenizer
 from .format import SYSTEM_PROMPT, Conversation, Message
@@ -59,6 +61,7 @@ class ChatEngine:
         build_kv_cache: bool = True,
         use_tools: bool = True,
         tool_seed: int = 0,
+        use_coding_system: bool = True,
     ) -> None:
         self.model = model
         self.tokenizer = tokenizer
@@ -70,10 +73,18 @@ class ChatEngine:
         self.last_route: Optional[Route] = None
         self.verified_values = 0
         self.server_identity_seed = tool_seed
+        # The template coding system.  ``None`` means the template library is
+        # not present (e.g. a stripped deployment) and the model answers as
+        # before; nothing else in this class depends on it.
+        self.coding: Optional[CodingSystem] = (
+            build_default_system() if use_tools and use_coding_system else None)
+        self.coding_session = CodingSession()
+        self.last_coding = None
 
     # ------------------------------------------------------------------
     def reset(self) -> None:
         self.conversation.reset()
+        self.coding_session.clear()
 
     def history(self) -> List[dict]:
         return self.conversation.to_list()
@@ -136,6 +147,35 @@ class ChatEngine:
             return f"Solving {ans.expression.replace('solve ', '')} gives {ans.value}."
         return ans.sentence()
 
+    # ------------------------------------------------------------------
+    # template coding system
+    # ------------------------------------------------------------------
+    def _try_coding(self, user_message: str) -> Optional[ChatReply]:
+        """Give the deterministic coding system first refusal.
+
+        Returns ``None`` when the turn is not a coding request, which hands it
+        back to the model.  A *handled* turn never touches the weights: the
+        code comes from a template, so ``tokens_generated`` is 0 and the reply
+        says so through ``finish_reason="coding_template"``.
+        """
+        if self.coding is None:
+            return None
+        result = self.coding.handle(user_message, self.coding_session)
+        self.last_coding = result
+        if not result.handled:
+            return None
+        self.coding_session.add_turn()
+        self.conversation.add_assistant(result.text)
+        return ChatReply(
+            text=result.text,
+            tokens_generated=0,
+            seconds=0.0,
+            finish_reason=f"coding_{result.outcome}",
+            prompt_tokens=0,
+            prompt="",
+            tools=result.to_dict(),
+        )
+
     def reply(self, user_message: str, cfg: Optional[GenerationConfig] = None) -> ChatReply:
         cfg = cfg or GenerationConfig()
         planned = self.plan(user_message)
@@ -143,6 +183,9 @@ class ChatEngine:
         self.conversation.add_user(user_message)
         if planned.used_math:
             return self._math_reply(planned, user_message)
+        coding = self._try_coding(user_message)
+        if coding is not None:
+            return coding
         prompt = self.build_prompt()
         prompt_ids = self.tokenizer.encode(prompt)
 
@@ -195,6 +238,10 @@ class ChatEngine:
             self.verified_values += 1
             self.conversation.add_assistant(body)
             yield body
+            return
+        coding = self._try_coding(user_message)
+        if coding is not None:
+            yield coding.text
             return
         prompt_ids = self.tokenizer.encode(self.build_prompt())
         stop_ids = {

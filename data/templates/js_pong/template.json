@@ -1,0 +1,62 @@
+{
+  "id": "js_pong",
+  "title": "Pong",
+  "language": "javascript",
+  "category": "2d_arcade_games",
+  "task": "pong",
+  "summary": "Two-paddle Pong with wall bounces, paddle-angle deflection, a ball that accelerates on each hit, a first-to-N score limit and an optional computer opponent.",
+  "files": [
+    { "path": "index.html", "language": "html", "role": "page" },
+    { "path": "pong.js", "language": "javascript", "role": "script" },
+    { "path": "style.css", "language": "css", "role": "style" }
+  ],
+  "parameters": [
+    { "name": "title", "placeholder": "__TITLE__", "type": "string", "default": "Pong",
+      "aliases": ["name", "heading"], "description": "Heading text." },
+    { "name": "win_score", "placeholder": "__WIN_SCORE__", "type": "int", "default": 7,
+      "min": 1, "max": 50, "aliases": ["target", "score_limit", "points"],
+      "description": "Points needed to win the match." },
+    { "name": "paddle_h", "placeholder": "__PADDLE_H__", "type": "int", "default": 80,
+      "min": 40, "max": 160, "aliases": ["paddle_height", "paddle_size"],
+      "description": "Paddle height in pixels." },
+    { "name": "ball_speed", "placeholder": "__BALL_SPEED__", "type": "float", "default": 4.2,
+      "min": 1.5, "max": 12.0, "aliases": ["speed", "ball_velocity"],
+      "nl_values": { "slow": 2.6, "medium": 4.2, "fast": 7.5 },
+      "description": "Initial ball speed in pixels per frame." },
+    { "name": "accel", "placeholder": "__ACCEL__", "type": "float", "default": 1.03,
+      "min": 1.0, "max": 1.2, "aliases": ["acceleration", "speed_up"],
+      "description": "Speed multiplier after each paddle hit." },
+    { "name": "cpu_enabled", "placeholder": "__CPU_ENABLED__", "type": "bool", "default": true,
+      "aliases": ["cpu", "computer", "ai_opponent", "single_player"],
+      "description": "Right paddle is played by the computer." },
+    { "name": "cpu_skill", "placeholder": "__CPU_SKILL__", "type": "float", "default": 0.12,
+      "min": 0.02, "max": 0.6, "aliases": ["difficulty", "cpu_speed"],
+      "nl_values": { "easy": 0.06, "medium": 0.12, "hard": 0.3 },
+      "description": "How quickly the computer paddle tracks the ball." },
+    { "name": "paddle_color", "placeholder": "__PADDLE_COLOR__", "type": "color",
+      "default": "#e6edf3", "aliases": ["paddle"], "description": "Paddle colour." },
+    { "name": "ball_color", "placeholder": "__BALL_COLOR__", "type": "color",
+      "default": "#58a6ff", "aliases": ["ball"], "description": "Ball colour." },
+    { "name": "court_color", "placeholder": "__COURT_COLOR__", "type": "color",
+      "default": "#0d1117", "aliases": ["court", "background", "bg"],
+      "description": "Court background." },
+    { "name": "bg_color", "placeholder": "__BG_COLOR__", "type": "color",
+      "default": "#0b0f14", "aliases": ["page_background"], "description": "Page background." }
+  ],
+  "keywords": ["pong", "paddle", "table tennis", "two player", "ball", "bounce"],
+  "when_to_select": [
+    "two paddles and a bouncing ball",
+    "table tennis style arcade game"
+  ],
+  "when_not_to_select": [
+    "bricks to destroy (that is js_breakout)",
+    "a growing snake (that is js_snake)"
+  ],
+  "known_limitations": [
+    "no sound assets are generated",
+    "single-player uses a simple tracker, not a real AI"
+  ],
+  "licence": "CC0-1.0 (project original)",
+  "version": "1.0.0",
+  "status": "tested"
+}

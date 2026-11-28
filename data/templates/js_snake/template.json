@@ -1,0 +1,120 @@
+{
+  "id": "js_snake",
+  "title": "Snake game",
+  "language": "javascript",
+  "category": "2d_arcade_games",
+  "task": "snake_game",
+  "summary": "Grid-based snake. Arrow keys or WASD steer, food grows the tail, the snake wraps at the edges and dies on itself. Pause, restart and a persisted best score are included.",
+  "files": [
+    { "path": "index.html", "language": "html", "role": "page" },
+    { "path": "game.js", "language": "javascript", "role": "script" },
+    { "path": "style.css", "language": "css", "role": "style" }
+  ],
+  "parameters": [
+    {
+      "name": "title",
+      "placeholder": "__TITLE__",
+      "type": "string",
+      "default": "Snake",
+      "aliases": ["name", "heading"],
+      "description": "Heading shown on the page and in the tab title."
+    },
+    {
+      "name": "grid_size",
+      "placeholder": "__GRID_SIZE__",
+      "type": "int",
+      "default": 15,
+      "min": 8,
+      "max": 30,
+      "aliases": ["grid", "cells", "board_size"],
+      "description": "Number of cells per side."
+    },
+    {
+      "name": "cell_px",
+      "placeholder": "__CELL_PX__",
+      "type": "int",
+      "default": 26,
+      "min": 12,
+      "max": 40,
+      "aliases": ["cell_size", "tile_size"],
+      "description": "Pixels per cell; board pixels = grid_size * cell_px."
+    },
+    {
+      "name": "step_ms",
+      "placeholder": "__STEP_MS__",
+      "type": "int",
+      "default": 120,
+      "min": 40,
+      "max": 400,
+      "aliases": ["speed", "tick", "interval"],
+      "nl_values": { "slow": 220, "medium": 120, "fast": 70, "faster": 60, "slower": 200 },
+      "description": "Milliseconds between moves. Smaller means faster."
+    },
+    {
+      "name": "start_length",
+      "placeholder": "__START_LENGTH__",
+      "type": "int",
+      "default": 3,
+      "min": 2,
+      "max": 8,
+      "aliases": ["length"],
+      "description": "Snake length at the start of a round."
+    },
+    {
+      "name": "show_score",
+      "placeholder": "__SHOW_SCORE__",
+      "type": "bool",
+      "default": true,
+      "aliases": ["score", "hud"],
+      "description": "Show and persist the score display."
+    },
+    {
+      "name": "bg_color",
+      "placeholder": "__BG_COLOR__",
+      "type": "color",
+      "default": "#0d1117",
+      "aliases": ["background", "bg"],
+      "description": "Page background."
+    },
+    {
+      "name": "snake_color",
+      "placeholder": "__SNAKE_COLOR__",
+      "type": "color",
+      "default": "#2ecc40",
+      "aliases": ["snake", "player_color"],
+      "description": "Snake body colour."
+    },
+    {
+      "name": "food_color",
+      "placeholder": "__FOOD_COLOR__",
+      "type": "color",
+      "default": "#ff4136",
+      "aliases": ["food", "dot_color"],
+      "description": "Food colour."
+    },
+    {
+      "name": "grid_color",
+      "placeholder": "__GRID_COLOR__",
+      "type": "color",
+      "default": "#30363d",
+      "aliases": ["border_color"],
+      "description": "Border colour around the board."
+    }
+  ],
+  "keywords": ["snake", "arcade", "grid", "classic", "eat", "food", "tail"],
+  "when_to_select": [
+    "the player steers a growing snake to eat food",
+    "grid movement with arrow keys or swipe"
+  ],
+  "when_not_to_select": [
+    "a paddle-and-ball game (that is pong or breakout)",
+    "a falling-block puzzle (that is tetris)"
+  ],
+  "known_limitations": [
+    "1 canvas, no sprite art; shapes are drawn as filled rectangles",
+    "the snake wraps at the edges rather than dying at a wall"
+  ],
+  "licence": "CC0-1.0 (project original)",
+  "version": "1.0.0",
+  "status": "tested"
+}

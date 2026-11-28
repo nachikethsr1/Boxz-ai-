@@ -1,0 +1,61 @@
+{
+  "id": "css_button_animation",
+  "title": "Animated CSS buttons",
+  "language": "css",
+  "category": "css_animations",
+  "task": "button_animation",
+  "summary": "Two buttons with hover lift, glow, an arrow that slides on hover, a press-down state, a keyboard focus ring and a pointer ripple. Motion is disabled under prefers-reduced-motion.",
+  "files": [
+    { "path": "index.html", "language": "html", "role": "page" },
+    { "path": "style.css", "language": "css", "role": "style" },
+    { "path": "ripple.js", "language": "javascript", "role": "script" }
+  ],
+  "parameters": [
+    { "name": "title", "placeholder": "__TITLE__", "type": "string", "default": "Buttons",
+      "aliases": ["name", "heading"], "description": "Heading above the buttons." },
+    { "name": "button_label", "placeholder": "__BUTTON_LABEL__", "type": "string",
+      "default": "Get started", "aliases": ["label", "text", "button_text"],
+      "description": "Text on the primary button." },
+    { "name": "accent_color", "placeholder": "__ACCENT_COLOR__", "type": "color",
+      "default": "#58a6ff", "aliases": ["color", "accent"], "description": "Primary button colour." },
+    { "name": "accent_hover", "placeholder": "__ACCENT_HOVER__", "type": "color",
+      "default": "#79b8ff", "aliases": ["hover_color"], "description": "Primary button hover colour." },
+    { "name": "bg_color", "placeholder": "__BG_COLOR__", "type": "color",
+      "default": "#0b0f14", "aliases": ["background", "bg"], "description": "Page background." },
+    { "name": "font_px", "placeholder": "__FONT_PX__", "type": "int", "default": 16,
+      "min": 12, "max": 28, "aliases": ["font_size", "size"], "description": "Button font size." },
+    { "name": "radius_px", "placeholder": "__RADIUS_PX__", "type": "int", "default": 10,
+      "min": 0, "max": 40, "aliases": ["radius", "rounded", "corner_radius"],
+      "description": "Corner radius." },
+    { "name": "duration_ms", "placeholder": "__DURATION_MS__", "type": "int", "default": 180,
+      "min": 40, "max": 900, "aliases": ["duration", "speed", "transition"],
+      "nl_values": { "slow": 400, "fast": 90 },
+      "description": "Transition duration in milliseconds." },
+    { "name": "lift_px", "placeholder": "__LIFT_PX__", "type": "int", "default": 3,
+      "min": 0, "max": 16, "aliases": ["lift", "raise"], "description": "How far the button rises on hover." },
+    { "name": "hover_scale", "placeholder": "__HOVER_SCALE__", "type": "float", "default": 1.04,
+      "min": 1.0, "max": 1.25, "aliases": ["scale", "grow"], "description": "Hover scale factor." },
+    { "name": "glow_px", "placeholder": "__GLOW_PX__", "type": "int", "default": 18,
+      "min": 0, "max": 60, "aliases": ["glow", "shadow"], "description": "Hover shadow spread." },
+    { "name": "arrow_px", "placeholder": "__ARROW_PX__", "type": "int", "default": 5,
+      "min": 0, "max": 20, "aliases": ["arrow", "arrow_shift"], "description": "How far the arrow slides." },
+    { "name": "ripple_enabled", "placeholder": "__RIPPLE_ENABLED__", "type": "bool", "default": true,
+      "aliases": ["ripple", "press_effect"], "description": "Enable the click ripple." }
+  ],
+  "keywords": ["button", "hover", "ripple", "css animation", "transition", "glow", "press"],
+  "when_to_select": [
+    "the user wants hover, press or focus animation on buttons",
+    "a CSS-only visual effect with no game loop"
+  ],
+  "when_not_to_select": [
+    "a full page or website",
+    "a game with a player and score"
+  ],
+  "known_limitations": [
+    "no icon files; the arrow is a unicode character",
+    "the ripple is drawn by a small script, so this template is CSS+JS, not pure CSS"
+  ],
+  "licence": "CC0-1.0 (project original)",
+  "version": "1.0.0",
+  "status": "tested"
+}
