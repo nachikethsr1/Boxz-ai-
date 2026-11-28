@@ -168,6 +168,64 @@ def cmd_sft(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_math(args: argparse.Namespace) -> int:
+    from boxz.math.engine import list_capabilities, solve
+    if args.capabilities:
+        for c in list_capabilities():
+            print(f"  - {c}")
+        return 0
+    a = solve(" ".join(args.expression))
+    print(a.sentence() if a.ok else f"cannot compute: {a.error}")
+    return 0 if a.ok else 1
+
+
+def cmd_check_code(args: argparse.Namespace) -> int:
+    from pathlib import Path
+
+    from boxz.coding.engine import list_capabilities, validate_reply, verdict
+    if args.capabilities:
+        for c in list_capabilities():
+            print(f"  - {c}")
+        return 0
+    text = Path(args.file).read_text(encoding="utf-8") if args.file else args.code
+    blocks = validate_reply(text)
+    if not blocks:
+        print("no fenced code blocks found")
+        return 1
+    for b in blocks:
+        print(f"block {b.index}: tag={b.tag or '-'} lang={b.language} -> {b.validation.summary()}")
+    print()
+    print(verdict(blocks))
+    return 0 if all(b.validation.ok for b in blocks) else 1
+
+
+def cmd_sft_v3(args: argparse.Namespace) -> int:
+    from boxz.training.sft_v3 import SFTV3Config, tune_v3
+    cfg = SFTV3Config(train=args.train, val=args.val, steps=args.steps,
+                      batch_size=args.batch_size, lr=args.lr, out_dir=args.out)
+    res = tune_v3(args.checkpoint, cfg)
+    _print(res.to_dict())
+    return 0
+
+
+def cmd_eval_v3(args: argparse.Namespace) -> int:
+    from boxz.eval.v3_suite import main as suite_main
+    argv = ["--out", args.out]
+    if args.checkpoint:
+        argv += ["--checkpoint", args.checkpoint]
+    if args.n:
+        argv += ["--n", str(args.n)]
+    return suite_main(argv)
+
+
+def cmd_compare(args: argparse.Namespace) -> int:
+    from boxz.eval.compare import main as cmp_main
+    argv = ["--after", args.after, "--out", args.out]
+    if args.before:
+        argv += ["--before", args.before]
+    return cmp_main(argv)
+
+
 def cmd_bench_suite(args: argparse.Namespace) -> int:
     from boxz.training.benchmark_suite import main as suite_main
     return suite_main(["--checkpoint", args.checkpoint, "--out", args.out])
@@ -260,6 +318,39 @@ def build_parser() -> argparse.ArgumentParser:
     f.add_argument("name")
     f.add_argument("--force", action="store_true")
     f.set_defaults(func=cmd_fetch)
+
+    m = sub.add_parser("math", help="evaluate an expression with the math engine")
+    m.add_argument("expression", nargs="*")
+    m.add_argument("--capabilities", action="store_true")
+    m.set_defaults(func=cmd_math)
+
+    cc = sub.add_parser("check-code", help="syntax-check fenced code")
+    cc.add_argument("code", nargs="?", default="")
+    cc.add_argument("--file")
+    cc.add_argument("--capabilities", action="store_true")
+    cc.set_defaults(func=cmd_check_code)
+
+    sv = sub.add_parser("sft-v3", help="instruction-tune on the V3 splits")
+    sv.add_argument("--checkpoint", required=True)
+    sv.add_argument("--train", default="data/processed/v3/v3_train.jsonl")
+    sv.add_argument("--val", default="data/processed/v3/v3_val.jsonl")
+    sv.add_argument("--steps", type=int, default=1200)
+    sv.add_argument("--batch-size", type=int, default=8)
+    sv.add_argument("--lr", type=float, default=2e-4)
+    sv.add_argument("--out", default="checkpoints/v3-sft")
+    sv.set_defaults(func=cmd_sft_v3)
+
+    ev = sub.add_parser("eval-v3", help="run the V3 acceptance suite")
+    ev.add_argument("--checkpoint")
+    ev.add_argument("--n", type=int, default=40)
+    ev.add_argument("--out", default="reports/v3_suite.json")
+    ev.set_defaults(func=cmd_eval_v3)
+
+    cp = sub.add_parser("compare", help="compare two checkpoints on fixed prompts")
+    cp.add_argument("--before")
+    cp.add_argument("--after", required=True)
+    cp.add_argument("--out", default="reports/compare.json")
+    cp.set_defaults(func=cmd_compare)
 
     b = sub.add_parser("benchmark", help="run micro-benchmarks")
     b.add_argument("--config", default=None)

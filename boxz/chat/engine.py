@@ -19,6 +19,7 @@ from ..inference.generator import (GenerationResult, _params_from_config,
                                    generate_ids, generate_with_kv_cache)
 from ..inference.sampler import sample_token
 from ..model.transformer import BoxzLM
+from ..router import Route, postprocess, route as route_question
 from ..tokenizer.bpe import BPETokenizer
 from .format import SYSTEM_PROMPT, Conversation, Message
 from .template import decode_ids_stopping_at_role
@@ -34,6 +35,7 @@ class ChatReply:
     finish_reason: str
     prompt_tokens: int
     prompt: str = ""
+    tools: Optional[dict] = None
 
     def to_dict(self) -> dict:
         return {
@@ -43,6 +45,7 @@ class ChatReply:
             "seconds": round(self.seconds, 3),
             "tokens_per_second": round(self.tokens_generated / max(self.seconds, 1e-9), 2),
             "finish_reason": self.finish_reason,
+            "tools": self.tools or {},
         }
 
 
@@ -54,12 +57,19 @@ class ChatEngine:
         system_prompt: Optional[str] = SYSTEM_PROMPT,
         max_context_tokens: Optional[int] = None,
         build_kv_cache: bool = True,
+        use_tools: bool = True,
+        tool_seed: int = 0,
     ) -> None:
         self.model = model
         self.tokenizer = tokenizer
         self.conversation = Conversation(system=system_prompt)
         self.max_context_tokens = max_context_tokens or model.cfg.context_length
         self.use_kv_cache = build_kv_cache
+        self.use_tools = use_tools
+        self.tool_seed = tool_seed
+        self.last_route: Optional[Route] = None
+        self.verified_values = 0
+        self.server_identity_seed = tool_seed
 
     # ------------------------------------------------------------------
     def reset(self) -> None:
@@ -74,9 +84,65 @@ class ChatEngine:
         self.conversation = conv
         return conv.render_prompt()
 
+    # ------------------------------------------------------------------
+    # tool plumbing
+    # ------------------------------------------------------------------
+    def plan(self, user_message: str) -> Route:
+        """Decide, before generating, whether an engine should answer."""
+        if not self.use_tools:
+            return Route()
+        return route_question(user_message)
+
+    def _math_reply(self, r: Route, user_message: str) -> ChatReply:
+        """Answer a calculation with the engine's verified value.
+
+        The model is *not* asked to do arithmetic.  It would get it wrong: a
+        3M-parameter model cannot reliably multiply two 6-digit numbers.  So the
+        engine computes, and the reply states the exact result.  If the model
+        has learned the phrasing it is used as the wrapper; otherwise the
+        canonical phrasing is emitted.  The numeric result is never generated.
+        """
+        ans = r.math
+        assert ans is not None
+        self.verified_values += 1
+        body = self._phrase_calculation(ans, user_message)
+        self.conversation.add_assistant(body)
+        return ChatReply(
+            text=body,
+            tokens_generated=0,
+            seconds=0.0,
+            finish_reason="math_engine",
+            prompt_tokens=0,
+            prompt="",
+            tools=r.to_dict(),
+        )
+
+    def _phrase_calculation(self, ans, user_message: str) -> str:
+        """Deterministic, verifiable phrasing of an exact result."""
+        if ans.kind == "arithmetic":
+            return f"{ans.expression} = {ans.value}"
+        if ans.kind == "percentage":
+            return f"{ans.expression} = {ans.value}"
+        if ans.kind == "geometry":
+            unit = " square units" if "area" in ans.expression else ""
+            return f"The {ans.expression} is {ans.value}{unit}."
+        if ans.kind == "conversion":
+            return f"{ans.expression}: {ans.value}"
+        if ans.kind == "average":
+            return f"{ans.expression} is {ans.value}."
+        if ans.kind == "ratio":
+            return f"{ans.expression}: {ans.value}."
+        if ans.kind == "algebra":
+            return f"Solving {ans.expression.replace('solve ', '')} gives {ans.value}."
+        return ans.sentence()
+
     def reply(self, user_message: str, cfg: Optional[GenerationConfig] = None) -> ChatReply:
         cfg = cfg or GenerationConfig()
+        planned = self.plan(user_message)
+        self.last_route = planned
         self.conversation.add_user(user_message)
+        if planned.used_math:
+            return self._math_reply(planned, user_message)
         prompt = self.build_prompt()
         prompt_ids = self.tokenizer.encode(prompt)
 
@@ -94,14 +160,20 @@ class ChatEngine:
             res = generate_ids(self.model, prompt_ids, cfg, self.tokenizer, stop_ids=stop_ids)
 
         text = self._clean(res.text)
-        self.conversation.add_assistant(text)
+        check = postprocess(text)
+        tools = check.to_dict() if check.used_coding else {}
+        shown = text
+        if check.used_coding and check.coding_verdict:
+            shown = text + "\n\n(" + check.coding_verdict + ")"
+        self.conversation.add_assistant(shown)
         return ChatReply(
-            text=text,
+            text=shown,
             tokens_generated=res.tokens_generated,
             seconds=res.seconds,
             finish_reason=res.finish_reason,
             prompt_tokens=len(prompt_ids),
             prompt=prompt,
+            tools=tools,
         )
 
     def reply_stream(self, user_message: str, cfg: Optional[GenerationConfig] = None):
@@ -113,7 +185,17 @@ class ChatEngine:
         The generator's return value is the final cleaned reply string.
         """
         cfg = cfg or GenerationConfig()
+        planned = self.plan(user_message)
+        self.last_route = planned
         self.conversation.add_user(user_message)
+        if planned.used_math:
+            # Streaming cannot stream a number it did not generate; emit the
+            # verified sentence in one chunk so the UI still updates.
+            body = self._phrase_calculation(planned.math, user_message)
+            self.verified_values += 1
+            self.conversation.add_assistant(body)
+            yield body
+            return
         prompt_ids = self.tokenizer.encode(self.build_prompt())
         stop_ids = {
             self.tokenizer.special_id("<|end|>"),
@@ -144,6 +226,10 @@ class ChatEngine:
                     break
 
         final = self._clean(self._visible(generated))
+        check = postprocess(final)
+        self.last_route = check
+        if check.used_coding and check.coding_verdict:
+            final = final + "\n\n(" + check.coding_verdict + ")"
         self.conversation.add_assistant(final)
         yield final
 

@@ -79,6 +79,11 @@ class Trainer:
         # -- data ---------------------------------------------------------
         if corpus is None or tokenizer is None:
             corpus, tokenizer = prepare_dataset(cfg.data, tokenizer, verbose=verbose)
+            # The token array is only needed while batches are being sampled;
+            # dropping the raw text now keeps ~300 MB free for activations,
+            # which is what lets a larger micro-batch fit in 3.9 GB.
+            import gc as _gc
+            _gc.collect()
         self.corpus = corpus
         self.tokenizer = tokenizer
         if cfg.model.vocab_size != tokenizer.vocab_size:
@@ -179,10 +184,14 @@ class Trainer:
             if cfg.max_minutes is not None and (time.time() - t0) / 60.0 > cfg.max_minutes:
                 self._say(f"[train] wall-clock limit reached at step {self.step}")
                 break
-            xs, ys = self.corpus.batch(cfg.batch_size, cfg.model.context_length, "train", self.rng)
             if cfg.grad_accum_steps > 1:
-                loss = self._accumulated_step(xs, ys)
+                # _accumulated_step samples its own micro-batches; sampling one
+                # here as well would silently discard `batch_size * ctx` tokens
+                # on every single step.
+                loss = self._accumulated_step(None, None)
             else:
+                xs, ys = self.corpus.batch(cfg.batch_size, cfg.model.context_length,
+                                           "train", self.rng)
                 loss = self.train_step(xs, ys)
             running.append(loss)
             if len(running) > 50:
@@ -229,25 +238,27 @@ class Trainer:
             tokens_seen=self.tokens_seen, seconds=time.time() - t0, history=self.history,
         )
 
-    def _accumulated_step(self, xs: np.ndarray, ys: np.ndarray) -> float:
+    def _accumulated_step(self, xs=None, ys=None) -> float:
         """Gradient accumulation over ``grad_accum_steps`` micro-batches."""
         n = self.cfg.grad_accum_steps
         self.optimizer.lr = self.schedule.get(self.step)
         self.model.zero_grad()
         losses = []
-        graphs = []
         for _ in range(n):
             xb, yb = self.corpus.batch(self.cfg.batch_size, self.cfg.model.context_length, "train", self.rng)
             _, loss = self.model(xb, yb)
             scaled = loss * (1.0 / n)
             scaled.backward()
-            graphs.append(loss)
             losses.append(float(loss.data))
             self.tokens_seen += int(xb.size)
+            # Free this micro-batch's activations immediately.  Holding all N
+            # graphs until after optimizer.step() multiplies peak activation
+            # memory by N -- at ctx 512 that is the difference between fitting
+            # in 3.9 GB and being OOM-killed.
+            loss.free_graph()
+            del scaled
         self.optimizer.step()
         self.model.zero_grad()
-        for g in graphs:
-            g.free_graph()
         self.step += 1
         return float(np.mean(losses))
 
