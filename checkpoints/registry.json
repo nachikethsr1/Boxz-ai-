@@ -1,0 +1,41 @@
+{
+  "format": "boxz-checkpoint-registry-v1",
+  "_comment": "Non-destructive provenance for checkpoints. Nothing is deleted. 'usable: false' makes selection tools refuse a checkpoint; forensic tools can still load it. Evidence for each entry is in the 'reason' and 'evidence' fields.",
+  "default": "checkpoints/v3-sft/best",
+  "checkpoints": {
+    "checkpoints/v3-sft/best": {
+      "usable": true,
+      "stage": "sft_v3",
+      "step": 1200,
+      "val_loss": 3.0744,
+      "created": "2026-11-28T11:13:35Z",
+      "reason": "Current best. SFT converged over 1200 steps; still improving at cutoff.",
+      "evidence": "train_state.json best_val_loss; neural-only baseline in docs/PHASE1_REPORT.md"
+    },
+    "checkpoints/v3-sft/final": {
+      "usable": true,
+      "stage": "sft_v3",
+      "step": 1200,
+      "val_loss": 3.0744,
+      "created": "2026-11-28T11:13:35Z",
+      "reason": "Byte-identical to v3-sft/best (same step, same val loss).",
+      "note": "Redundant; prefer best."
+    },
+    "checkpoints/v4-sft/best": {
+      "usable": false,
+      "stage": "sft_v3",
+      "step": 100,
+      "val_loss": 4.6969,
+      "created": "2026-11-28T12:17:31Z",
+      "reason": "ABORTED RUN. Stopped at step 100 of a planned longer schedule; val loss 4.70 vs 3.07 for v3. Loading it degrades quality.",
+      "evidence": "train_state.json shows step=100 while v3 reached 1200. Same file size and same 'stage' string as v3, which is why it is easy to pick by mistake."
+    },
+    "checkpoints/boxz-26m/boxz-26m/best": {
+      "usable": true,
+      "stage": "pretrain",
+      "step": 1200,
+      "val_loss": 3.4421,
+      "reason": "Pretraining base model (not instruction-tuned). Usable for pretrain-stage evaluation, not for chat."
+    }
+  }
+}

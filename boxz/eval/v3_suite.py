@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 import random
 import re
 from dataclasses import dataclass, field
@@ -196,15 +197,38 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--checkpoint", default=None)
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--out", default="reports/v3_suite.json")
+    ap.add_argument("--force", action="store_true",
+                    help="overwrite --out instead of writing a numbered sibling")
     args = ap.parse_args(argv)
 
     report: Dict[str, object] = {}
     report["math"] = run_math_suite(verbose=True)
     report["coding"] = run_coding_suite()
     if args.checkpoint:
+        # Refuse a checkpoint the registry has marked unusable.  `v4-sft/best`
+        # is an aborted run and used to be evaluable by accident.
+        from ..training.registry import require_usable
+        try:
+            require_usable(args.checkpoint)
+        except ValueError as exc:
+            print(f"[eval] {exc}")
+            return 2
         report["model"] = run_model_suite(args.checkpoint, args.n)
+        report["checkpoint"] = args.checkpoint
     out = Path(args.out)
+    if out.exists() and not args.force:
+        # A fixed output path silently replaced the previous benchmark, so two
+        # runs could never be compared.  Write a numbered sibling instead.
+        n = 2
+        while True:
+            cand = out.with_name(f"{out.stem}.{n}{out.suffix}")
+            if not cand.exists():
+                break
+            n += 1
+        print(f"[eval] {out} exists; writing {cand} instead (use --force to replace)")
+        out = cand
     out.parent.mkdir(parents=True, exist_ok=True)
+    report["generated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     out.write_text(json.dumps(report, indent=2))
     print(json.dumps({k: {kk: vv for kk, vv in v.items() if kk != "samples" and kk != "failures"}
                       for k, v in report.items()}, indent=2))

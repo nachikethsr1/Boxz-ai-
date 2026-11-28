@@ -1,0 +1,90 @@
+{
+  "checkpoint": "checkpoints/v3-sft/best",
+  "mode": "neural-only (templates, maths engine and tools disabled)",
+  "probes": {
+    "n": 9,
+    "passed": 1,
+    "accuracy": 0.1111,
+    "results": [
+      {
+        "id": "math_add",
+        "prompt": "What is 47 + 68?",
+        "output": "This is a division question.25 = 1.",
+        "correct": false,
+        "tokens": 11,
+        "seconds": 0.12
+      },
+      {
+        "id": "math_mul",
+        "prompt": "What is 23 * 14?",
+        "output": "This is a division. Example: 12 = 1.",
+        "correct": false,
+        "tokens": 12,
+        "seconds": 0.15
+      },
+      {
+        "id": "math_div",
+        "prompt": "What is 144 / 12?",
+        "output": "This is a division question. Example: 12 \u00d7 12 = 1.",
+        "correct": true,
+        "tokens": 15,
+        "seconds": 0.12
+      },
+      {
+        "id": "fact_css",
+        "prompt": "What is CSS?",
+        "output": "A button is a href. Example: .button is a player.",
+        "correct": false,
+        "tokens": 15,
+        "seconds": 0.13
+      },
+      {
+        "id": "fact_html",
+        "prompt": "What does HTML stand for?",
+        "output": "A button and CSS for a button.",
+        "correct": false,
+        "tokens": 9,
+        "seconds": 0.08
+      },
+      {
+        "id": "fact_capital",
+        "prompt": "What is the capital of France?",
+        "output": "A> is a new array, and updates the.",
+        "correct": false,
+        "tokens": 12,
+        "seconds": 0.11
+      },
+      {
+        "id": "logic_odd",
+        "prompt": "Which number is odd: 4, 7, 10?",
+        "output": "This is a division.25 \u00d7 3 = 1,500 = 1,500.",
+        "correct": false,
+        "tokens": 18,
+        "seconds": 0.14
+      },
+      {
+        "id": "code_loop",
+        "prompt": "Write a JavaScript for loop that counts to 10.",
+        "output": "The functionUse the browser console and browser console and browser console and browser console. The href is not be a href.\n\n```\nfunction greet(name) {\n  return a {\n  return `button;\n}\n\nconsole.log(gameLoop);\n```\n\n(1 of 1 code block(s) have syntax errors. javascript: syntax error (line 2): SyntaxError: Unexpected token '{')",
+        "correct": false,
+        "tokens": 54,
+        "seconds": 0.46
+      },
+      {
+        "id": "code_py_func",
+        "prompt": "Write a Python function that adds two numbers.",
+        "output": "TheTheThis is a division. Example: 12 \u00d7 12.",
+        "correct": false,
+        "tokens": 14,
+        "seconds": 0.15
+      }
+    ]
+  },
+  "heldout": {
+    "rows": 40,
+    "tokens": 1913,
+    "next_token_accuracy": 0.2765,
+    "perplexity": 3.62
+  },
+  "written_at": "20261128T160214Z"
+}

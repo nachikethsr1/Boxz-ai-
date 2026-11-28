@@ -482,7 +482,16 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv=None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
-    return int(args.func(args))
+    try:
+        return int(args.func(args))
+    except ValueError as exc:
+        # A refused checkpoint is an expected outcome, not a crash: report it
+        # on one line and exit non-zero so scripts can detect the refusal.
+        msg = str(exc)
+        if "registered as unusable" in msg:
+            print(f"boxz: {msg}", file=sys.stderr)
+            return 2
+        raise
 
 
 if __name__ == "__main__":

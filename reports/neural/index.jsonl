@@ -1,0 +1,3 @@
+{"written_at": "20261128T154437Z", "file": "20261128T154437Z-checkpoints_v3-sft_best.json", "checkpoint": "checkpoints/v3-sft/best", "probe_accuracy": 0.1111, "next_token_accuracy": 0.2765, "val_loss": null}
+{"written_at": "20261128T154444Z", "file": "20261128T154444Z-checkpoints_v3-sft_best.json", "checkpoint": "checkpoints/v3-sft/best", "probe_accuracy": 0.1111, "next_token_accuracy": 0.2765, "val_loss": null}
+{"written_at": "20261128T160214Z", "file": "20261128T160214Z-checkpoints_v3-sft_best.json", "checkpoint": "checkpoints/v3-sft/best", "probe_accuracy": 0.1111, "next_token_accuracy": 0.2765, "val_loss": null}

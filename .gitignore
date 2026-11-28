@@ -34,6 +34,12 @@ logs/
 benchmarks/*.json
 reports/*.json
 
+# Neural benchmark results ARE versioned: a benchmark that cannot be compared
+# against its predecessor cannot show improvement.  Each run is timestamped and
+# immutable; index.jsonl accumulates one line per run.  Everything else under
+# reports/ stays transient.
+!reports/neural/
+
 # OS / editor
 .DS_Store
 .idea/

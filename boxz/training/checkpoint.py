@@ -96,8 +96,20 @@ def load_checkpoint(
     path: Union[str, Path],
     map_location: str = "cpu",
     build: bool = True,
+    allow_unusable: bool = False,
 ) -> Checkpoint:
-    """Load a checkpoint directory (or legacy ``.npz``).  Verified by tests."""
+    """Load a checkpoint directory (or legacy ``.npz``).  Verified by tests.
+
+    Checkpoints listed as unusable in ``checkpoints/registry.json`` are refused
+    here rather than at each call site, so that every caller -- CLI, demo,
+    server, evaluators -- inherits the guard automatically.  Pass
+    ``allow_unusable=True`` to inspect a known-bad checkpoint deliberately
+    (forensics, or reproducing a failure); nothing is ever deleted.
+    """
+    if not allow_unusable:
+        from .registry import require_usable
+
+        require_usable(str(path))
     p = Path(path)
     if p.is_file() and p.suffix == ".npz":
         data = np.load(p, allow_pickle=False)

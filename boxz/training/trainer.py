@@ -98,7 +98,11 @@ class Trainer:
         self.optimizer = AdamW(
             self.model.parameters(),
             lr=cfg.lr, betas=(cfg.beta1, cfg.beta2),
-            weight_decay=cfg.weight_decay, grad_clip=None,
+            weight_decay=cfg.weight_decay,
+            # `grad_clip` was hardcoded to None here while the config declared
+            # 1.0, so clipping silently never ran: the run had no protection
+            # against a gradient spike.  Honour the configured value.
+            grad_clip=cfg.grad_clip,
         )
         self.schedule = LRSchedule(mode=cfg.schedule, lr=cfg.lr, min_lr=cfg.min_lr,
                                    warmup_steps=cfg.warmup_steps, max_steps=cfg.max_steps)
@@ -144,6 +148,15 @@ class Trainer:
         self.step = int(ckpt.train_state.get("step", 0))
         self.tokens_seen = int(ckpt.train_state.get("tokens_seen", 0))
         self.best_val_loss = float(ckpt.train_state.get("best_val_loss", float("inf")))
+        # Restore the data-sampling stream.  Without this, a resumed run
+        # replays the same batches from the start of the seed sequence and a
+        # "resumed" run is not the continuation of the original one.
+        rng_state = ckpt.train_state.get("rng_state")
+        if rng_state:
+            try:
+                self.rng.bit_generator.state = rng_state
+            except (KeyError, TypeError, ValueError) as exc:  # pragma: no cover
+                self._say(f"[train] could not restore rng state: {exc}")
         self._say(f"[train] resumed from {path} at step {self.step}")
 
     # ------------------------------------------------------------------
@@ -193,6 +206,14 @@ class Trainer:
                 xs, ys = self.corpus.batch(cfg.batch_size, cfg.model.context_length,
                                            "train", self.rng)
                 loss = self.train_step(xs, ys)
+            if not math.isfinite(loss):
+                # Without this the loop would keep stepping on NaN weights for
+                # hours and only the final artefact would look wrong.  Stop at
+                # the first non-finite loss and leave the last good checkpoint.
+                raise FloatingPointError(
+                    f"non-finite training loss {loss!r} at step {self.step + 1}; "
+                    f"last good checkpoint in {self.run_dir}"
+                )
             running.append(loss)
             if len(running) > 50:
                 running.pop(0)
@@ -200,24 +221,33 @@ class Trainer:
             if self.step % cfg.log_interval == 0 or self.step == 1:
                 lr = self.schedule.get(self.step - 1)
                 train_avg = float(np.mean(running))
-                rec = {
+                self._log({
+                    "kind": "train",
                     "step": self.step,
                     "train_loss": round(train_avg, 4),
                     "lr": float(f"{lr:.3e}"),
+                    "grad_norm": (round(self.optimizer.last_grad_norm, 4)
+                                  if self.optimizer.last_grad_norm is not None else None),
                     "tokens_seen": self.tokens_seen,
                     "elapsed_s": round(time.time() - t0, 1),
-                }
-                self._log(rec)
+                })
                 self._say(f"step {self.step:5d}/{cfg.max_steps}  loss {train_avg:.4f}  "
                           f"lr {lr:.2e}  tokens {self.tokens_seen:>9,}  "
-                          f"({rec['elapsed_s']:.0f}s)")
+                          f"({round(time.time() - t0, 1):.0f}s)")
 
             if self.step % cfg.eval_interval == 0 and self.step > 0:
                 val_loss = evaluate_loss(self.model, self.corpus, batch_size=max(4, cfg.batch_size // 2),
                                          n_batches=cfg.eval_batches, split="val")
                 last_val = val_loss
                 ppl = math.exp(min(val_loss, 50))
-                self._log({"step": self.step, "val_loss": round(val_loss, 4), "val_ppl": round(ppl, 2)})
+                self._log({
+                    "kind": "val",
+                    "step": self.step,
+                    "val_loss": round(val_loss, 4),
+                    "val_ppl": round(ppl, 2),
+                    "tokens_seen": self.tokens_seen,
+                    "elapsed_s": round(time.time() - t0, 1),
+                })
                 self._say(f"  eval step {self.step}: val_loss {val_loss:.4f}  ppl {ppl:.2f}")
                 if val_loss < self.best_val_loss:
                     self.best_val_loss = val_loss
@@ -271,6 +301,7 @@ class Trainer:
                 "step": self.step, "tokens_seen": self.tokens_seen,
                 "best_val_loss": self.best_val_loss,
                 "history": self.history[-200:],
+                "rng_state": self.rng.bit_generator.state,
             },
             optimizer_state=self.optimizer.state_dict(),
         )
