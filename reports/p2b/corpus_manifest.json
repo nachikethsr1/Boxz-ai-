@@ -1,0 +1,33 @@
+{
+  "version": "p2b-corpus-v1",
+  "corpus_sha256": "41cc1e1596668bf34083f82376a211cf17dafe6cc1cac2a364c1003de8035c9e",
+  "train_sha256": "29c73af06d41e0d1538f9b1f75a0b5c0c8c5e164037c57139f64fd6a2b5ca4dd",
+  "val_sha256": "336ec590a0110f6b92c2c634b8e24200b5514839f4d30df64acca9045ec0c9fc",
+  "documents_total": 4686,
+  "duplicates_dropped": 0,
+  "chars_by_language": {
+    "css": 40910,
+    "html": 272989,
+    "instruction": 912971,
+    "javascript": 861993,
+    "python": 855361,
+    "text": 708633
+  },
+  "documents_by_licence": {
+    "Apache-2.0": 112,
+    "MIT": 442,
+    "project-original": 4132
+  },
+  "train": {
+    "documents": 4218,
+    "chars": 3419409
+  },
+  "val": {
+    "documents": 468,
+    "chars": 415360
+  },
+  "val_fraction": 0.1,
+  "seed": 20261128,
+  "max_doc_chars": 16000,
+  "dedupe": "document-level only; line-level dedupe is never applied"
+}

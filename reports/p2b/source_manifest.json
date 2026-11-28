@@ -1,0 +1,146 @@
+{
+  "built_at": "2026-11-28T17:40:31Z",
+  "repos": [
+    {
+      "repo": "karpathy/micrograd",
+      "licence": "MIT",
+      "commit": "7bc720e951fe422b8f8814aa5aa1b64121d26b4c",
+      "documents_kept": 4,
+      "chars_kept": 6530,
+      "skipped": []
+    },
+    {
+      "repo": "karpathy/makemore",
+      "licence": "MIT",
+      "commit": "988aa59e4d8fefa526d06f3b453ad116258398d4",
+      "documents_kept": 1,
+      "chars_kept": 29659,
+      "skipped": []
+    },
+    {
+      "repo": "karpathy/nanoGPT",
+      "licence": "MIT",
+      "commit": "3adf61e154c3fe3fca428ad6bc3818b27a3b8291",
+      "documents_kept": 9,
+      "chars_kept": 49005,
+      "skipped": []
+    },
+    {
+      "repo": "TheAlgorithms/Python",
+      "licence": "MIT",
+      "commit": "30507bbe41397065728167fb09aa820f9fce8dc7",
+      "documents_kept": 182,
+      "chars_kept": 606167,
+      "skipped": [
+        "duplicate document ciphers/base64_cipher.py"
+      ]
+    },
+    {
+      "repo": "psf/requests",
+      "licence": "Apache-2.0",
+      "commit": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+      "documents_kept": 29,
+      "chars_kept": 361137,
+      "skipped": []
+    },
+    {
+      "repo": "twbs/bootstrap",
+      "licence": "MIT",
+      "commit": "ace67b724759f376250f6ac0a64c7b386a27f86f",
+      "documents_kept": 20,
+      "chars_kept": 301008,
+      "skipped": []
+    },
+    {
+      "repo": "jquery/jquery",
+      "licence": "MIT",
+      "commit": "effd615f0009e927dfd1f41d04fb6073478076d4",
+      "documents_kept": 57,
+      "chars_kept": 202121,
+      "skipped": []
+    },
+    {
+      "repo": "necolas/normalize.css",
+      "licence": "MIT",
+      "commit": "fc091cce1534909334c1911709a39c22d406977b",
+      "documents_kept": 1,
+      "chars_kept": 6138,
+      "skipped": []
+    },
+    {
+      "repo": "picturepan2/spectre",
+      "licence": "MIT",
+      "commit": "8847251d71b4dac27e8407cbdb71ae89ce156a43",
+      "documents_kept": 10,
+      "chars_kept": 208878,
+      "skipped": []
+    },
+    {
+      "repo": "google/material-design-lite",
+      "licence": "Apache-2.0",
+      "commit": "85f29d30e64827d7a22d193eefe896fa952488f7",
+      "documents_kept": 83,
+      "chars_kept": 302703,
+      "skipped": []
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "licence": "MIT",
+      "commit": "c3c69abae1440acff276409de4544e2b943fe789",
+      "documents_kept": 66,
+      "chars_kept": 406634,
+      "skipped": []
+    },
+    {
+      "repo": "ossu/computer-science",
+      "licence": "MIT",
+      "commit": "8f8272b1d378d31494240aa1d667aa6b045c6552",
+      "documents_kept": 22,
+      "chars_kept": 151336,
+      "skipped": []
+    },
+    {
+      "repo": "microsoft/Web-Dev-For-Beginners",
+      "licence": "MIT",
+      "commit": "93b9967af14efd43246c713217dad40d7c27c2f5",
+      "documents_kept": 62,
+      "chars_kept": 707389,
+      "skipped": []
+    },
+    {
+      "repo": "ryanmcdermott/clean-code-javascript",
+      "licence": "MIT",
+      "commit": "5311f64b03fc0c2450ab17a45ee9818669c8b9b5",
+      "documents_kept": 1,
+      "chars_kept": 58443,
+      "skipped": []
+    },
+    {
+      "repo": "leonardomso/33-js-concepts",
+      "licence": "MIT",
+      "commit": "16d0d95c02b19df6a8c841f1a0012d7b7367a340",
+      "documents_kept": 7,
+      "chars_kept": 186647,
+      "skipped": []
+    },
+    {
+      "repo": "TheAlgorithms/JavaScript",
+      "licence": "GPL-3.0",
+      "commit": null,
+      "documents_kept": 0,
+      "chars_kept": 0,
+      "skipped": [
+        "licence GPL-3.0 is not permissive"
+      ]
+    }
+  ],
+  "documents": 554,
+  "chars_by_language": {
+    "python": 1052498,
+    "javascript": 1058740,
+    "html": 332756,
+    "css": 55181,
+    "text": 1084620
+  },
+  "chars_total": 3583795
+}
